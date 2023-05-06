@@ -219,7 +219,8 @@ void canISR()
 ---------------------------------------------------------------------------*/
 
 // CAN Receive function, use map if neccessary
-void canRX() {
+void canRX() 
+{
 	if (can.rxMsgLen > -1) {
 		if (can.id == CAN_TEST) {
       		rxData[0] = can.rxData.bytes[0];
@@ -232,7 +233,8 @@ void canRX() {
 }
 
 // digital update daemon
-void updateDigital() {
+void updateDigital() 
+{
 
   digitalFrame1.bytes[0] = (byte)(digitalRead(pin_DigIn1) << 3);
   digitalFrame1.bytes[0] |= (byte)(digitalRead(pin_DigIn2) << 2);
@@ -243,36 +245,66 @@ void updateDigital() {
 }
 
 // analog update daemon
-void updateAnalog() {
-  // use bitwise operation to split the data
-	int16_t adc[4] = {0};
-	int16_t mapFrom[4][2]  = {{0,65536}, {0,65536}, {0,1023}, {0,1023}};
-	int16_t mapTo[4][2] = {{0,100}, {0,100}, {0,500}, {0, 500}};
-  
-  	// read ADC values
-	for (int i = 0; i <= 3; i++) {
-    	adc[i] = ads.readADC_SingleEnded(i);
-  	}
-	
-	// map them as we need, map(value, fromLow, fromHigh, toLow, toHigh)
-  	for (int i =0; i <= 3; i++) {
-    	adc[i] = map(adc[i], mapFrom[i][0], mapFrom[i][1], mapTo[i][0], mapTo[i][1]);
-	}
+void updateAnalog() 
+{
+  float Voltage[4] = { 0.0 };
+  int VoltageInt[4] = { 0 };
 
-  	// use bitwise to split the data into 2 bytes as needed
-	// &0xFF masks the first 8bits, >>8 shit it 8 bits to the right
-	analogFrame1.bytes[0] = adc[0];
-	analogFrame1.bytes[1] = adc[1];
-	analogFrame1.bytes[2] = (byte)(adc[2] & 0xFF);
-	analogFrame1.bytes[3] = (byte)(adc[2] >> 8);
-  analogFrame1.bytes[4] = (byte)(adc[3] & 0xFF);
-  analogFrame1.bytes[5] = (byte)(adc[3] >> 8);
+  for(int i = 0; i < 4; i++)
+  {
+    Voltage[i] = (ADC_VREF/ADC_BIT_RESOLUTION)*(ads.readADC_SingleEnded(i));//(ADC_VREF/ADC_BIT_RESOLUTION)*(ads.readADC_SingleEnded(i));
+
+    //Converts float to int with mV resolution
+    VoltageInt[i] = (1000*Voltage[i]);
+  }
+
+  //Transmit voltages read
+  analogFrame1.bytes[0] = (VoltageInt[0] >> 8) & 0xFF;
+  analogFrame1.bytes[1] = (VoltageInt[0]) & 0xFF;
+  analogFrame1.bytes[2] = (VoltageInt[1] >> 8) & 0xFF;
+  analogFrame1.bytes[3] = (VoltageInt[1]) & 0xFF;
+  analogFrame1.bytes[4] = (VoltageInt[1] >> 8) & 0xFF;
+  analogFrame1.bytes[5] = (VoltageInt[1]) & 0xFF;
+  analogFrame1.bytes[6] = (VoltageInt[1] >> 8) & 0xFF;
+  analogFrame1.bytes[7] = (VoltageInt[1]) & 0xFF;
+
+  /*
+  //Convert voltages read from NTC thermistors into temperature
+  int Thermistor_Resistance[2] = { 0 };
+  float Temperature[2] = { 0 };
+  int TemperatureInt[2] = { 0 };
+
+  //Thermistor calibration factors
+  double A = 0.0008235388853;
+  double B = 0.0002632202645;
+  double C = 0.0000001349156215;
+
+  for(int i = 0; i < 2; i++)
+  {
+    //Thermistor_Resistance[i] = (((Voltage[i]/5) - 1)*1000 + ((Voltage[i]/5)*10000))/(1 - (Voltage[i]/5));
+    Thermistor_Resistance[i] = ((Voltage[i] - 5)*1000 + Voltage[i]*10000)/(5 - Voltage[i]);
+  }
+
+  for(int i = 0; i < 2; i++)
+  {
+    Temperature[i] = (1.0/(A + B*log(Thermistor_Resistance[i]) + C*(log(Thermistor_Resistance[i])*log(Thermistor_Resistance[i])*log(Thermistor_Resistance[i])))) - 273.15;
+
+    //Convert float to int with 0.01 degree C resolution
+    TemperatureInt[i] = 100*Temperature[i];
+  }
+
+  analogFrame2.bytes[0] = (TemperatureInt[0] >> 8) & 0xFF;
+  analogFrame2.bytes[1] = (TemperatureInt[0]) & 0xFF;
+  analogFrame2.bytes[2] = (TemperatureInt[1] >> 8) & 0xFF;
+  analogFrame2.bytes[3] = (TemperatureInt[1]) & 0xFF;
+  */
 }
 
 
 
 // update the heart message data
-void updateHeartdata() {
+void updateHeartdata() 
+{
 	heartFrame.bytes[HEART_HARDWARE_REV] = 1;
 	heartFrame.bytes[HEART_PCB_TEMP] = 0;
 	heartFrame.bytes[4] = rxData[0];
@@ -280,13 +312,15 @@ void updateHeartdata() {
 }
 
 // update the drivers value, both PWM and 24V drivers
-void updateDrivers() {
+void updateDrivers() 
+{
 	digitalWrite(pin_Driver1,rxData[2]);
 	digitalWrite(pin_Driver2,rxData[1]);
 }
 
 // print values on to serial
-void SerialPrint () {
+void SerialPrint () 
+{
 	//Digital Input 
   	Serial1.print("Digital Input 1: ");  Serial1.println(digitalRead(pin_DigIn1)); 
   	Serial1.print("Digital Input 2: ");  Serial1.println(digitalRead(pin_DigIn2)); 
@@ -305,8 +339,6 @@ void FlowSensorProcess()
 
   (FS1_FlowRateInt < 100) ?  errorFrame.bytes[0] = 1 : errorFrame.bytes[0] = 0;
 }
-
-
 
 int pumpLHS, fanLHS;
 void ucm3PwmControl()
@@ -418,15 +450,22 @@ void loop()
   {
     case 1:
       break;
+      
     case 2:
       break;
+      
     case 3:
-        ucm3PwmControl();
+      updateAnalog();
+      ucm3PwmControl();
       break;
+      
     case 4:
-        ucm4PwmControl();
+      updateAnalog();
+      ucm4PwmControl();
       break; 
+      
     case 5:
+      updateAnalog();
       ucm5PwmControl();
       break;
     }
