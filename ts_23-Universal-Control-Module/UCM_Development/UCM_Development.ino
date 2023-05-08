@@ -38,7 +38,6 @@
 #include <Wire.h>
 #include <Adafruit_ADS1X15.h>
 #include <eXoCAN.h>
-#include <sys/wait.h>
 #include "TickerInterrupt.h"
 #include "can_addresses.h"
 #include "FlowSensor.h"
@@ -58,10 +57,7 @@ Adafruit_ADS1115 ads;
 eXoCAN can;
 
 //Used to determine which functions need to be uploaded to this particular board
-#define UCM_NUMBER 3
-
-
-
+#define UCM_NUMBER 5
 
 #if UCM_NUMBER == 1
   #define UCM_ADDRESS CAN_UCM1_BASE_ADDRESS
@@ -75,7 +71,8 @@ eXoCAN can;
   #define UCM_ADDRESS CAN_UCM5_BASE_ADDRESS
 #endif
 
-
+#define ADC_VREF 6.144f
+#define ADC_BIT_RESOLUTION 32767L
 
 #define CAN_TEST 0x600
 /*--------------------------------------------------------------------------- 
@@ -112,7 +109,8 @@ bool canHvActive;
 static msgFrame	heartFrame, //{.len = 6},
                	errorFrame,// {.len = 2}, 
 				digitalFrame1, //{.len = 1},
-               	analogFrame1;
+               	analogFrame1,
+               	analogFrame2;
 
 uint8_t rxData[8];
 
@@ -152,7 +150,8 @@ void i2C() {
 
 
 // Init all GPIO pins
-void GPIO_Init() {
+void GPIO_Init() 
+{
 	// Debug LED.
 	pinMode(PC13, OUTPUT);
   
@@ -173,7 +172,8 @@ void GPIO_Init() {
 }
 
 // Transmit hearbeat, letting the other pals know you're alive
-void heartbeat() {
+void heartbeat() 
+{
 	heartFrame.bytes[HEART_COUNTER]++;
 	can.transmit(UCM_ADDRESS+TS_HEARTBEAT_ID, 
 				heartFrame.bytes, 
@@ -182,20 +182,32 @@ void heartbeat() {
 }
 
 // Transmit digital message
-void canTX_Digital1() {
+void canTX_Digital1() 
+{
   	can.transmit(UCM_ADDRESS+TS_DIGITAL_1_ID, 
   				digitalFrame1.bytes, 
 				digitalFrame1.len);
 }
-// Transmit analog message
-void canTX_Analog1() {
+
+// Transmit analog 1 message
+void canTX_Analog1() 
+{
   	can.transmit(UCM_ADDRESS+TS_ANALOGUE_1_ID, 
   				analogFrame1.bytes, 
 				analogFrame1.len);
 }
 
+// Transmit analog 2 message
+void canTX_Analog2()
+{
+  can.transmit(UCM_ADDRESS+TS_ANALOGUE_2_ID, 
+          analogFrame2.bytes, 
+        analogFrame2.len);
+}
+
 // Transmit critical error/warning message
-void canTX_criticalError() {
+void canTX_criticalError() 
+{
 	can.transmit(UCM_ADDRESS+TS_ERROR_WARNING_ID, 
   				errorFrame.bytes, 
 				errorFrame.len);
@@ -340,7 +352,10 @@ void FlowSensorProcess()
   (FS1_FlowRateInt < 100) ?  errorFrame.bytes[0] = 1 : errorFrame.bytes[0] = 0;
 }
 
-int pumpLHS, fanLHS;
+int pumpLHS = 0, fanLHS = 0;
+int pumpRHS = 0, fanRHS = 0;
+int rearFans = 0, brakeLight = 0;
+
 void ucm3PwmControl()
 {
   uint8_t Data[8];
@@ -369,13 +384,12 @@ void ucm4PwmControl()
   {
     if(can.id == UCM4_RL_CONTROL)
     {
-      int pumpRHS = 0, fanRHS = 0;
       pumpRHS = can.rxData.bytes[0];
       fanRHS  = can.rxData.bytes[1];
       can.rxMsgLen = -1;
 
-       analogWrite(PB0, pumpRHS);
-       analogWrite(PB1, fanRHS);
+      analogWrite(PB0, rearFans);
+      analogWrite(PB1, brakeLight);
     }
   }
 }
@@ -388,17 +402,36 @@ void ucm5PwmControl()
   {
     if(can.id == UCM5_RR_CONTROL)
     {
-      int rearFans, brakeLight = 0;
       can.rxMsgLen = -1;
       rearFans    = can.rxData.bytes[0];
       brakeLight  = can.rxData.bytes[1];
-      analogWrite(PB0, rearFans);
-      analogWrite(PB1, brakeLight);
+      
+      analogWrite(PB0, pumpRHS);
+      analogWrite(PB1, fanRHS);
     }
   }
 }
 
+void checkDrivers()
+{
+  switch(UCM_NUMBER)
+  {
+    case 3:
+      analogFrame2.bytes[0] = pumpLHS;
+      analogFrame2.bytes[1] = fanLHS;
+      break;
 
+    case 4:
+      analogFrame2.bytes[0] = rearFans;
+      analogFrame2.bytes[1] = brakeLight;
+      break;
+
+    case 5:
+      analogFrame2.bytes[0] = pumpRHS;
+      analogFrame2.bytes[1] = fanRHS;
+      break;
+  }
+}
 
 
 
@@ -437,6 +470,11 @@ void setup()
   Ticker.attach(canTX_Digital1,INTERVAL_ERROR_WARNING_LOW_PRIORITY);
   Ticker.attach(canTX_Analog1,INTERVAL_ERROR_WARNING_LOW_PRIORITY);
 
+  if((UCM_NUMBER == 3) || (UCM_NUMBER == 4) || (UCM_NUMBER == 5))
+  {
+    Ticker.attach(canTX_Analog2,INTERVAL_ERROR_WARNING_LOW_PRIORITY); 
+  }
+
   pinMode(PB0, OUTPUT);
   pinMode(PB1, OUTPUT);
 }
@@ -457,16 +495,19 @@ void loop()
     case 3:
       updateAnalog();
       ucm3PwmControl();
+      checkDrivers();
       break;
       
     case 4:
       updateAnalog();
       ucm4PwmControl();
+      checkDrivers();
       break; 
       
     case 5:
       updateAnalog();
       ucm5PwmControl();
+      checkDrivers();
       break;
     }
 }
