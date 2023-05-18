@@ -57,7 +57,7 @@ Adafruit_ADS1115 ads;
 eXoCAN can;
 
 //Used to determine which functions need to be uploaded to this particular board
-#define UCM_NUMBER 5
+#define UCM_NUMBER 2
 
 #if UCM_NUMBER == 1
   #define UCM_ADDRESS CAN_UCM1_BASE_ADDRESS
@@ -487,9 +487,11 @@ void loop()
   switch (UCM_NUMBER)
   {
     case 1:
+      updateAnalog();
       break;
       
     case 2:
+      updateAnalog();
       break;
       
     case 3:
