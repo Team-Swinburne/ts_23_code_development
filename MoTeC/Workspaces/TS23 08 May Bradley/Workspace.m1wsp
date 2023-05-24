@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Tune Locale="English_United Kingdom.1252" DefaultLocale="C" ZoomDuration="30" Version="102" ShowOverlays="1" ExcludeUntrusted="1" IncludeOverlays="0" GraphTimeFormat="4" RemoveOnChanDblClick="1" SplitterPos="725">
+<Tune Locale="English_Australia.1252" DefaultLocale="C" ZoomDuration="30" Version="102" ShowOverlays="1" ExcludeUntrusted="1" IncludeOverlays="0" GraphTimeFormat="4" RemoveOnChanDblClick="1" SplitterPos="1253">
  <Resources/>
  <ValuesWindow GroupMode="0"/>
  <ChannelItemsWindow/>
@@ -31,7 +31,7 @@
   <Graph Lighting="1" ShowChannelLegend="1" ShowAxis="1"/>
  </TableSettings>
  <Packages>
-  <Package Path="C:\Users\maxma\OneDrive\Documents\MoTeC\M1\Packages\72F948FF-1D9F-42C6-A29A-6DE44A725429.m1pkg"/>
+  <Package Path="C:\Users\Ethan Jones\Documents\MoTeC\M1\Packages\D7DAFA76-CC41-4275-99FB-178D07204824.m1pkg"/>
  </Packages>
  <MyDevices>
   <MyDevice SerialNum="11913"/>

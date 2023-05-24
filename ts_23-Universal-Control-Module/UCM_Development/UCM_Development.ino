@@ -57,7 +57,7 @@ Adafruit_ADS1115 ads;
 eXoCAN can;
 
 //Used to determine which functions need to be uploaded to this particular board
-#define UCM_NUMBER 2
+#define UCM_NUMBER 3
 
 #if UCM_NUMBER == 1
   #define UCM_ADDRESS CAN_UCM1_BASE_ADDRESS
@@ -167,8 +167,8 @@ void GPIO_Init()
   FlowSensor_init(1, pin_DigIn1);
 
 	// Configuring Driver Pins.
-  pinMode(pin_Driver1, OUTPUT);
-  pinMode(pin_Driver2, OUTPUT);
+  //pinMode(pin_Driver1, OUTPUT);
+  //pinMode(pin_Driver2, OUTPUT);
 }
 
 // Transmit hearbeat, letting the other pals know you're alive
@@ -358,24 +358,18 @@ int rearFans = 0, brakeLight = 0;
 
 void ucm3PwmControl()
 {
-  uint8_t Data[8];
-   if (can.rxMsgLen > -1) 
-   {
-    switch (can.id)
+  if (can.rxMsgLen > -1) 
+  {
+    if(can.id == UCM3_SP_CONTROL)
     {
-      case UCM3_SP_CONTROL:
-      {
-        Data[0] = can.rxData.bytes[0];
-        Data[1] = can.rxData.bytes[1];
-        can.rxMsgLen = -1;
-        pumpLHS = Data[0];
-        fanLHS = Data[1];
-        break;
-      }
+      pumpLHS = can.rxData.bytes[0];
+      fanLHS = can.rxData.bytes[1];
+      can.rxMsgLen = -1;
+
+      analogWrite(PB0, pumpLHS);
+      analogWrite(PB1, fanLHS);
     }
-   }
-    analogWrite(PB0, pumpLHS);
-    analogWrite(PB1, fanLHS);
+  }
 }
 
 void ucm4PwmControl()
@@ -384,8 +378,8 @@ void ucm4PwmControl()
   {
     if(can.id == UCM4_RL_CONTROL)
     {
-      pumpRHS = can.rxData.bytes[0];
-      fanRHS  = can.rxData.bytes[1];
+      rearFans = can.rxData.bytes[0];
+      brakeLight = can.rxData.bytes[1];
       can.rxMsgLen = -1;
 
       analogWrite(PB0, rearFans);
@@ -403,8 +397,8 @@ void ucm5PwmControl()
     if(can.id == UCM5_RR_CONTROL)
     {
       can.rxMsgLen = -1;
-      rearFans    = can.rxData.bytes[0];
-      brakeLight  = can.rxData.bytes[1];
+      pumpRHS    = can.rxData.bytes[0];
+      fanRHS  = can.rxData.bytes[1];
       
       analogWrite(PB0, pumpRHS);
       analogWrite(PB1, fanRHS);
