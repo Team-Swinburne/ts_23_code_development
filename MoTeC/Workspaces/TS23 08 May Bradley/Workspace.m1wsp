@@ -30,8 +30,11 @@
   <TableOpSite Enabled="1" Style="1" Float="1" Opacity="75"/>
   <Graph Lighting="1" ShowChannelLegend="1" ShowAxis="1"/>
  </TableSettings>
+ <Map Id="VehicleIdxSerialNumber">
+  <MapEntry Key="11913" Value=""/>
+ </Map>
  <Packages>
-  <Package Path="C:\Users\Ethan Jones\Documents\MoTeC\M1\Packages\D7DAFA76-CC41-4275-99FB-178D07204824.m1pkg"/>
+  <Package Path="C:\Users\Ethan Jones\Documents\MoTeC\M1\Packages\4ABF3998-FD3D-4201-A769-A943038E93F2.m1pkg"/>
  </Packages>
  <MyDevices>
   <MyDevice SerialNum="11913"/>

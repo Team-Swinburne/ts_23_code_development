@@ -57,7 +57,7 @@ Adafruit_ADS1115 ads;
 eXoCAN can;
 
 //Used to determine which functions need to be uploaded to this particular board
-#define UCM_NUMBER 3
+#define UCM_NUMBER 5
 
 #if UCM_NUMBER == 1
   #define UCM_ADDRESS CAN_UCM1_BASE_ADDRESS
@@ -440,7 +440,22 @@ void setup()
 
   // Initiallising CAN
   can.begin(STD_ID_LEN, CANBUS_FREQUENCY, PORTB_8_9_XCVR);   //11 Bit Id, 500Kbps
-  //can.filterMask16Init(0, CAN_TEST, 0x7ff);
+
+  switch(UCM_NUMBER)
+  {
+    case 3:
+      can.filterMask16Init(0, UCM3_SP_CONTROL, 0x7ff);
+      break;
+
+    case 4:
+      can.filterMask16Init(0, UCM4_RL_CONTROL, 0x7ff);
+      break;
+
+    case 5:
+      can.filterMask16Init(0, UCM5_RR_CONTROL, 0x7ff);
+      break;
+  }
+  
   can.attachInterrupt(canISR);
 
   //Motor Inverter Fan Control Pins
