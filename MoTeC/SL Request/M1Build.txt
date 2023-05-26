@@ -1,0 +1,37 @@
+Please copy all of this text and email to your dealer:
+
+Subject: M1Build Activation Request
+
+To Dealer:
+
+I would like to order the following Feature/s:
+
+REGISTER TO     NAME: P+E Laptop
+REGISTER TO  COMPANY: Team Swinburne Formula SAE
+SENT FROM M1Build VERSION: 1.4.2.75
+
+----------------------------------------------------------------------
+ACTIVATION ORDER                             26/05/2023 05:05:48.251
+
+DESCRIPTION                                  EXPIRY    
+INTEGRATOR FOR SIMULINK                      1 YEAR    
+----------------------------------------------------------------------
+
+Customer Please Note:
+ 1. Once you send this request, your dealer will contact you to finalise your purchase.
+ 2. Once processed, an Activation file will be sent to you as a reply to this email.
+    Load this file into M1Build to enable the selected features.
+ 3. This email is read-only. If you would like to change this order then
+    close this email, go back into M1Build and create a new request.
+ 4. The Feature/s you have requested will only work on this computer.
+ 5. For more information on Features, please refer to the M1Build Help
+
+<?xml version="1.0"?>
+<ActivationRequest Locale="English_Australia.1252" DefaultLocale="C" Name="P+E Laptop" Company="Team Swinburne Formula SAE" ReqTime="26/05/2023 05:05:48.251" HwId="3mi8GtGA+fcEW/AmhqGiOc5TeqDPGc7XisHdwJbjwLIQ6A/2eaixwl7f0R91pRU8xMMDv0hcuFH0EkGz" Version="0" ProductNum="5">
+ <ReqFeatures>
+  <ReqFeature FeatureId="420" ExpiryId="1"/>
+ </ReqFeatures>
+ <ProdVersion Value="1.4.2.75"/>
+ <OSVerInfoEx Value="HAEAAAYAAAACAAAA8CMAAAIAAAAAAAAAmL3I7/d/AABwym8X+wAAAAnLbxf7AAAADwAAAAAAAAAoBCwv/n8AAAFfUm9vdAAA8rDI7/d/AADQym8X+wAAAAAAAACVAgAAKLHVYpUCAAAoBCwv/n8AAAAAAAAAAAAAQwBfAEMAVAAQsLFilQIAAA8AAAAAAAAAA/Ihaia9AAAoBCwv/n8AAHIWv2KVAgAAMEpAVo0CAAAgYL9jlQIAAIsBAAAAAAAAAAAAAAAAAACwpb9jlQIAAHIWv2KVAgAAMEpAVo0CAABgadVilQIAAIsBAAAAAAAAAAAAAAAAAACwpb9jlQIAAHIWv2KVAgAAMEpAVo0CAABAFb9iAAAAAAABAQA"/>
+ <HwIdEx Value="4QAwgd4GBijPBgMANwSBkTCBjgMCBwACAUICQgFqsPBraoJ8FHS6M8bTAFZfp5gG/qSYUTWWs3e4jDrcpzOJx8S0OfJEFCi77T8z+Ah97cvxFbWNK3vCCnbGETMRmwJBPdZYhbY4YBG5EreUJGajbDNB8Qxc+k/rP1Q3mxb6kAuRHoN1SPASb8roiQqRLXmh1Ro9+CcTr7ti0lIZ257wDuUEQK8M7sDrlZPeAEYX/vU9ByN364jmHkXJPz398f8fz/Mg2PFnUKaBd747MIbGABSghRLBOKijPuvRsPisojdaVOj8AxPJ1FLjQz0XCPQBRnt3vhZFCt0RdrGRTgeupiaS//6cSfabU+dZakngR++AN6mWvVvaqXP9Wx8MWTBI3C9EOPyqTA81K1RKe25LO8s21jdARSDZ/aeCv678k7EVuaa4MncYxHDXNekZW2ZrAB0rYePSTb5S5FS6zqsM63zabDcuUXMJ0YbGf6eaVfOHimnKxIz7+upbMRkjvwSGhTFRi6akwbhkKMvnyrE2bbPakvpwZKZnBDzVSR6neJG5V3TUj/Id9DW8v9tCGiCkol5KGqtPUF+Vgpp+UUym8GRQIM0Hn3BEt0Ydtk0TPlf6JpkkUVTM5chJjt0UR6ic2kJbOJPWcXTMGJznb3VaRKk1iSz5glUTm2LEam5wxhaSL3+yY8mM8HvAF4+3EA5SIlhtPTRcItVW70pjamYLSjLDVzh8prF3msLRlHIO9AthjLSWyd6/ws9IJ8LLiGIl02JMtpmsbf+sBgUQYKgOPmCtGr3npL/9EzJzWoMhICbDPCf3J4dRomKQmBhrMsevCn8NFpvPxFslO8Jn4UzitVhR0Vq6V3ww1s5kTx7eirDGMnNBqgK0KclbmJTOrl32PnqyxuWApILWyTHHI3GOXB4qhX9RfKqF2MhbYnyXVo6p2PUBeddgRRDfOWxdGIx1x3iwLB5OMkRZXT8q9Bz3Y3nr+avVSTZRrHfhmjkSfTu6k8qqIt7rDvz6SATZhyh+IeIFm4hC9RzXiOmgyqvnGdspLgWCodPJHj5bbo+NR72oMjgrrPSvGdkDZRWORyrQ/CKbkNigftEGXUamSN5wJhP7tLYT2LxZX9Miqh1r140FrzRibdzneObLsrOY1HXa/eg3WTtDYsP4onN/mb5pBaAnf1KuJCe9jfsxdbplYFi6lKox6w1UTB4t2mJ/0+1NZ3P0xIz01Lf9ux8TTHz+28G0ywFSeFiB6vHoDYmRN9YCoO7EN/fyhWQCDjf3WmPTDZVfs17Sg0TuMJQurfKneJMSjOc7Ms4r/0bIRd0m66mWtyHDF1ww4a74OWS3awLnYtu5GE773hhoW66dA5CKASbdqkjPf79yVfeYrKb7M1G/iphqpsv1Ez8CA32yBHYrIwpj7y1RQ8C1MewIvUNS70fbsbbtJVnvGtzZbv0gccS+R41pD0WGooIfKU5XYWgNRFJVDEgQEkpjmhgQEoCJ+2Y0ykXjueJv99JtQOsBxl3JYo+ASzYqWRcioLRUWD4gDFLVDjVj1wLigbQ1Llo0DuggwbY1JDGMQPemo+ueUvyzyON6Lmb3BVPxOh3WOAvneJ2H8HG/VOcGirz5SUuMmPHolxhDK81jPOoLyjjrmOyMichrzWdNC5LpJ7tw7OiHiA=="/>
+</ActivationRequest>
