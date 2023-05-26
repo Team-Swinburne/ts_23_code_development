@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/stm32duino/BoardManagerFiles/master/STM32/package_stm_index.json?fbclid=IwAR3Jkl1Yhc0vGS7eYjs_rM3fVWZYnYXuU1Q5H_Xa6JWOTOyk0KTMxO7R5WI
+https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json
