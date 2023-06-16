@@ -2,7 +2,32 @@
 <Workbook Locale="English_Australia.1252" DefaultLocale="C" Version="200" Name="Workbook" Profile="Tune" Active="Worksheets">
  <Worksheets Version="100" Name="Worksheets" PosPC="0,0,1000,1000" Active="Worksheet">
   <Worksheet Version="200" Name="Worksheet" LinkTo="Default" LockByGPSTime="0">
-   <Controls Active="Channels">
+   <Controls Active="Channels (2)">
+    <MoTeC.ChannelList Version="100" Name="Channels (2)" PosPC="630,38,930,917" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Speed Distance.GPS.Diagnostic"/>
+       <DataRef Name="Speed Distance.GPS.Latitude"/>
+       <DataRef Name="Speed Distance.GPS.Longitude"/>
+       <DataRef Name="Speed Distance.GPS.Speed"/>
+       <DataRef Name="Speed Distance.GPS.True Course"/>
+       <DataRef Name="Speed Distance.GPS.Date"/>
+       <DataRef Name="Speed Distance.GPS.Time"/>
+       <DataRef Name="Speed Distance.GPS.Altitude"/>
+       <DataRef Name="Speed Distance.GPS.WGS84 Height"/>
+       <DataRef Name="Speed Distance.GPS.Magnetic Variation"/>
+       <DataRef Name="Speed Distance.GPS.Satellites"/>
+       <DataRef Name="Speed Distance.GPS.HDOP"/>
+       <DataRef Name="Speed Distance.GPS.DGPS Station ID"/>
+       <DataRef Name="Speed Distance.GPS.DGPS Update Time"/>
+       <DataRef Name="Speed Distance.GPS.Fix Quality"/>
+       <DataRef Name="Speed Distance.GPS.FAA Mode"/>
+       <DataRef Name="Speed Distance.GPS.Valid"/>
+       <DataRef Name="Speed Distance.GPS.Ticks"/>
+      </DataRefs>
+     </Data>
+     <Headers/>
+    </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels" PosPC="0,1,610,1001" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="3" Match="" Locked="1" Sorted="0"/>
      <Headers>
@@ -881,7 +906,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Rad Temps" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Calibrate">
-    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="18,48,828,753" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="UCM sensors.Rad temperatures.LHS rad inlet temp" SplitOrientation="1" DataPanelWidth="412" DataPanelWidthRatio="0.386854" ShowChannels="1">
+    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="18,48,828,753" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="412" DataPanelWidthRatio="0.386854" ShowChannels="1">
      <Data Method="2" Match="" Locked="0" Sorted="0">
       <DataRefs>
        <DataRef Name="Recieve CAN.CAN 1.UCMs.UCM3 SP.Heartbeat ID.UCM3 SP State"/>
@@ -970,18 +995,6 @@
   </Worksheet>
   <Worksheet Version="200" Name="Brake Module" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Parameter List">
-    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="26,172,669,574" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 1 Voltage"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 2 Voltage"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Low Ref Voltage"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.High Ref Voltage"/>
-       <DataRef Name="Read Sensors.Braking Active"/>
-      </DataRefs>
-     </Data>
-     <Headers/>
-    </MoTeC.ChannelList>
     <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="689,97,989,497" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -990,6 +1003,22 @@
      </Data>
      <Headers/>
     </MoTeC.ParamList>
+    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="26,172,731,574" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 1 Voltage"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 2 Voltage"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Low Ref Voltage"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.High Ref Voltage"/>
+       <DataRef Name="Read Sensors.Braking Active"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Read Steering Sensor Output.Normalised Filtered"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Read Steering Sensor Output.Absolute"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Voltage"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Percentage"/>
+      </DataRefs>
+     </Data>
+     <Headers/>
+    </MoTeC.ChannelList>
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="Bell Crank Sensors" LinkTo="Default" LockByGPSTime="0">
