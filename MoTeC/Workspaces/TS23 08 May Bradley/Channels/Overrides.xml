@@ -1,2 +1,4 @@
 <?xml version="1.0"?>
-<Overrides Locale="English_Australia.1252" DefaultLocale="C"/>
+<Overrides Locale="English_United Kingdom.1252" DefaultLocale="C">
+ <Override Id="Recieve CAN.CAN 1.UCMs.UCM5 RR.Analogue ID 2.AnalogueIn3 Voltage" DisplayDPS="3"/>
+</Overrides>

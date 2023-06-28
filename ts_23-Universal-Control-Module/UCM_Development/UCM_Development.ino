@@ -275,10 +275,10 @@ void updateAnalog()
   analogFrame1.bytes[1] = (VoltageInt[0]) & 0xFF;
   analogFrame1.bytes[2] = (VoltageInt[1] >> 8) & 0xFF;
   analogFrame1.bytes[3] = (VoltageInt[1]) & 0xFF;
-  analogFrame1.bytes[4] = (VoltageInt[1] >> 8) & 0xFF;
-  analogFrame1.bytes[5] = (VoltageInt[1]) & 0xFF;
-  analogFrame1.bytes[6] = (VoltageInt[1] >> 8) & 0xFF;
-  analogFrame1.bytes[7] = (VoltageInt[1]) & 0xFF;
+  analogFrame1.bytes[4] = (VoltageInt[2] >> 8) & 0xFF;
+  analogFrame1.bytes[5] = (VoltageInt[2]) & 0xFF;
+  analogFrame1.bytes[6] = (VoltageInt[3] >> 8) & 0xFF;
+  analogFrame1.bytes[7] = (VoltageInt[3]) & 0xFF;
 
   /*
   //Convert voltages read from NTC thermistors into temperature
