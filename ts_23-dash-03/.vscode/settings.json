@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "ui_helpers.h": "c",
+        "backend.hpp": "c",
+        "screen_home.h": "c"
+    }
+}
