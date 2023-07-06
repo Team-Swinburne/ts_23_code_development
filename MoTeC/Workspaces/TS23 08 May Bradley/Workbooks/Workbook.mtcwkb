@@ -998,7 +998,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Bell Crank Sensors" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Calibrate">
-    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="385,304,1000,1000" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="UCM sensors.Bell Crank Sensors.RR BellCrank position" SplitOrientation="1" DataPanelWidthRatio="0.25" ShowChannels="1">
+    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="385,304,1000,1000" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="UCM sensors.Bell Crank Sensors.FL Height" SplitOrientation="1" DataPanelWidthRatio="0.25" ShowChannels="1">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
        <DataRef Name="UCM sensors.Bell Crank Sensors.FR BellCrank position"/>
@@ -1009,11 +1009,13 @@
        <DataRef Name="UCM sensors.Bell Crank Sensors.RR BellCrank position.Value"/>
        <DataRef Name="UCM sensors.Bell Crank Sensors.RL BellCrank position"/>
        <DataRef Name="UCM sensors.Bell Crank Sensors.RL BellCrank position.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL Height"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL Height.Value"/>
       </DataRefs>
      </Data>
      <View>
       <ColorData>
-       <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="255,106,218" AxisChanColor="255,106,218" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="1" BandMode="1" DataMin="-1" DataMax="1" BandWidth="0.2" BandCount="10">
+       <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="186,117,255" AxisChanColor="186,117,255" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="1" BandMode="1" DataMin="-1" DataMax="1" BandWidth="0.2" BandCount="10">
         <ColorBand Flags="2" Min="-1" Max="-1" Color="64,64,255" Visible="1"/>
         <ColorBand Flags="7" Min="-1" Max="-0.8" Color="64,136,255" Visible="1"/>
         <ColorBand Flags="7" Min="-0.8" Max="-0.6" Color="64,203,255" Visible="1"/>
@@ -1055,12 +1057,23 @@
        <DataRef Name="Recieve CAN.CAN 1.UCMs.UCM2 FR.Analogue ID.AnalogueIn2 Voltage"/>
        <DataRef Name="Recieve CAN.CAN 1.UCMs.UCM5 RR.Analogue ID 2.AnalogueIn3 Voltage"/>
        <DataRef Name="Recieve CAN.CAN 1.UCMs.UCM4 RL.Analogue ID 2.AnalogueIn3 Voltage"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FR Bellcrank Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL Bellcrank Value"/>
       </DataRefs>
      </Data>
      <Headers>
       <Header Index="0" Col.Index="1" Col.Width="54"/>
      </Headers>
     </MoTeC.ChannelList>
+    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="84,452,385,851" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FR Bellcrank offset"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL Bellcrank offset"/>
+      </DataRefs>
+     </Data>
+     <Headers/>
+    </MoTeC.ParamList>
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="Aero" LinkTo="Default" LockByGPSTime="0">
