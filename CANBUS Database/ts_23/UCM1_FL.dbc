@@ -40,6 +40,8 @@ BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
  SG_ BellCrank : 8|8@1+ (1,0) [0|0] "" Vector__XXX
  SG_ PCB_temp : 16|8@1+ (1,0) [0|255] "Degrees (C)" Vector__XXX
  SG_ Hardware_revision : 24|8@1+ (1,0) [0|255] "Revision" Vector__XXX
+ SG_ FL_BellCrank : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FL_FlowRate : 0|8@1+ (0.1,0) [0|255] "L/min" Vector__XXX
 
 BO_ 864 HEARTBEAT: 6 Vector__XXX
  SG_ State : 0|8@1+ (1,0) [0|1] "" Vector__XXX
@@ -49,8 +51,10 @@ BO_ 865 ERROR: 2 Vector__XXX
  SG_ Low_FlowRate : 0|8@1+ (1,0) [0|1] "True/False" Vector__XXX
 
 BO_ 868 ANALOGUE: 8 Vector__XXX
- SG_ FL_FlowRate : 0|8@1+ (0.1,0) [0|255] "L/min" Vector__XXX
- SG_ FL_BellCrank : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Pin1_Voltage : 7|16@0- (0.001,0) [0|0] "mV" Vector__XXX
+ SG_ Pin2_Voltage : 23|16@0+ (0.001,0) [0|0] "mV" Vector__XXX
+ SG_ Pin3_Voltage : 39|16@0+ (0.0001,0) [0|0] "V" Vector__XXX
+ SG_ Pin4_Voltage : 55|16@0+ (0.0001,0) [0|0] "V" Vector__XXX
 
 
 
