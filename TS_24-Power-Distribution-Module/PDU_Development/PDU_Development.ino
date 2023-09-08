@@ -41,7 +41,7 @@
 #include "TickerInterrupt.h"
 #include "can_addresses.h"
 #include "FlowSensor.h"
-#include "UCM3_info.h"
+#include "PDU3_info.h"
 
 /*--------------------------------------------------------------------------- 
 `								INTERFACES 
@@ -435,7 +435,7 @@ void checkDrivers()
 
 void setup()
 {
-  Serial1.begin(57600);
+  Serial.begin(57600); // temp making this serial till we can define the output
   //Serial1.print("Start");
 
   // Initiallising CAN
