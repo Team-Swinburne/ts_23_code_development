@@ -47,6 +47,7 @@
 /* -------------------------------------------------------------------------- */
 DigitalOut 				led1(LED1);
 DigitalOut 				led2(LED2);
+DigitalOut              lcdReset(PH_7);
 
 CAN                     can1(PB_8, PB_9);
 //CAN                     can1(PB_9, PB_13);
@@ -152,8 +153,9 @@ void backend_init()
 {
     // thread_sleep_for(5000);
     // lv_init();
-    	// Disable interrupts for smooth startup routine.
+    // Disable interrupts for smooth startup routine.
 	thread_sleep_for(1000);
+    lcdReset = 1;
 	
 	__disable_irq();
 
@@ -171,9 +173,8 @@ void backend_init()
 	thread_sleep_for(1000);
 
     tft_init();
-    touchpad_init();
+    //touchpad_init();
    
-
 }
 
 
