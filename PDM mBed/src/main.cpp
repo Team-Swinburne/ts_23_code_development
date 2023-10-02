@@ -30,10 +30,10 @@ DigitalOut ADC_CS(PB_15); //CS_1 - ADC_CS
 DigitalOut SMRT_DRV_CTRL_CS(PB_14); //CS_2 - SMRT_DRV_CTRL_CS
 DigitalOut SMRT_DRV_DIG_CS(PB_12); //CS_3 - SMRT_DRV_DIG_CS
 //DigitalOut CS_4(PB_13); //CS_4 - Unused
-//DigitalOut H_BRIDGE_A_CS(PB_11); //CS_5 - H_BRIDGE_A_CS
-//DigitalOut H_BRIDGE_B_CS(PB_10); //CS_6 - H_BRIDGE_B_CS
-//DigitalOut H_BRIDGE_C_CS(PA_6); //CS_7 - H_BRIDGE_C_CS
-//DigitalOut H_BRIDGE_D_CS(PA_5); //CS_8 - H_BRIDGE_D_CS
+DigitalOut H_BRIDGE_A_CS(PB_11); //CS_5 - H_BRIDGE_A_CS
+DigitalOut H_BRIDGE_B_CS(PB_10); //CS_6 - H_BRIDGE_B_CS
+DigitalOut H_BRIDGE_C_CS(PA_6); //CS_7 - H_BRIDGE_C_CS
+DigitalOut H_BRIDGE_D_CS(PA_5); //CS_8 - H_BRIDGE_D_CS
 
 //CAN TX LEDs
 //DigitalOut CAN_TX_LED(PB_0); //CAN_TX_LED for indicating transmission
@@ -52,6 +52,8 @@ Ticker ticker_CAN_HeartBeat; //Used to know the PCB is functioning and transmitt
 //Ticker ticker_CAN_Error; //Used to troubleshoot errors
 //Ticker ticker_CAN_Digital_1; //This will transmit Circuit Status (On - 255, Off - 0, and PWM value 0-255)
 //Ticker ticker_CAN_Analog_1; //This will transmit current (or maybe just voltage from the ADCs)
+Ticker ticker_SPI_Transmit;
+
 
 /* -------------------------------------------------------------------------- */
 /*                                  CALLBACKS                                 */
@@ -78,6 +80,14 @@ void CAN_PDM_TX_Heartbeat()
   }
 }
 
+void SPITest()
+{
+  SMRT_DRV_DIG_CS = 0;
+  message = spi.write(0x01);
+  SMRT_DRV_DIG_CS = 1;
+
+}
+
 void CAN_brakeModule_RX()
 {
   if (can1.read(can1_msg))
@@ -98,19 +108,19 @@ int main()
     SMRT_DRV_CTRL_CS = 1;
     SMRT_DRV_DIG_CS = 1;
     //CS_4 = 1;
-    //H_BRIDGE_A_CS = 1;
-    //H_BRIDGE_B_CS = 1;
-    //H_BRIDGE_C_CS = 1;
-    //H_BRIDGE_D_CS = 1;  
+    H_BRIDGE_A_CS = 1;
+    H_BRIDGE_B_CS = 1;
+    H_BRIDGE_C_CS = 1;
+    H_BRIDGE_D_CS = 1;  
 
     // Setup the spi for 8 bit data, high steady state clock,
     // second edge capture, with a 1MHz clock rate
-    spi.format(8,3);
-    spi.frequency(1000000);
+    spi.format(8,0);
+    spi.frequency(100000);
 
 
   // Disable interrupts for smooth startup routine.
-	//wait_ms(1000);
+	wait_ms(1000);
 	
 	__disable_irq();
 
@@ -126,20 +136,24 @@ int main()
   //ticker_CAN_Digital_1.attach(&CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
   //ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, CAN_ANALOG_1_PERIOD);
   //ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, CAN_ANALOG_1_PERIOD);
-
+  ticker_SPI_Transmit.attach(&SPITest, 0.001);
   // Re-enable interrupts again, now that interrupts are ready.
 	__enable_irq();
 
 	// Allow some time to settle!
-	//wait_ms(1000);
+	wait_ms(1000);
 
   while(1) 
   {    
     //Serial_Print(); //Used for debugging.
-    device.printf("Hello World\n");
-    //wait_ms(1000);
-    message = spi.write(0x00);
-    //device.printf(message);
+    //device.printf("Hello World\n");
+    //SMRT_DRV_DIG_CS = 0;
+    //message = spi.write(0x01);
+    //SMRT_DRV_DIG_CS = 1;
+    device.printf("WHOAMI register = 0x%X\n", message);
+      SMRT_DRV_DIG_CS = 0;
+      message = spi.write(0x00);
+      SMRT_DRV_DIG_CS = 1;
   }
 
   return 0;
