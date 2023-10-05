@@ -47,7 +47,7 @@ typedef enum CAN_DIGITAL_1_SIGNALS{
 } can_DIGITAL_1_signals_t;
 
 //Enums for all the bytes in the H-Bridge 1 CAN Message
-typedef enum H_BRIDGE_1_SIGNALS{
+typedef enum CAN_DIGITAL_2_SIGNALS{
   CAN_H_BRIDGE_1_PWN_VALUE,
   CAN_H_BRIDGE_2_PWN_VALUE,
   CAN_H_BRIDGE_3_PWN_VALUE,
@@ -56,7 +56,7 @@ typedef enum H_BRIDGE_1_SIGNALS{
   CAN_H_BRIDGE_6_PWN_VALUE,
   CAN_H_BRIDGE_7_PWN_VALUE,
   CAN_H_BRIDGE_8_PWN_VALUE
-}
+} can_DIGITAL_2_signals_t;
 
 //Enums for all the bytes in the analog 1 CAN message
 typedef enum CAN_ANALOG_1_SIGNALS{
