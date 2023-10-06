@@ -14,6 +14,24 @@ typedef struct HeartBeat_s{
   uint8_t State = 1;
 }HeartBeat_struct;
 
+// typedef struct driverControlSignals{
+//   u_int8_t CH_1 = 0;
+//   u_int8_t CH_2 = 0;
+//   u_int8_t CH_3 = 0;
+//   u_int8_t CH_4 = 0;
+//   u_int8_t CH_5 = 0;
+//   u_int8_t CH_6 = 0;
+//   u_int8_t CH_7 = 0;
+//   u_int8_t CH_8 = 0;
+// } driverControlSignals_struct;
+
+typedef struct PWMControlSignals{
+  int CH_1 = 0;
+  int CH_2 = 0;
+  int CH_3 = 0;
+  int CH_4 = 0;
+} PWMControlSignals_struct;
+
 //Enums for all the bytes in the heartbeat CAN message
 typedef enum CAN_HEARTBEAT_SIGNALS{
   CAN_HEARTBEAT_STATE,
@@ -69,5 +87,11 @@ typedef enum CAN_ANALOG_1_SIGNALS{
   CAN_ANALOG_1_CIRCUIT_7_CURRENT,
   CAN_ANALOG_1_CIRCUIT_8_CURRENT
 } can_ANALOG_1_signals_t;
+
+//Enums for types of ADC Configurations
+typedef enum ADC_CONFIG{
+  GPIO_OUT,
+  ADC
+} ADC_CONFIG_t;
 
 #endif //__PDM_INFO_H__

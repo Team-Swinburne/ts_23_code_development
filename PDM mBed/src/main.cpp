@@ -21,10 +21,10 @@ SPI spi(PB_5, PB_4, PB_3);// MOSI, MISO, SCLK
 DigitalOut debugLedOut(PC_13); //Debug LED
 
 //PWM Outputs
-//DigitalOut PWM_1(PA_4); //PWM_1
-//DigitalOut PWM_2(PA_3); //PWM_2
-//DigitalOut PWM_3(PA_2); //PWM_3
-//DigitalOut PWM_4(PA_1); //PWM_4
+//PwmOut PWM_1(PA_4); //PWM_1
+//PwmOut PWM_2(PA_3); //PWM_2
+//PwmOut PWM_3(PA_2); //PWM_3
+//PwmOut PWM_4(PA_1); //PWM_4
 
 //SPI Chip Select
 DigitalOut ADC_CS(PB_15); //CS_1 - ADC_CS
@@ -35,7 +35,6 @@ DigitalOut H_BRIDGE_A_CS(PB_11); //CS_5 - H_BRIDGE_A_CS
 DigitalOut H_BRIDGE_B_CS(PB_10); //CS_6 - H_BRIDGE_B_CS
 DigitalOut H_BRIDGE_C_CS(PA_6); //CS_7 - H_BRIDGE_C_CS
 DigitalOut H_BRIDGE_D_CS(PA_5); //CS_8 - H_BRIDGE_D_CS
-
 
 uint8_t message = 0x00;
 
@@ -50,16 +49,24 @@ uint8_t message = 0x00;
 //Objects and structs
 CANMessage can1_msg; //Object that formats the CAN message
 HeartBeat_struct HeartBeat; //Struct contains the variables used for the HeartBeat
+unsigned char DRV_CTRL_SIGS = 0; //Struct contains the variables used for the Driver Control Signals
+PWMControlSignals_struct PWM_CTRL_SIGS; //Struct contains the variables used for the Driver Control Signals
 
 //Creates tickers
 Ticker ticker_CAN_HeartBeat; //Used to know the PCB is functioning and transmitting
 //Ticker ticker_CAN_Error; //Used to troubleshoot errors
-//Ticker ticker_CAN_Digital_1; //This will transmit Circuit Status (On - 255, Off - 0, and PWM value 0-255)
+//Ticker ticker_CAN_Digital_1; //This will transmit Circuit Status (On - 1, Off - 0)
+//Ticker ticker_CAN_Digital_2; //This will transmit Circuit Status (PWM value 0-255)
 //Ticker ticker_CAN_Analog_1; //This will transmit current (or maybe just voltage from the ADCs)
 Ticker ticker_SPI_Transmit;
 
 DigitalOut *CS_PIN;
 
+int16_t testData = 0;
+
+uint8_t testInputArray[8] = {0};
+
+volatile bool NewCTRLSignalDetected = 0;
 
 /* -------------------------------------------------------------------------- */
 /*                 Other functions added in to help this works                */
@@ -225,8 +232,9 @@ void stopConversions(void)
 //! \return int16_t (sign-extended data).
 //
 //*****************************************************************************
-int16_t readData(uint8_t dataRx[])
+int16_t readData()
 {
+    uint8_t dataRx[4] = {0}; 
     uint8_t numberOfBytes = SPI_CRC_ENABLED ? 4 : 3;
 
     // NULL command
@@ -234,10 +242,16 @@ int16_t readData(uint8_t dataRx[])
     if (SPI_CRC_ENABLED)
     {
         dataTx[3] = calculateCRC(dataTx, numberOfBytes - 1, CRC_INITIAL_SEED);
+        //device.printf("DataTX[3] =")
     }
     spiSendReceiveArray(dataTx, dataRx, numberOfBytes);
 
+    device.printf("DataRx[0] = %\n",dataRx[0]);
+    device.printf("DataRx[1] = %\n",dataRx[1]);
+    device.printf("DataRx[2] = %\n",dataRx[2]);
+    device.printf("DataRx[3] = %\n",dataRx[3]);
     return signExtend(dataRx);
+
 }
 
 
@@ -723,8 +737,8 @@ static void restoreRegisterDefaults(void)
 //*****************************************************************************
 static int16_t signExtend(const uint8_t dataBytes[])
 {
-    int16_t upperByte = ((int32_t)dataBytes[0] << 8);
-    int16_t lowerByte = ((int32_t)dataBytes[1] << 0);
+    int16_t upperByte = (int32_t)(dataBytes[0] << 8);
+    int16_t lowerByte = (int32_t)(dataBytes[1] << 0);
 
     // NOTE: This right-shift operation on signed data maintains the sign bit
     uint8_t shiftDistance = AVERAGING_ENABLED ? 0 : 4;
@@ -762,34 +776,79 @@ void SPITest()
 
 }
 
-void CAN_brakeModule_RX()
+void CAN_PDM_RX()
 {
   if (can1.read(can1_msg))
   {
     switch(can1_msg.id)
     {
-      case (CAN_BRAKE_MODULE_BASE_ADDRESS+TS_SETPOINT_1_ID):
-            //device.printf("Receiving CAN");
+      case (CAN_PDM_CONTROL_BASE_ADDRESS+TS_DIGITAL_1_ID)://If receiving Driver Control Signals
+            device.printf("Receiving CAN\n");
+            DRV_CTRL_SIGS = can1_msg.data[0]; //The  & 1 converts the received byte to a single bit
+            NewCTRLSignalDetected = 1;
+        break;
+      case (CAN_PDM_CONTROL_BASE_ADDRESS+TS_DIGITAL_2_ID)://If receiving PWM Control Signals
+            PWM_CTRL_SIGS.CH_1 = can1_msg.data[0];
+            PWM_CTRL_SIGS.CH_2 = can1_msg.data[1];
+            PWM_CTRL_SIGS.CH_3 = can1_msg.data[2];
+            PWM_CTRL_SIGS.CH_4 = can1_msg.data[3];
         break; 
     }
   }
 }
 
-void SetupADS7028s(DigitalOut *cs)
+void SetupADS7028(DigitalOut *cs, ADC_CONFIG adc_type)
 {
-  //
-    //Initialise and Configure Smart Driver Control Chip to GPIO Outputs, Push/Pull
-    CS_PIN = cs;//&SMRT_DRV_CTRL_CS;
+    CS_PIN = cs;//Assign CS Pin to desired corresponding chip
     initADS7028();
-    writeSingleRegister(PIN_CFG_ADDRESS, 0b11111111); 
-    wait_ms(50);
-    writeSingleRegister(GPIO_CFG_ADDRESS, 0b11111111);
-    wait_ms(50);
-    writeSingleRegister(GPO_DRIVE_CFG_ADDRESS, 0b11111111);
-    wait_ms(50);
-    writeSingleRegister(GPO_OUTPUT_VALUE_ADDRESS, 0b11111111);
+
+    if (adc_type == GPIO_OUT){ //If ADC is being used for digital outputs
+        writeSingleRegister(PIN_CFG_ADDRESS, 0b11111111); 
+        wait_ms(50);
+        writeSingleRegister(GPIO_CFG_ADDRESS, 0b11111111);
+        wait_ms(50);
+        writeSingleRegister(GPO_DRIVE_CFG_ADDRESS, 0b11111111);
+        wait_ms(50);
+        writeSingleRegister(GPO_OUTPUT_VALUE_ADDRESS, 0b00000000);
+    }
+    else{ //If ADC is being used for analog inputs
+        for (int i = 0; i<8; i++){
+            setChannelAsAnalogInput(i);
+        } //Configure all pins as analog in
+        wait_ms(50);
+        writeSingleRegister(OPMODE_CFG_ADDRESS, OPMODE_CFG_CONV_MODE_MANUAL_MODE); //Select Manual Mode
+        wait_ms(50);
+        writeSingleRegister(SEQUENCE_CFG_ADDRESS, SEQUENCE_CFG_SEQ_MODE_MANUAL); //Manual Channel Selection Mode
+        wait_ms(50);
+    }   
     wait_ms(50);
 }
+
+void updateDriverOutputs(){
+    //If Current cutoff is reached/detected or if new driver control signal from CAN
+    if(/*OvercurrentDetected ||*/ NewCTRLSignalDetected == 1){
+        device.printf("updating driver signals to: %X\n",DRV_CTRL_SIGS);
+
+        //wait_ms(10);
+        CS_PIN = &SMRT_DRV_CTRL_CS;
+            writeSingleRegister(GPO_OUTPUT_VALUE_ADDRESS, DRV_CTRL_SIGS);
+        if (NewCTRLSignalDetected == 1){
+           NewCTRLSignalDetected = 0;
+        }
+    }
+}
+
+void readSensePins(){
+    CS_PIN = &ADC_CS;
+    startManualConversions(2, 100);
+    testData = readData();
+    stopConversions();
+    device.printf("Read: %x\n",testData);
+}
+
+// void PWMTest(){
+//     PWM_3.write(0.50f);
+// }
 
 int main() 
 {
@@ -818,22 +877,28 @@ int main()
     device.printf("Hello World\n");
 
   can1.frequency(CANBUS_FREQUENCY);
-  can1.filter(CAN_PDM_BASE_ADDRESS+TS_SETPOINT_1_ID, 0xFFF, CANStandard, 0); // set filter #0 to accept only standard messages with ID == RX_ID
-	can1.attach(&CAN_brakeModule_RX);
+  can1.filter(CAN_PDM_CONTROL_BASE_ADDRESS+2, 0xFFF, CANStandard, 0); // set filter #0 to accept only standard messages with ID == RX_ID
+  can1.attach(&CAN_PDM_RX);
 
   //Configure tickers
   ticker_CAN_HeartBeat.attach(&CAN_PDM_TX_Heartbeat, CAN_HEARTBEAT_PERIOD);
   //ticker_CAN_Digital_1.attach(&CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
   //ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, CAN_ANALOG_1_PERIOD);
   //ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, CAN_ANALOG_1_PERIOD);
-  //ticker_SPI_Transmit.attach(&SPITest, 0.001);
   // Re-enable interrupts again, now that interrupts are ready.
 	__enable_irq();
 
 	// Allow some time to settle!
 	wait_ms(1000);
 
-  SetupADS7028s();
+//Setup ADCS7028 chips
+  SetupADS7028(&SMRT_DRV_CTRL_CS, GPIO_OUT);
+  SetupADS7028(&SMRT_DRV_DIG_CS, GPIO_OUT);
+  writeSingleRegister(GPO_OUTPUT_VALUE_ADDRESS, 255); //Enable diagostics on all smart drivers
+  SetupADS7028(&ADC_CS, ADC);
+
+//PWM Setups
+//   PWM_3.period(0.020);
 
   message = 0;
   /*writeSingleRegister(PIN_CFG_ADDRESS, 0b11111111);
@@ -849,12 +914,18 @@ int main()
 
   while(1) 
   {    
+    updateDriverOutputs();
+    readSensePins();
+    //PWMTest();
     //Serial_Print(); //Used for debugging.
     //device.printf("Hello World\n");
     //SMRT_DRV_DIG_CS = 0;
-    //message = spi.write(0x01);
+    message = DRV_CTRL_SIGS;
     //SMRT_DRV_DIG_CS = 1;
-    //device.printf("WHOAMI register = 0x%X\n", message);
+    device.printf("WHOAMI register = 0x%X\n", DRV_CTRL_SIGS);
+    if (NewCTRLSignalDetected == 1){
+        device.printf("New CTRL Signal Detected");
+    } 
       //SMRT_DRV_DIG_CS = 0;
       //message = spi.write(0x00);
       //SMRT_DRV_DIG_CS = 1;

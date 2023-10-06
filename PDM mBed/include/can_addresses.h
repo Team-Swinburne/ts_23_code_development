@@ -55,6 +55,7 @@ to the device.
 #define CAN_TC_CHARGER_STATUS_ID					0x18FF50E5
 
 #define CAN_PDM_BASE_ADDRESS                        0x700
+#define CAN_PDM_CONTROL_BASE_ADDRESS                0x750 //Control address will be digital addresses, so 0x752 for Driver outputs and 0x753 for PWM
 
 /*
 

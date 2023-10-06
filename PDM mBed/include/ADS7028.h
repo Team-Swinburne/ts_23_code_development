@@ -315,7 +315,6 @@
     #define PIN_CFG_PIN_CFG_CH0_ANALOG_INPUT                            ((uint8_t) 0x00 << 0) // DEFAULT
     #define PIN_CFG_PIN_CFG_CH0_GPIO                                    ((uint8_t) 0x01 << 0)
 
-
 /* Register 0x07 (GPIO_CFG) definition
  * --------------------------------------------------------------------------------------------------------
  * |   Bit 7   |    Bit 6   |    Bit 5   |    Bit 4   |    Bit 3   |    Bit 2   |    Bit 1   |    Bit 0   |
