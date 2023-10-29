@@ -21,10 +21,10 @@ SPI spi(PB_5, PB_4, PB_3);// MOSI, MISO, SCLK
 DigitalOut debugLedOut(PC_13); //Debug LED
 
 //PWM Outputs
-//PwmOut PWM_1(PA_4); //PWM_1
-//PwmOut PWM_2(PA_3); //PWM_2
-//PwmOut PWM_3(PA_2); //PWM_3
-//PwmOut PWM_4(PA_1); //PWM_4
+// PwmOut PWM1(PA_4); //PWM_1
+PwmOut PWM2(PA_3); //PWM_2
+PwmOut PWM3(PA_2); //PWM_3
+PwmOut PWM4(PA_1); //PWM_4
 
 //SPI Chip Select
 DigitalOut ADC_CS(PB_15); //CS_1 - ADC_CS
@@ -37,6 +37,41 @@ DigitalOut H_BRIDGE_C_CS(PA_6); //CS_7 - H_BRIDGE_C_CS
 DigitalOut H_BRIDGE_D_CS(PA_5); //CS_8 - H_BRIDGE_D_CS
 
 uint8_t message = 0x00;
+
+float ADC_Voltages[8] = {0};
+
+float DriverCurrents[8] = {0};
+
+float DriverCutoffCurrents[8] = {
+    1, //Smart Driver 1
+    1, //Smart Driver 2 
+    1, //Smart Driver 3 - Cutoff demo
+    5, //Smart Driver 4 - Main load testing
+    1, //H Bridge A
+    1, //H Bridge B - fan cutoff demo
+    2, //H Bridge C - Main fan load testing
+    1 //H Bridge D
+};
+
+volatile bool OverCurrentDetected[8] = {0};
+
+volatile bool OverCurrentFlag = 0;
+
+uint8_t mask[8] = {
+    0b00000001,
+    0b00000010,
+    0b00000100,
+    0b00001000,
+    0b00010000,
+    0b00100000,
+    0b01000000,
+    0b10000000
+};
+
+unsigned short int CurrentSenseMultiplier = 1730;
+unsigned short int CurrentSenseResistor = 1800;
+
+int PWM_period_us = 100;
 
 //CAN TX LEDs
 //DigitalOut CAN_TX_LED(PB_0); //CAN_TX_LED for indicating transmission
@@ -54,10 +89,11 @@ PWMControlSignals_struct PWM_CTRL_SIGS; //Struct contains the variables used for
 
 //Creates tickers
 Ticker ticker_CAN_HeartBeat; //Used to know the PCB is functioning and transmitting
-//Ticker ticker_CAN_Error; //Used to troubleshoot errors
+Ticker ticker_CAN_Error; //Used to troubleshoot errors
 //Ticker ticker_CAN_Digital_1; //This will transmit Circuit Status (On - 1, Off - 0)
 //Ticker ticker_CAN_Digital_2; //This will transmit Circuit Status (PWM value 0-255)
-//Ticker ticker_CAN_Analog_1; //This will transmit current (or maybe just voltage from the ADCs)
+Ticker ticker_CAN_Analog_1; //This will transmit current (or maybe just voltage from the ADCs)
+Ticker ticker_CAN_Analog_2; //This will transmit current (or maybe just voltage from the ADCs)
 Ticker ticker_SPI_Transmit;
 
 DigitalOut *CS_PIN;
@@ -67,6 +103,7 @@ int16_t testData = 0;
 uint8_t testInputArray[8] = {0};
 
 volatile bool NewCTRLSignalDetected = 0;
+volatile bool NewPWMCTRLSignalDetected = 0;
 
 /* -------------------------------------------------------------------------- */
 /*                 Other functions added in to help this works                */
@@ -768,6 +805,66 @@ void CAN_PDM_TX_Heartbeat()
   }
 }
 
+void CAN_PDM_TX_Error()
+{
+  char TX_data[8] = { 0 };
+    for (int i = 0; i < 8; i++){
+        TX_data[i] = OverCurrentDetected[i];
+    }
+  
+  can1.write(CANMessage((CAN_PDM_BASE_ADDRESS + TS_ERROR_WARNING_ID), TX_data, 8));
+}
+
+void CAN_PDM_TX_Analog_1()
+{
+  char TX_data[8] = { 0 };
+
+  //Convert to integers with 1mA resolution
+  int Driver_1_Current = uint16_t(DriverCurrents[0]*1000);
+  int Driver_2_Current = uint16_t(DriverCurrents[1]*1000);
+  int Driver_3_Current = uint16_t(DriverCurrents[2]*1000);
+  int Driver_4_Current = uint16_t(DriverCurrents[3]*1000);
+
+  TX_data[1] = (Driver_1_Current >> 8) & 0xFF;
+  TX_data[0] = (Driver_1_Current) & 0xFF;
+
+  TX_data[3] = (Driver_2_Current >> 8) & 0xFF;
+  TX_data[2] = (Driver_2_Current) & 0xFF;
+
+  TX_data[5] = (Driver_3_Current >> 8) & 0xFF;
+  TX_data[4] = (Driver_3_Current) & 0xFF;
+
+  TX_data[7] = (Driver_4_Current >> 8) & 0xFF;
+  TX_data[6] = (Driver_4_Current) & 0xFF;
+  
+  can1.write(CANMessage((CAN_PDM_BASE_ADDRESS + TS_ANALOGUE_1_ID), TX_data, 8));
+}
+
+void CAN_PDM_TX_Analog_2()
+{
+  char TX_data[8] = { 0 };
+
+  //Convert to integers with 1mV resolution
+  int Driver_5_Current = uint16_t(DriverCurrents[4]*1000);
+  int Driver_6_Current = uint16_t(DriverCurrents[5]*1000);
+  int Driver_7_Current = uint16_t(DriverCurrents[6]*1000);
+  int Driver_8_Current = uint16_t(DriverCurrents[7]*1000);
+
+  TX_data[1] = (Driver_5_Current >> 8) & 0xFF;
+  TX_data[0] = (Driver_5_Current) & 0xFF;
+
+  TX_data[3] = (Driver_6_Current >> 8) & 0xFF;
+  TX_data[2] = (Driver_6_Current) & 0xFF;
+
+  TX_data[5] = (Driver_7_Current >> 8) & 0xFF;
+  TX_data[4] = (Driver_7_Current) & 0xFF;
+
+  TX_data[7] = (Driver_8_Current >> 8) & 0xFF;
+  TX_data[6] = (Driver_8_Current) & 0xFF;
+  
+  can1.write(CANMessage((CAN_PDM_BASE_ADDRESS + TS_ANALOGUE_2_ID), TX_data, 8));
+}
+
 void SPITest()
 {
   SMRT_DRV_DIG_CS = 0;
@@ -788,10 +885,13 @@ void CAN_PDM_RX()
             NewCTRLSignalDetected = 1;
         break;
       case (CAN_PDM_CONTROL_BASE_ADDRESS+TS_DIGITAL_2_ID)://If receiving PWM Control Signals
-            PWM_CTRL_SIGS.CH_1 = can1_msg.data[0];
-            PWM_CTRL_SIGS.CH_2 = can1_msg.data[1];
-            PWM_CTRL_SIGS.CH_3 = can1_msg.data[2];
-            PWM_CTRL_SIGS.CH_4 = can1_msg.data[3];
+            device.printf("Receiving PWM");
+            PWM_CTRL_SIGS.CH_1 = (can1_msg.data[0]*1.0)/255;
+            PWM_CTRL_SIGS.CH_2 = (can1_msg.data[1]*1.0)/255;
+            PWM_CTRL_SIGS.CH_3 = (can1_msg.data[2]*1.0)/255;
+            PWM_CTRL_SIGS.CH_4 = (can1_msg.data[3]*1.0)/255;
+            device.printf("PWM Sig 4: %F\n",PWM_CTRL_SIGS.CH_4);
+            NewPWMCTRLSignalDetected = 1;
         break; 
     }
   }
@@ -826,24 +926,75 @@ void SetupADS7028(DigitalOut *cs, ADC_CONFIG adc_type)
 
 void updateDriverOutputs(){
     //If Current cutoff is reached/detected or if new driver control signal from CAN
-    if(/*OvercurrentDetected ||*/ NewCTRLSignalDetected == 1){
-        device.printf("updating driver signals to: %X\n",DRV_CTRL_SIGS);
-
+    if(/*OverCurrentFlag == 1 ||*/ NewCTRLSignalDetected == 1){
+        //device.printf("updating driver signals to: %X\n",DRV_CTRL_SIGS);
+        // unsigned char OverCurrentBitMask = 0;
+        // for (int i = 0; i < 8; i++){
+        //     if (OverCurrentDetected[i] == 1){
+        //         OverCurrentBitMask = (OverCurrentBitMask | mask[i]);
+        //         device.printf("Over Current Detetected in Circuit %X", i);
+        //         device.printf(", switching off circuit.\n");
+        //         OverCurrentDetected[i] = 0; //Reset OverCurrent detection
+        //     }
+        // }
         //wait_ms(10);
         CS_PIN = &SMRT_DRV_CTRL_CS;
-            writeSingleRegister(GPO_OUTPUT_VALUE_ADDRESS, DRV_CTRL_SIGS);
+            writeSingleRegister(GPO_OUTPUT_VALUE_ADDRESS, DRV_CTRL_SIGS /*|| OverCurrentBitMask*/);
         if (NewCTRLSignalDetected == 1){
            NewCTRLSignalDetected = 0;
+        }
+        if (OverCurrentFlag == 1){
+            OverCurrentFlag = 0;
+        }
+    }
+}
+
+void updatePWMOutputs(){
+    //If Current cutoff is reached/detected or if new driver control signal from CAN
+    if(/*OvercurrentDetected ||*/ NewPWMCTRLSignalDetected == 1){
+        device.printf("updating PWM signals");
+        //PWM1.write(PWM_CTRL_SIGS.CH_1);
+        PWM2.write(PWM_CTRL_SIGS.CH_2);
+        PWM3.write(PWM_CTRL_SIGS.CH_3);
+        PWM4.write(PWM_CTRL_SIGS.CH_4);
+        if (NewPWMCTRLSignalDetected == 1){
+           NewPWMCTRLSignalDetected = 0;
+        }
+    }
+}
+
+void current_convert(float voltageArray[])
+{
+    for (int i = 0; i < 8; i++){
+        float switch_current;
+        switch_current = voltageArray[i]/(CurrentSenseResistor); // converts voltage form ADC to current sense value 
+        DriverCurrents[i] = CurrentSenseMultiplier * switch_current;
+        device.printf("Current on pin %X",i);
+        device.printf(": %F\n",DriverCurrents[i]);
+    }
+}
+
+void check_for_overcurrents(){
+    for (int i = 0; i < 8; i++){
+        if (DriverCurrents[i] > DriverCutoffCurrents[i]){
+            OverCurrentDetected[i] = 1;
+            OverCurrentFlag = 1;
         }
     }
 }
 
 void readSensePins(){
     CS_PIN = &ADC_CS;
-    startManualConversions(2, 100);
-    testData = readData();
-    stopConversions();
-    device.printf("Read: %x\n",testData);
+    for (int i = 0; i < 8; i++){
+        startManualConversions(i, 100);
+        testData = readData();
+        stopConversions();
+        device.printf("Channel %x",i);
+        ADC_Voltages[i] = abs((testData*1.0/4096.0)*5.0);   
+        device.printf(" Voltage: %f\n",ADC_Voltages[i]); 
+    }
+    current_convert(ADC_Voltages);
+    //check_for_overcurrents();
 }
 
 // void PWMTest(){
@@ -877,14 +1028,14 @@ int main()
     device.printf("Hello World\n");
 
   can1.frequency(CANBUS_FREQUENCY);
-  can1.filter(CAN_PDM_CONTROL_BASE_ADDRESS+2, 0xFFF, CANStandard, 0); // set filter #0 to accept only standard messages with ID == RX_ID
+  //can1.filter(CAN_PDM_CONTROL_BASE_ADDRESS+2, 0xFFF, CANStandard, 0); // set filter #0 to accept only standard messages with ID == RX_ID
   can1.attach(&CAN_PDM_RX);
 
   //Configure tickers
   ticker_CAN_HeartBeat.attach(&CAN_PDM_TX_Heartbeat, CAN_HEARTBEAT_PERIOD);
-  //ticker_CAN_Digital_1.attach(&CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
-  //ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, CAN_ANALOG_1_PERIOD);
-  //ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, CAN_ANALOG_1_PERIOD);
+  //ticker_CAN_Error.attach(&CAN_PDM_TX_Error, CAN_ERROR_PERIOD);
+  ticker_CAN_Analog_1.attach(&CAN_PDM_TX_Analog_1, CAN_ANALOG_1_PERIOD);
+  ticker_CAN_Analog_2.attach(&CAN_PDM_TX_Analog_2, CAN_ANALOG_1_PERIOD);
   // Re-enable interrupts again, now that interrupts are ready.
 	__enable_irq();
 
@@ -898,7 +1049,10 @@ int main()
   SetupADS7028(&ADC_CS, ADC);
 
 //PWM Setups
-//   PWM_3.period(0.020);
+//PWM1.period_us(PWM_period_us);
+PWM2.period_us(PWM_period_us);
+PWM3.period_us(PWM_period_us);
+PWM4.period_us(PWM_period_us);
 
   message = 0;
   /*writeSingleRegister(PIN_CFG_ADDRESS, 0b11111111);
@@ -915,6 +1069,7 @@ int main()
   while(1) 
   {    
     updateDriverOutputs();
+    updatePWMOutputs();
     readSensePins();
     //PWMTest();
     //Serial_Print(); //Used for debugging.

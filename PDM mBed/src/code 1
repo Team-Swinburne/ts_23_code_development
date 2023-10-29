@@ -5,16 +5,15 @@ unsigned short int k = 1730;
 
 
 
-unsigned short int current_convert(unsigned short message)
+void current_convert(float message[])
 {
-unsigned short int divider_voltage ;
-unsigned short int switch_current;
-unsigned short int Real_current;
-divider_voltage = message/819; // converts decimal ADC value into real divider voltage
-switch_current = divider_voltage/(Rpull + Rconst); // converts voltage form ADC to current sense value 
-Real_current = k * switch_current;
-
-return Real_current;
+    for (int i = 0; i < 8; i++){
+        float divider_voltage;
+        float switch_current;
+        divider_voltage = message[i]/819; // converts decimal ADC value into real divider voltage
+        switch_current = divider_voltage/(Rpull + Rconst); // converts voltage form ADC to current sense value 
+        Real_current = k * switch_current;
+    }
 }
 
 

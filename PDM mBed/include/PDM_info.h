@@ -26,10 +26,10 @@ typedef struct HeartBeat_s{
 // } driverControlSignals_struct;
 
 typedef struct PWMControlSignals{
-  int CH_1 = 0;
-  int CH_2 = 0;
-  int CH_3 = 0;
-  int CH_4 = 0;
+  float CH_1 = 0;
+  float CH_2 = 0;
+  float CH_3 = 0;
+  float CH_4 = 0;
 } PWMControlSignals_struct;
 
 //Enums for all the bytes in the heartbeat CAN message
@@ -44,10 +44,7 @@ typedef enum CAN_HEARTBEAT_SIGNALS{
 
 //Enums for all the bytes in the error CAN message
 typedef enum CAN_ERROR_SIGNALS{
-    CAN_ERROR_OVER_VOLTAGE,
-    CAN_ERROR_OVER_CURRENT,
-    CAN_ERROR_SHORT_CIRCUIT,
-    CAN_ERROR_OVER_TEMP
+    CAN_ERROR_OVER_CURRENT
 } can_ERROR_signals_t;
 
 
@@ -63,18 +60,6 @@ typedef enum CAN_DIGITAL_1_SIGNALS{
   CAN_DIGITAL_1_CIRCUIT_7_STATE,
   CAN_DIGITAL_1_CIRCUIT_8_STATE
 } can_DIGITAL_1_signals_t;
-
-//Enums for all the bytes in the H-Bridge 1 CAN Message
-typedef enum CAN_DIGITAL_2_SIGNALS{
-  CAN_H_BRIDGE_1_PWN_VALUE,
-  CAN_H_BRIDGE_2_PWN_VALUE,
-  CAN_H_BRIDGE_3_PWN_VALUE,
-  CAN_H_BRIDGE_4_PWN_VALUE,
-  CAN_H_BRIDGE_5_PWN_VALUE,
-  CAN_H_BRIDGE_6_PWN_VALUE,
-  CAN_H_BRIDGE_7_PWN_VALUE,
-  CAN_H_BRIDGE_8_PWN_VALUE
-} can_DIGITAL_2_signals_t;
 
 //Enums for all the bytes in the analog 1 CAN message
 typedef enum CAN_ANALOG_1_SIGNALS{
