@@ -5,6 +5,7 @@
 #include <SPI.h>
 #include "ads7028.h"
 
+
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> Can0;
 
 void updateHeartdata();
@@ -37,6 +38,13 @@ void setup(void) {
   Can0.onReceive(canSniff);
   Can0.mailboxStatus();
 
+ digitalWrite(21, HIGH);  // CS1 ENABLE
+  digitalWrite(20, HIGH);  // CS2 ENABLE
+  digitalWrite(19, HIGH);  // CS3 ENABLE
+  digitalWrite(18, HIGH);  // CS4 ENABLE
+  digitalWrite(17, HIGH);  // CS5 ENABLE
+  digitalWrite(16, HIGH);  // CS6 ENABLE
+
   Heartbeat.start();
   Can_tx.start();
 
@@ -57,12 +65,12 @@ void setup(void) {
   //                           CPHA = 0: Data is sampled on the leading (first) edge of the clock.
   //                           CPHA = 1: Data is sampled on the trailing (second) edge of the clock.
 
-  SPI.setDataMode(SPI_MODE2);           // SPI_MODE0 - Low state when idle; SPI is sampled on rising edge of the clock.
+  SPI.setDataMode(SPI_MODE0);           // SPI_MODE0 - Low state when idle; SPI is sampled on rising edge of the clock.
 
-  SPI.setClockDivider(SPI_CLOCK_DIV16); // System clock of Teens 4.0 is 600MHz; ADS7028 maximum clock frequency is 60MHz
-                                        // Therefore, a divider of 10 or more is required
-                                        // SPI clock divider only offers divisions (closest to 10) of 8 and 16
-                                        // 16 was chosen for highest possible performance of the ADS7028
+  SPI.setClockDivider(SPI_CLOCK_DIV128); // System clock of Teens 4.0 is 600MHz; ADS7028 maximum clock frequency is 60MHz
+                                         // Therefore, a divider of 10 or more is required
+                                         // SPI clock divider only offers divisions (closest to 10) of 8 and 16
+                                         // 16 was chosen for highest possible performance of the ADS7028
 
   SPI.setBitOrder(MSBFIRST);            // Reading 'Most Significant Bit FIRST' instead of 'Least Significant Bit FIRST'
 
@@ -90,7 +98,6 @@ void setup(void) {
   pinMode(18, OUTPUT);  // C4
   pinMode(17, OUTPUT);  // C5
   pinMode(16, OUTPUT);  // C6
-
 }
 
 // update the heart message data and transmit hearbeat, letting the other pals know you're alive
@@ -121,21 +128,22 @@ void updateHeartdata()
 // note: function cannot broadcast on can yet.
  void readAdc() {
 
-  // for (int i = 0; i < 8; i++){
-
-    startManualConversions(5, 100);
+  for (int i = 0; i < 8; i++){
+    digitalWrite(16, LOW);
+    startManualConversions(i, 100);
     int16_t testData = readData();
     stopConversions();
 
-    Serial.print("Channel ");
-    Serial.println(5, HEX);
+    Serial.print("Channel :");
+    Serial.println(i, HEX);
     Serial.print(" Voltage: ");
 
     // ADC_Voltages[i] = abs((testData*1.0/4096.0)*5.0); 
     // ADC_Voltages[1] = abs((testData*1.0/4096.0)*5.0);  
     // Serial.println(ADC_Voltages[i]); 
     Serial.println(testData); 
-    // }
+    digitalWrite(16, LOW);
+    }
   // current_convert(ADC_Voltages);    // prints the current of the resistors connected to the temp module.
   //check_for_overcurrents();
 }
@@ -184,10 +192,6 @@ void loop() {
   digitalWrite(3, HIGH);
 
   // Enable all analogue inputs
-  digitalWrite(21, HIGH);  // CS1 ENABLE
-  digitalWrite(20, HIGH);  // CS2 ENABLE
-  digitalWrite(19, HIGH);  // CS3 ENABLE
-  digitalWrite(18, HIGH);  // CS4 ENABLE
-  digitalWrite(17, HIGH);  // CS5 ENABLE
-  digitalWrite(16, HIGH);  // CS6 ENABLE
+ 
+  delay (50);
 }
