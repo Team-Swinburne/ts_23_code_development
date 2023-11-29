@@ -143,6 +143,11 @@ void setup(void) {
                                          // 16 was chosen for highest possible performance of the ADS7028
 
   SPI.setBitOrder(MSBFIRST);             // Reading 'Most Significant Bit FIRST' instead of 'Least Significant Bit FIRST'
+  
+  // Set pin assignments for MOSI, MISO, and SCLCK
+  SPI.setMOSI(11);
+  SPI.setMISO(12);
+  SPI.setSCK(13);
 
   // SET UP ADC CONFIGURATION //
   initADS7028();  // initialise ADCs 
@@ -163,9 +168,9 @@ void setup(void) {
   pinMode(3, OUTPUT);
 
   // try again with these pin configurations
-  pinMode(11, OUTPUT);  // MOSI
-  pinMode(12, INPUT);  // MISO
-  pinMode(13, OUTPUT);  // SCLCK
+  // pinMode(11, OUTPUT);  // MOSI
+  // pinMode(12, INPUT);  // MISO
+  // pinMode(13, OUTPUT);  // SCLCK
 
   pinMode(21, OUTPUT);  // C1
   pinMode(20, OUTPUT);  // C2
