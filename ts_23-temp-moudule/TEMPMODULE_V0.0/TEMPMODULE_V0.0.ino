@@ -6,47 +6,47 @@
 #include "ads7028.h"
 
 
-FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> Can0;
+// FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> Can0;
 
-void updateHeartdata();
-void canTX();
-Ticker Heartbeat (updateHeartdata, 1000, 0, MILLIS);  // Display heartbeat on CAN
-Ticker Can_tx (canTX, 1000, 0, MILLIS);               // FOR TESTING ONLY
+// void updateHeartdata();
+// void canTX();
+// Ticker Heartbeat (updateHeartdata, 1000, 0, MILLIS);  // Display heartbeat on CAN
+// Ticker Can_tx (canTX, 1000, 0, MILLIS);               // FOR TESTING ONLY
 
 
 // Try without attaching it to interrupts first, if works, try attaching read function to interrupt.
 // Ticker ADC (readAdc, 1000, 0, MILLIS);                // read ADS7028, transmit on CAN, and store in global variable for other purposes in the code.
 
-struct msgFrame {
-  uint8_t len = 8;
-  uint8_t bytes[8] = {0};
-};
+// struct msgFrame {
+//   uint8_t len = 8;
+//   uint8_t bytes[8] = {0};
+// };
 
-static msgFrame	heartFrame, //{.len = 6},
-               	errorFrame; //{.len = 2}, 
+// static msgFrame	heartFrame, //{.len = 6},
+//                	errorFrame; //{.len = 2}, 
 
-float ADC_Voltages[8] = {0};
+// float ADC_Voltages[8] = {0};
 
 // update the heart message data and transmit hearbeat, letting the other pals know you're alive
 // NOTE: NEED TO DO HEARTBEAT STATE WHEN FINISHED WITH OTHER CODE
-void updateHeartdata() 
-{
-  // NOTE: YOU WON'T BE ABLE TO WRITE HEARTBEAT FROM HEARTBEAT FUNCTION. THIS IS ONLY TEMPORARY.
-  CAN_message_t msg;
-  msg.id = CAN_TEMP_MODULE_GENERAL_BROADCAST;
-  msg.flags.extended = 1;               // to show extended id on CAN
+// void updateHeartdata() 
+// {
+//   // NOTE: YOU WON'T BE ABLE TO WRITE HEARTBEAT FROM HEARTBEAT FUNCTION. THIS IS ONLY TEMPORARY.
+//   CAN_message_t msg;
+//   msg.id = CAN_TEMP_MODULE_GENERAL_BROADCAST;
+//   msg.flags.extended = 1;               // to show extended id on CAN
 
-  // Note: if you want to add in the same address, change the position in the array and it must be done in this function.
-  //       if you want to add in a different address, add to the address 'msg.id' to offset the address.
-  msg.buf[0] = heartFrame.bytes[HEART_COUNTER]++;
-  msg.buf[1] = 20;
+//   // Note: if you want to add in the same address, change the position in the array and it must be done in this function.
+//   //       if you want to add in a different address, add to the address 'msg.id' to offset the address.
+//   msg.buf[0] = heartFrame.bytes[HEART_COUNTER]++;
+//   msg.buf[1] = 20;
 
 
-  Can0.write(msg);
-	// digitalToggle(PC13);
-  Serial.println(heartFrame.bytes[HEART_COUNTER]);
-  // Serial.println("Heartbeat called.");
-}
+//   Can0.write(msg);
+// 	// digitalToggle(PC13);
+//   Serial.println(heartFrame.bytes[HEART_COUNTER]);
+//   // Serial.println("Heartbeat called.");
+// }
 
 // read data from ADCs and broadcast as a message on CAN
 
@@ -74,49 +74,42 @@ void updateHeartdata()
   //check_for_overcurrents();
 }
 
-void canTX() 
-{
-  CAN_message_t msg;
-  msg.id = CAN_TEMP_MODULE_BMS_BROADCAST;
-  msg.flags.extended = 1;               // to show extended id on CAN
+// void canTX() 
+// {
+//   CAN_message_t msg;
+//   msg.id = CAN_TEMP_MODULE_BMS_BROADCAST;
+//   msg.flags.extended = 1;               // to show extended id on CAN
 
-  msg.buf[0] = 10;
-  Can0.write(msg);
-}
+//   msg.buf[0] = 10;
+//   Can0.write(msg);
+// }
 
-void canSniff(const CAN_message_t &msg) {
-  Serial.print("MB "); Serial.print(msg.mb);
-  Serial.print("  OVERRUN: "); Serial.print(msg.flags.overrun);
-  Serial.print("  LEN: "); Serial.print(msg.len);
-  Serial.print(" EXT: "); Serial.print(msg.flags.extended);
-  Serial.print(" TS: "); Serial.print(msg.timestamp);
-  Serial.print(" ID: "); Serial.print(msg.id, HEX);
-  Serial.print(" Buffer: ");
-  for ( uint8_t i = 0; i < msg.len; i++ ) {
-    Serial.print(msg.buf[i], HEX); Serial.print(" ");
-  } Serial.println();
-}
+// void canSniff(const CAN_message_t &msg) {
+//   Serial.print("MB "); Serial.print(msg.mb);
+//   Serial.print("  OVERRUN: "); Serial.print(msg.flags.overrun);
+//   Serial.print("  LEN: "); Serial.print(msg.len);
+//   Serial.print(" EXT: "); Serial.print(msg.flags.extended);
+//   Serial.print(" TS: "); Serial.print(msg.timestamp);
+//   Serial.print(" ID: "); Serial.print(msg.id, HEX);
+//   Serial.print(" Buffer: ");
+//   for ( uint8_t i = 0; i < msg.len; i++ ) {
+//     Serial.print(msg.buf[i], HEX); Serial.print(" ");
+//   } Serial.println();
+// }
 
 void setup(void) {
   Serial.begin(115200); delay(400);
-  pinMode(6, OUTPUT); digitalWrite(6, LOW); /* optional tranceiver enable pin */
-  Can0.begin();
-  Can0.setBaudRate(500000);
-  Can0.setMaxMB(16);
-  Can0.enableFIFO();
-  Can0.enableFIFOInterrupt();
-  Can0.onReceive(canSniff);
-  Can0.mailboxStatus();
+  // pinMode(6, OUTPUT); digitalWrite(6, LOW); /* optional tranceiver enable pin */
+  // Can0.begin();
+  // Can0.setBaudRate(500000);
+  // Can0.setMaxMB(16);
+  // Can0.enableFIFO();
+  // Can0.enableFIFOInterrupt();
+  // Can0.onReceive(canSniff);
+  // Can0.mailboxStatus();
 
-  digitalWrite(21, HIGH);   // CS1 ENABLE
-  digitalWrite(20, HIGH);  // CS2 ENABLE
-  digitalWrite(19, HIGH);  // CS3 ENABLE
-  digitalWrite(18, HIGH);  // CS4 ENABLE
-  digitalWrite(17, HIGH);  // CS5 ENABLE
-  digitalWrite(16, HIGH);  // CS6 ENABLE
-
-  Heartbeat.start();
-  Can_tx.start();
+  // Heartbeat.start();
+  // Can_tx.start();
 
   SPI.begin();          // initialise SPI communication
 
@@ -167,10 +160,7 @@ void setup(void) {
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
 
-  // try again with these pin configurations
-  // pinMode(11, OUTPUT);  // MOSI
-  // pinMode(12, INPUT);  // MISO
-  // pinMode(13, OUTPUT);  // SCLCK
+  pinMode(12, INPUT);  // MISO
 
   pinMode(21, OUTPUT);  // C1
   pinMode(20, OUTPUT);  // C2
@@ -181,7 +171,7 @@ void setup(void) {
 }
 
 void loop() {
-  Can0.events();
+  // Can0.events();
 
   // static uint32_t timeout = millis();
   // if ( millis() - timeout > 200 ) {
@@ -191,12 +181,19 @@ void loop() {
   //   Can0.write(msg);
   //   timeout = millis();
   // }
-  Heartbeat.update();
-  Can_tx.update();
+  // Heartbeat.update();
+  // Can_tx.update();
   readAdc();
   
   digitalWrite(0, HIGH);
   digitalWrite(1, HIGH);
   digitalWrite(2, HIGH);
   digitalWrite(3, HIGH);
+
+  digitalWrite(21, HIGH);   // CS1 ENABLE
+  digitalWrite(20, HIGH);  // CS2 ENABLE
+  digitalWrite(19, HIGH);  // CS3 ENABLE
+  digitalWrite(18, HIGH);  // CS4 ENABLE
+  digitalWrite(17, HIGH);  // CS5 ENABLE
+  digitalWrite(16, HIGH);  // CS6 ENABLE
 }
