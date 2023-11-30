@@ -56,6 +56,9 @@ BO_ 868 ANALOGUE: 8 Vector__XXX
  SG_ Pin3_Voltage : 39|16@0+ (0.0001,0) [0|0] "V" Vector__XXX
  SG_ Pin4_Voltage : 55|16@0+ (0.0001,0) [0|0] "V" Vector__XXX
 
+BO_ 869 ANALOGUE_2: 8 Vector__XXX
+ SG_ Load_cell_voltage : 7|16@0- (0.001,0) [0|0] "mV" Vector__XXX
+
 
 
 
