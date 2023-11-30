@@ -1,7 +1,7 @@
 #include "Arduino.h"
-#include <FlexCAN_T4.h>
-#include "Ticker.h"
-#include "can_addresses.h"
+// #include <FlexCAN_T4.h>
+// #include "Ticker.h"
+// #include "can_addresses.h"
 #include <SPI.h>
 #include "ads7028.h"
 
@@ -25,7 +25,7 @@
 // static msgFrame	heartFrame, //{.len = 6},
 //                	errorFrame; //{.len = 2}, 
 
-// float ADC_Voltages[8] = {0};
+float ADC_Voltages[8] = {0};
 
 // update the heart message data and transmit hearbeat, letting the other pals know you're alive
 // NOTE: NEED TO DO HEARTBEAT STATE WHEN FINISHED WITH OTHER CODE
@@ -64,10 +64,10 @@
     Serial.println(i, HEX);
     Serial.print(" Voltage: ");
 
-    // ADC_Voltages[i] = abs((testData*1.0/4096.0)*5.0); 
+    ADC_Voltages[i] = abs((testData*1.0/4096.0)*5.0); 
     // ADC_Voltages[1] = abs((testData*1.0/4096.0)*5.0);  
-    // Serial.println(ADC_Voltages[i]); 
-    Serial.println(testData); 
+    Serial.println(ADC_Voltages[i]); 
+    // Serial.println(testData); 
     digitalWrite(16, HIGH);
     }
   // current_convert(ADC_Voltages);    // prints the current of the resistors connected to the temp module.
@@ -128,7 +128,7 @@ void setup(void) {
   //                           CPHA = 0: Data is sampled on the leading (first) edge of the clock.
   //                           CPHA = 1: Data is sampled on the trailing (second) edge of the clock.
 
-  SPI.setDataMode(SPI_MODE0);            // SPI_MODE0 - Low state when idle; SPI is sampled on rising edge of the clock.
+  SPI.setDataMode(SPI_MODE2);            // SPI_MODE0 - Low state when idle; SPI is sampled on rising edge of the clock.
 
   SPI.setClockDivider(SPI_CLOCK_DIV128); // System clock of Teens 4.0 is 600MHz; ADS7028 maximum clock frequency is 60MHz
                                          // Therefore, a divider of 10 or more is required
@@ -136,14 +136,16 @@ void setup(void) {
                                          // 16 was chosen for highest possible performance of the ADS7028
 
   SPI.setBitOrder(MSBFIRST);             // Reading 'Most Significant Bit FIRST' instead of 'Least Significant Bit FIRST'
-  
+
   // Set pin assignments for MOSI, MISO, and SCLCK
-  SPI.setMOSI(11);
-  SPI.setMISO(12);
-  SPI.setSCK(13);
+  // SPI.setMOSI(11);
+  // SPI.setMISO(12);
+  // SPI.setSCK(13);
 
   // SET UP ADC CONFIGURATION //
   initADS7028();  // initialise ADCs 
+
+  delay(1000);   // allow time to settle
 
   // Configure chip mode
   for (int i = 0; i<8; i++){
@@ -160,7 +162,9 @@ void setup(void) {
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
 
-  pinMode(12, INPUT);  // MISO
+  // pinMode(11, OUTPUT);          // MOSI
+  // pinMode(12, INPUT_PULLDOWN);  // MISO
+  // pinMode(13, OUTPUT);          // SCLCK
 
   pinMode(21, OUTPUT);  // C1
   pinMode(20, OUTPUT);  // C2
@@ -190,7 +194,7 @@ void loop() {
   digitalWrite(2, HIGH);
   digitalWrite(3, HIGH);
 
-  digitalWrite(21, HIGH);   // CS1 ENABLE
+  digitalWrite(21, HIGH);  // CS1 ENABLE
   digitalWrite(20, HIGH);  // CS2 ENABLE
   digitalWrite(19, HIGH);  // CS3 ENABLE
   digitalWrite(18, HIGH);  // CS4 ENABLE
