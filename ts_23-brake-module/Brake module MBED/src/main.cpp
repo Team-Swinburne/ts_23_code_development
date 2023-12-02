@@ -746,7 +746,8 @@ static int16_t signExtend(const uint8_t dataBytes[])
 
     // NOTE: This right-shift operation on signed data maintains the sign bit
     uint8_t shiftDistance = AVERAGING_ENABLED ? 0 : 4;
-    return (((int16_t)(upperByte | lowerByte)) >> shiftDistance);
+    int16_t weirdshit = (((int16_t)(upperByte | lowerByte))>> shiftDistance);
+    return weirdshit;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -780,17 +781,40 @@ uint8_t raw_to_percent(float brake_raw, float brake_max, float brake_min)
   return (uint8_t)brake_percent;
 }
 
+float toFloat(int16_t data)
+{
+  float voltage = (data*1.0/4096.0)*5.0;
+  if (voltage > 0)
+  {
+    return voltage;
+  }
+  else
+  {
+    return 5+voltage;
+  }
+}
+
 void BrakeModuleUpdate()
 {
-  startManualConversions(4, 100);
+  startManualConversions(2, 100);
   int16_t testData = readData();
   stopConversions();
-  float Brake1_Voltage = abs((testData*1.0/4096.0)*5.0);
+  float Brake1_Voltage = toFloat(testData);
 
-  startManualConversions(2, 100);
+  startManualConversions(3, 100);
   testData = readData();
   stopConversions();
-  float Brake2_Voltage = abs((testData*1.0/4096.0)*5.0);
+  float Brake2_Voltage = toFloat(testData);
+
+  startManualConversions(0, 100);
+  testData = readData();
+  stopConversions();
+  float LowRef_Voltage = toFloat(testData);
+
+  startManualConversions(1, 100);
+  testData = readData();
+  stopConversions();
+  float HighRef_Voltage = toFloat(testData);
 
 
   BrakeModule.brake1_raw      = Brake1_Voltage;
@@ -798,15 +822,15 @@ void BrakeModuleUpdate()
   BrakeModule.High_Pressure   = !(HighPressure.read()); //Must be inverted
   BrakeModule.Low_Pressure    = LowPressure.read();
   BrakeModule.five_kW         = CurrentSensor.read();
-  BrakeModule.BSPD_OK         = BSPD.read();
-  BrakeModule.BSPD_OK_delay   = BSPD_Delay.read();
+  BrakeModule.BSPD_OK         = (BSPD_Delay.read());//BSPD.read();
+  BrakeModule.BSPD_OK_delay   = (BSPD_Delay.read());
 
   BrakeModule.brake1_percent    = raw_to_percent(BrakeModule.brake1_raw, brake_calibration.brake1_max, brake_calibration.brake1_min);
   BrakeModule.brake2_percent    = raw_to_percent(BrakeModule.brake2_raw, brake_calibration.brake2_max, brake_calibration.brake2_min);
   BrakeModule.brake_avg_percent = (BrakeModule.brake1_percent + BrakeModule.brake2_percent)/2.0;
 
-  BrakeModule.brake_low_ref   = 3.3*lowRef.read();
-  BrakeModule.brake_high_ref  = 3.3*highRef.read();
+  BrakeModule.brake_low_ref   = LowRef_Voltage;
+  BrakeModule.brake_high_ref  = HighRef_Voltage;
 }
 
 
@@ -839,8 +863,8 @@ void CAN_brakeModule_TX_Digital_1()
   TX_data[CAN_DIGITAL_1_BRAKE_HIGH_PRESSURE] = BrakeModule.High_Pressure;
   TX_data[CAN_DIGITAL_1_BRAKE_LOW_PRESSURE] = BrakeModule.Low_Pressure;
   TX_data[CAN_DIGITAL_1_BRAKE_5KW] = BrakeModule.five_kW;
-  TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK] = BrakeModule.BSPD_OK;
-  TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK_DELAY] = BrakeModule.BSPD_OK_delay;
+  TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK] = !BrakeModule.BSPD_OK;
+  TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK_DELAY] = !BrakeModule.BSPD_OK_delay;
 
   can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_DIGITAL_1_ID), TX_data, 5));
 }
@@ -865,19 +889,19 @@ void CAN_brakeModule_TX_Analog_2()
 {
   char TX_data[8] = { 0 };
 
-  startManualConversions(4, 100);
-  int16_t testData1 = readData();
-  stopConversions();
-  float Brake1_Voltage = abs((testData1*1.0/4096.0)*5.0);
+//   startManualConversions(4, 100);
+//   int16_t testData1 = readData();
+//   stopConversions();
+//   float Brake1_Voltage = toFloat(testData1);
 
-  startManualConversions(2, 100);
-  int16_t testData2 = readData();
-  stopConversions();
-  float Brake2_Voltage = abs((testData2*1.0/4096.0)*5.0);
+//   startManualConversions(2, 100);
+//   int16_t testData2 = readData();
+//   stopConversions();
+//   float Brake2_Voltage = toFloat(testData2);
 
   //Convert to integers with 1mV resolution
-  int brake1_Voltage = uint16_t(Brake1_Voltage*1000);
-  int brake2_Voltage = uint16_t(Brake2_Voltage*1000);
+  int brake1_Voltage = uint16_t(BrakeModule.brake1_raw*1000);
+  int brake2_Voltage = uint16_t(BrakeModule.brake2_raw*1000);
   int highRef_Voltage = uint16_t(BrakeModule.brake_high_ref*1000);
   int lowRef_Voltage = uint16_t(BrakeModule.brake_low_ref*1000);
 
@@ -917,7 +941,7 @@ void CAN_brakeModule_RX()
 int main() 
 {
   // Disable interrupts for smooth startup routine.
-	////wait_ms(1000);
+	wait_ms(3000);
 
   ADC_CS = 1;
 
@@ -945,7 +969,7 @@ int main()
 	__enable_irq();
 
 	// Allow some time to settle!
-	////wait_ms(1000);
+	wait_ms(3000);
 
   while(1) 
   {
