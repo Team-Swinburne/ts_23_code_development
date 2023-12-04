@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "SPI.C": "cpp",
+        "cstddef": "cpp",
+        "*.tcc": "cpp"
+    }
+}
