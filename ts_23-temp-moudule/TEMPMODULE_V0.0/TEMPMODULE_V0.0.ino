@@ -128,7 +128,7 @@ void setup(void) {
   //                           CPHA = 0: Data is sampled on the leading (first) edge of the clock.
   //                           CPHA = 1: Data is sampled on the trailing (second) edge of the clock.
 
-  SPI.setDataMode(SPI_MODE2);            // SPI_MODE0 - Low state when idle; SPI is sampled on rising edge of the clock.
+  SPI.setDataMode(SPI_MODE0);            // SPI_MODE0 - Low state when idle; SPI is sampled on rising edge of the clock.
 
   SPI.setClockDivider(SPI_CLOCK_DIV128); // System clock of Teens 4.0 is 600MHz; ADS7028 maximum clock frequency is 60MHz
                                          // Therefore, a divider of 10 or more is required

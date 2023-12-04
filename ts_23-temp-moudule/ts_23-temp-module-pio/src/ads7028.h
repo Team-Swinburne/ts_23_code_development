@@ -40,6 +40,8 @@
 #include <assert.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <Arduino.h>
+#include <SPI.h>
 
 //****************************************************************************
 //
@@ -1099,28 +1101,39 @@
 /* Returns true if channel sequencing in auto-sequence mode is enabled */
 #define AVERAGING_ENABLED       ((bool) (getRegisterValue(OSR_CFG_ADDRESS) & OSR_CFG_OSR_MASK))
 
+/* -------------------------------------------------------------------------- */
+/*                                     OOP                                    */
+/* -------------------------------------------------------------------------- */
+class ADS7028 {
+public:
+    ADS7028(uint8_t csPin);
+    void init();
+    void resetDevice();
+    void startManualConversions(uint8_t channelID, uint32_t samplesPerSecond);
+    void stopConversions();
 
-//****************************************************************************
-//
-// Function prototypes
-//
-//****************************************************************************
+    int16_t readData();
+    uint8_t readSingleRegister(uint8_t address);
+    uint8_t getRegisterValue(uint8_t address);
 
-void        initADS7028(void);
-void        resetDevice();
-void        startManualConversions(uint8_t channelID, uint32_t samplesPerSecond);
-void        stopConversions(void);
+    void writeSingleRegister(uint8_t address, uint8_t data);
+    void setRegisterBits(uint8_t address, uint8_t bitMask);
+    void clearRegisterBits(uint8_t address, uint8_t bitMask);
 
-int16_t     readData(uint8_t dataRx[]);
-uint8_t     readSingleRegister(uint8_t address);
-uint8_t     getRegisterValue(uint8_t address);
+    float readVoltage(uint8_t channelID);
 
-void        writeSingleRegister(uint8_t address, uint8_t data);
-void        setRegisterBits(uint8_t address, uint8_t bitMask);
-void        clearRegisterBits(uint8_t address, uint8_t bitMask);
+    /* Helper Functions */
+    uint8_t calculateCRC(const uint8_t dataBytes[], uint8_t numberBytes, uint8_t initialValue);
+    void setChannelAsAnalogInput(uint8_t channelID);
 
-/* Helper Functions */
-uint8_t     calculateCRC(const uint8_t dataBytes[], uint8_t numberBytes, uint8_t initialValue);
-void        setChannelAsAnalogInput(uint8_t channelID);
+private:
+    void setCS(bool state);
+    void spiSendReceiveArray(uint8_t *dataTx, uint8_t *dataRx, uint8_t numberOfBytes);
+    void restoreRegisterDefaults();
+    int16_t signExtend(const uint8_t dataBytes[]);
+    uint8_t registerMap[MAX_REGISTER_ADDRESS + 1];
+
+    uint8_t m_cs;
+};
 
 #endif
