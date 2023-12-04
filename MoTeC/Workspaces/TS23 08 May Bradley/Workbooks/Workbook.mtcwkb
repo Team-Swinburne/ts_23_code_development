@@ -1474,6 +1474,14 @@
   </Worksheet>
   <Worksheet Version="200" Name="Brake Module" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Parameter List">
+    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="689,97,989,497" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Brake Light.Brake Light Test"/>
+      </DataRefs>
+     </Data>
+     <Headers/>
+    </MoTeC.ParamList>
     <MoTeC.ChannelList Version="100" Name="Channels" PosPC="11,97,654,932" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -1495,14 +1503,6 @@
      </Data>
      <Headers/>
     </MoTeC.ChannelList>
-    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="689,97,989,497" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Brake Light.Brake Light Test"/>
-      </DataRefs>
-     </Data>
-     <Headers/>
-    </MoTeC.ParamList>
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="Bell Crank Sensors" LinkTo="Default" LockByGPSTime="0">

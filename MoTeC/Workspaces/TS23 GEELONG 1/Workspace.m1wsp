@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Tune Locale="English_Australia.1252" DefaultLocale="C" ZoomDuration="30" Version="102" ShowOverlays="1" ExcludeUntrusted="1" IncludeOverlays="0" GraphTimeFormat="4" RemoveOnChanDblClick="1" SplitterPos="1253">
+<Tune Locale="English_Australia.1252" DefaultLocale="C" ZoomDuration="30" Version="102" ShowOverlays="1" ExcludeUntrusted="1" IncludeOverlays="0" GraphTimeFormat="4" RemoveOnChanDblClick="1" SplitterPos="997">
  <Resources/>
  <ValuesWindow GroupMode="0"/>
  <ChannelItemsWindow/>
@@ -34,7 +34,7 @@
   <MapEntry Key="11913" Value=""/>
  </Map>
  <Packages>
-  <Package Path="C:\Users\Ethan Jones\Documents\MoTeC\M1\Packages\9CC89F58-8A96-45C8-BFC8-9461B8EF7FB5.m1pkg"/>
+  <Package Path="C:\Users\mitch\Documents\MoTeC\M1\Packages\4EF8D829-0259-4F50-B6BC-00F10276318B.m1pkg"/>
  </Packages>
  <MyDevices>
   <MyDevice SerialNum="11913"/>

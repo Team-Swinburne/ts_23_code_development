@@ -2,7 +2,13 @@
 <Workbook Locale="English_Australia.1252" DefaultLocale="C" Version="200" Name="Workbook" Profile="Tune" Active="Worksheets">
  <Worksheets Version="100" Name="Worksheets" PosPC="0,0,1000,1000" Active="Worksheet">
   <Worksheet Version="200" Name="Worksheet" LinkTo="Default" LockByGPSTime="0">
-   <Controls Active="Channels (1)">
+   <Controls Active="Channels">
+    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="0,1,610,1001" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="3" Match="" Locked="1" Sorted="0"/>
+     <Headers>
+      <Header Index="0" Col.Index="1" Col.Width="163"/>
+     </Headers>
+    </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels (1)" PosPC="655,95,955,494" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -10,12 +16,6 @@
       </DataRefs>
      </Data>
      <Headers/>
-    </MoTeC.ChannelList>
-    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="0,1,610,1001" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
-     <Data Method="3" Match="" Locked="1" Sorted="0"/>
-     <Headers>
-      <Header Index="0" Col.Index="1" Col.Width="163"/>
-     </Headers>
     </MoTeC.ChannelList>
    </Controls>
   </Worksheet>
@@ -35,6 +35,46 @@
       <Header Index="1" Col.Index="4" Col.Width="23"/>
      </Headers>
     </MoTeC.ParamList>
+    <MoTeC.ChannelList Version="100" Name="Channels (1)" Caption="Precharge" PosPC="230,0,610,507" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Heartbeat ID.Precharge State"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Heartbeat ID.Precharge Heartbeat"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.Error Present"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.Error Code"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.Warning Present"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.Warning Code"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.AMS OK"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.PDOC OK"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.IMD OK"/>
+       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Precharge Button Pressed"/>
+       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Precharge Request"/>
+       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Drive State Request"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="0" Col.Index="1" Col.Width="80"/>
+      <Header Index="1" Col.Index="2" Col.Width="10"/>
+     </Headers>
+    </MoTeC.ChannelList>
+    <MoTeC.ChannelList Version="100" Name="Channels (2)" Caption="Brake Module" PosPC="230,688,610,945" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Heartbeat ID.Brake Module State"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Heartbeat ID.Brake Module Heartbeat"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake Output 1"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake Output 2"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake Output Average"/>
+       <DataRef Name="Read Sensors.Braking Active"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Digital ID.BSPD Error"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Digital ID.Low Pressure"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="0" Col.Index="1" Col.Width="40"/>
+      <Header Index="1" Col.Index="2" Col.Width="10"/>
+     </Headers>
+    </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels (5)" PosPC="610,394,1000,1000" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -57,46 +97,6 @@
      </Data>
      <Headers>
       <Header Index="0" Col.Index="1" Col.Width="54"/>
-     </Headers>
-    </MoTeC.ChannelList>
-    <MoTeC.ChannelList Version="100" Name="Channels (2)" Caption="Brake Module" PosPC="230,507,610,945" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Heartbeat ID.Brake Module State"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Heartbeat ID.Brake Module Heartbeat"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake Output 1"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake Output 2"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake Output Average"/>
-       <DataRef Name="Read Sensors.Braking Active"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Digital ID.BSPD Error"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Digital ID.Low Pressure"/>
-      </DataRefs>
-     </Data>
-     <Headers>
-      <Header Index="0" Col.Index="1" Col.Width="40"/>
-      <Header Index="1" Col.Index="2" Col.Width="10"/>
-     </Headers>
-    </MoTeC.ChannelList>
-    <MoTeC.ChannelList Version="100" Name="Channels (1)" Caption="Precharge" PosPC="230,0,610,507" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Heartbeat ID.Precharge State"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Heartbeat ID.Precharge Heartbeat"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.Error Present"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.Error Code"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.Warning Present"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.Warning Code"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.AMS OK"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.PDOC OK"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.IMD OK"/>
-       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Precharge Button Pressed"/>
-       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Precharge Request"/>
-       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Drive State Request"/>
-      </DataRefs>
-     </Data>
-     <Headers>
-      <Header Index="0" Col.Index="1" Col.Width="80"/>
-      <Header Index="1" Col.Index="2" Col.Width="10"/>
      </Headers>
     </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels (4)" Caption="Temp Passthrough" PosPC="610,0,997,400" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
@@ -355,13 +355,16 @@
         <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
         <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
        </Lines>
-       <Traces ActiveTrace="Global.Errors.PDOC LED Channel">
+       <Traces ActiveTrace="Transmit CAN.CAN 1.Error ID.Error Trailbraking Active">
         <Trace Id="Global.Errors.Throttle Error" DisplayUnit="" DisplayDPS="0" Visible="1"/>
         <Trace Id="Global.Errors.Critical Error" DisplayUnit="" DisplayDPS="1" Visible="1"/>
         <Trace Id="Global.Errors.AMS LED Channel" DisplayUnit="ratio" DisplayDPS="1" Visible="1"/>
         <Trace Id="Global.Errors.BSPD LED Channel" DisplayUnit="ratio" DisplayDPS="1" Visible="1"/>
         <Trace Id="Global.Errors.IMD LED Channel" DisplayUnit="ratio" DisplayDPS="1" Visible="1"/>
         <Trace Id="Global.Errors.PDOC LED Channel" DisplayUnit="ratio" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Global.Inverter Ready" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+        <Trace Id="Transmit CAN.CAN 1.Error ID.Error APPS Disagree" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+        <Trace Id="Transmit CAN.CAN 1.Error ID.Error Trailbraking Active" DisplayUnit="" DisplayDPS="0" Visible="1"/>
        </Traces>
       </Graph>
       <Graph Name="Group 4" ScaleMode="2" ScaleMin="0" ScaleMax="1">
@@ -386,46 +389,6 @@
   </Worksheet>
   <Worksheet Version="200" Name="Calibration" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Parameter List">
-    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="0,0,256,1000" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Invert"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Enable"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Type.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Pullup Control.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Active Edge.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Threshold.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Hysteresis.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Debounce.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Invert"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Enable"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Type.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pullup Control.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Active Edge.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Threshold.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Hysteresis.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Debounce.Value"/>
-       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Minimum Voltage"/>
-       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Maximum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Maximum Voltage"/>
-       <DataRef Name="CAN.Bus 1.Mode.Value"/>
-       <DataRef Name="CAN.Bus 2.Mode.Value"/>
-       <DataRef Name="CAN.Bus 3.Mode.Value"/>
-      </DataRefs>
-     </Data>
-     <Headers>
-      <Header Index="1" Col.Index="4" Col.Width="10"/>
-     </Headers>
-    </MoTeC.ParamList>
     <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="255,0,576,1000" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="438" DataPanelWidthRatio="1" ShowChannels="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -930,7 +893,20 @@
      </Data>
      <View>
       <ColorData>
-       <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="255,0,0" AxisChanColor="255,0,0" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="1" BandMode="1" DataMin="0" DataMax="0" BandWidth="0" BandCount="10"/>
+       <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="244,244,0" AxisChanColor="244,244,0" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="1" BandMode="1" DataMin="2.66052" DataMax="97.2787" BandWidth="9.46182" BandCount="10">
+        <ColorBand Flags="2" Min="2.66052" Max="2.66052" Color="64,64,255" Visible="1"/>
+        <ColorBand Flags="7" Min="2.66052" Max="12.1223" Color="64,136,255" Visible="1"/>
+        <ColorBand Flags="7" Min="12.1223" Max="21.5842" Color="64,203,255" Visible="1"/>
+        <ColorBand Flags="7" Min="21.5842" Max="31.046" Color="64,255,236" Visible="1"/>
+        <ColorBand Flags="7" Min="31.046" Max="40.5078" Color="64,255,169" Visible="1"/>
+        <ColorBand Flags="7" Min="40.5078" Max="49.9696" Color="64,255,98" Visible="1"/>
+        <ColorBand Flags="7" Min="49.9696" Max="59.4314" Color="98,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="59.4314" Max="68.8932" Color="169,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="68.8932" Max="78.3551" Color="236,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="78.3551" Max="87.8169" Color="255,203,64" Visible="1"/>
+        <ColorBand Flags="15" Min="87.8169" Max="97.2787" Color="255,136,64" Visible="1"/>
+        <ColorBand Flags="1" Min="97.2787" Max="97.2787" Color="255,64,64" Visible="1"/>
+       </EvenWidthBandAxis>
       </ColorData>
       <ColorDelta.1>
        <DifferentialBandAxis PaletteMode="3" GradientMode="1" BandChanColor="0,0,0" AxisChanColor="0,0,0" Color1="204,255,204" Color2="255,204,204" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="0" BandMode="1" DataMin="-1" DataMax="1" BandWidth="0.181818" BandCount="11">
@@ -955,6 +931,46 @@
       <Header Index="1" Col.Index="4" Col.Width="16"/>
      </Headers>
     </MoTeC.Calibrate>
+    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="0,0,256,1000" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Invert"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Enable"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Type.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Pullup Control.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Active Edge.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Threshold.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Hysteresis.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Debounce.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Invert"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Enable"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Type.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pullup Control.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Active Edge.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Threshold.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Hysteresis.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Debounce.Value"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Minimum Voltage"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Maximum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Maximum Voltage"/>
+       <DataRef Name="CAN.Bus 1.Mode.Value"/>
+       <DataRef Name="CAN.Bus 2.Mode.Value"/>
+       <DataRef Name="CAN.Bus 3.Mode.Value"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="1" Col.Index="4" Col.Width="10"/>
+     </Headers>
+    </MoTeC.ParamList>
     <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="545,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
      <Graphs ActivateChild="Group 1">
       <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
@@ -1185,7 +1201,7 @@
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="TV" LinkTo="Default" LockByGPSTime="0">
-   <Controls Active="Parameter List">
+   <Controls Active="Time Graph">
     <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="292,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
      <Graphs ActivateChild="Group 2">
       <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
@@ -1382,7 +1398,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Rad Temps" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Calibrate">
-    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="18,48,828,753" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="UCM sensors.Load cell.FL Load Cell" SplitOrientation="1" DataPanelWidth="412" DataPanelWidthRatio="0.386854" ShowChannels="1">
+    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="18,48,828,753" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="412" DataPanelWidthRatio="0.386854" ShowChannels="1">
      <Data Method="2" Match="" Locked="0" Sorted="0">
       <DataRefs>
        <DataRef Name="Recieve CAN.CAN 1.UCMs.UCM3 SP.Heartbeat ID.UCM3 SP State"/>
@@ -1474,6 +1490,14 @@
   </Worksheet>
   <Worksheet Version="200" Name="Brake Module" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Parameter List">
+    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="689,97,989,497" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Brake Light.Brake Light Test"/>
+      </DataRefs>
+     </Data>
+     <Headers/>
+    </MoTeC.ParamList>
     <MoTeC.ChannelList Version="100" Name="Channels" PosPC="11,97,654,932" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -1495,14 +1519,6 @@
      </Data>
      <Headers/>
     </MoTeC.ChannelList>
-    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="689,97,989,497" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Brake Light.Brake Light Test"/>
-      </DataRefs>
-     </Data>
-     <Headers/>
-    </MoTeC.ParamList>
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="Bell Crank Sensors" LinkTo="Default" LockByGPSTime="0">
