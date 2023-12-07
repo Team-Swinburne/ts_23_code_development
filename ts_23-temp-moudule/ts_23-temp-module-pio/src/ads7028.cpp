@@ -1,109 +1,34 @@
 /**
  * \copyright Copyright (C) 2019-2021 Texas Instruments Incorporated - http://www.ti.com/
- *
- *  Redistribution and use in source and binary forms, with or without
- *  modification, are permitted provided that the following conditions
- *  are met:
- *
- *    Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- *    Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the
- *    distribution.
- *
- *    Neither the name of Texas Instruments Incorporated nor the names of
- *    its contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
+ * Modified by: 2023, Nam Tran for purpose of using in Arduino
  */
 
 #include "Arduino.h"
 #include "ads7028.h"
 #include "SPI.h"
 
-#define CS_PIN 21
-
 /* -------------------------------------------------------------------------- */
-/*                 Other functions added in to help this works                */
+/*                              PUBLIC FUNCTIONS                              */
 /* -------------------------------------------------------------------------- */
-void setCS(uint8_t state)
+
+ADS7028::ADS7028(uint8_t cs)
 {
-    digitalWrite(CS_PIN, state);
-};
-
-void spiSendReceiveArray(uint8_t *dataTx, uint8_t *dataRx, uint8_t numberOfBytes)
-{
-    // Require that dataTx and dataRx are not NULL pointers
-    assert(dataTx && dataRx);   
-    // Set the nCS pin LOW
-
-    setCS(LOW);
-    delay(1);
-
-    uint8_t i;
-    for (i = 0; i < numberOfBytes; i++)
-    {
-        dataRx[i] = SPI.transfer(dataTx[i]);
-    }
-
-    delay(1);
-    setCS(HIGH);
-};
-
-//****************************************************************************
-//
-// Internal variables
-//
-//****************************************************************************
-
-/** Array used to recall device register map configurations */
-static uint8_t      registerMap[MAX_REGISTER_ADDRESS + 1];
-
-
-//****************************************************************************
-//
-// Internal Function prototypes
-//
-//****************************************************************************
-static void         restoreRegisterDefaults(void);
-static int16_t      signExtend(const uint8_t dataBytes[]);
-
-
-//****************************************************************************
-//
-// Function Definitions
-//
-//****************************************************************************
+    m_cs = cs;
+}
 
 //*****************************************************************************
 //
 //! \brief Example start up sequence for the ADS7028.
-//!
+//!                                         
 //! \fn void initADS7038(void)
-//!
-//! Before calling this function, the device must be powered,
-//! the SPI pins of the MCU must have already been configured.
-//!
-//! \return None.
+//! 
+//  Before calling this function, the device must be powered,
+//  the SPI pins of the MCU must have already been configured.
 //
 //*****************************************************************************
-void initADS7028(void)
+void ADS7028::init()
 {
-    // (OPTIONAL) Provide additional delay time for power supply settling
+    // Provide additional delay time for power supply settling
     delay(50);
 
     // Reset device
@@ -118,7 +43,6 @@ void initADS7028(void)
     // do so here (and only here) to be simplify the code implementation.
 
     // (OPTIONAL) Read back registers and check STATUS register for faults
-
 }
 
 
@@ -126,13 +50,10 @@ void initADS7028(void)
 //
 //! \brief  Resets the device and reinitializes the register map array
 //!         maintained in firmware to default values.
-//!
 //! \fn     void resetDevice()
-//!
-//! \return None
 //
 //*****************************************************************************
-void resetDevice()
+void ADS7028::resetDevice()
 {
     // Set the RST bit high to reset the device
     setRegisterBits(GENERAL_CFG_ADDRESS, GENERAL_CFG_RST_MASK);
@@ -149,10 +70,9 @@ void resetDevice()
 //! \fn void startConversions(uint32_t samplesPerSecond, uint8_t OSR)
 //! \param CHID channel number (0-7) selected as analog input
 //! \param samplesPerSecond desired sampling rate (specified as an integer number of SPS)
-//! \return None.
 //
 //*****************************************************************************
-void startManualConversions(uint8_t channelID, uint32_t samplesPerSecond)
+void ADS7028::startManualConversions(uint8_t channelID, uint32_t samplesPerSecond)
 {
     // Select manual mode
     writeSingleRegister(SEQUENCE_CFG_ADDRESS, SEQUENCE_CFG_SEQ_MODE_MANUAL);
@@ -180,7 +100,7 @@ void startManualConversions(uint8_t channelID, uint32_t samplesPerSecond)
 //! \return None.
 //
 //*****************************************************************************
-void stopConversions(void)
+void ADS7028::stopConversions(void)
 {
     // Stop conversion timer
     //stopTimer();
@@ -194,15 +114,16 @@ void stopConversions(void)
 //
 //! \brief  Reads ADC conversion result and returns 16-bit sign-extended value.
 //!
-//! \fn void readData(uint8_t dataRx[])
+//! \fn void readData()
 //!
 //! \param *dataRx points to receive data byte array
 //!
 //! \return int16_t (sign-extended data).
 //
 //*****************************************************************************
-int16_t readData(uint8_t dataRx[])
+int16_t ADS7028::readData()
 {
+    uint8_t dataRx[4] = {0}; 
     uint8_t numberOfBytes = SPI_CRC_ENABLED ? 4 : 3;
 
     // NULL command
@@ -228,7 +149,7 @@ int16_t readData(uint8_t dataRx[])
 //! \return Returns the 8-bit register read result.
 //
 //*****************************************************************************
-uint8_t readSingleRegister(uint8_t address)
+uint8_t ADS7028::readSingleRegister(uint8_t address)
 {
     // Check that the register address is in range
     assert(address <= MAX_REGISTER_ADDRESS);
@@ -302,7 +223,7 @@ uint8_t readSingleRegister(uint8_t address)
 //! \return unsigned 8-bit register value.
 //
 //*****************************************************************************
-uint8_t getRegisterValue(uint8_t address)
+uint8_t ADS7028::getRegisterValue(uint8_t address)
 {
     assert(address <= MAX_REGISTER_ADDRESS);
     return registerMap[address];
@@ -321,7 +242,7 @@ uint8_t getRegisterValue(uint8_t address)
 //! \return None.
 //
 //*****************************************************************************
-void writeSingleRegister(uint8_t address, uint8_t data)
+void ADS7028::writeSingleRegister(uint8_t address, uint8_t data)
 {
     // Check that the register address is in range
     assert(address <= MAX_REGISTER_ADDRESS);
@@ -378,7 +299,7 @@ void writeSingleRegister(uint8_t address, uint8_t data)
 //! \return None.
 //
 //*****************************************************************************
-void setRegisterBits(uint8_t address, uint8_t bitMask)
+void ADS7028::setRegisterBits(uint8_t address, uint8_t bitMask)
 {
     // Check that the register address is in range
     assert(address <= MAX_REGISTER_ADDRESS);
@@ -418,7 +339,7 @@ void setRegisterBits(uint8_t address, uint8_t bitMask)
 //! \return None.
 //
 //*****************************************************************************
-void clearRegisterBits(uint8_t address, uint8_t bitMask)
+void ADS7028::clearRegisterBits(uint8_t address, uint8_t bitMask)
 {
     // Check that the register address is in range
     assert(address <= MAX_REGISTER_ADDRESS);
@@ -460,7 +381,7 @@ void clearRegisterBits(uint8_t address, uint8_t bitMask)
 //! \return 8-bit calculated CRC word
 //
 //*****************************************************************************
-uint8_t calculateCRC(const uint8_t dataBytes[], uint8_t numberBytes, uint8_t initialValue)
+uint8_t ADS7028::calculateCRC(const uint8_t dataBytes[], uint8_t numberBytes, uint8_t initialValue)
 {
     // Check that "dataBytes" is not a null pointer
     assert(dataBytes != 0x00);
@@ -515,7 +436,7 @@ uint8_t calculateCRC(const uint8_t dataBytes[], uint8_t numberBytes, uint8_t ini
 //! \return None
 //
 //*****************************************************************************
-void setChannelAsAnalogInput(uint8_t channelID)
+void ADS7028::setChannelAsAnalogInput(uint8_t channelID)
 {
     // Check that channel ID is in range.
     assert(channelID < 8);
@@ -524,12 +445,61 @@ void setChannelAsAnalogInput(uint8_t channelID)
     clearRegisterBits(PIN_CFG_ADDRESS, (1 << channelID));
 }
 
+float ADS7028::readVoltage(uint8_t channelID)
+{
+    startManualConversions(channelID, 100);
+    int16_t data = readData();
+    Serial.println(data);
+    stopConversions();
+    float voltage = (data*1.0/4096.0)*5.0;
+    if (voltage > 0)
+    {
+        return voltage;
+    }
+    else
+    {
+        return voltage+5.0;
+    }
+}
+/* -------------------------------------------------------------------------- */
+/*                                   PRIVATE                                  */
+/* -------------------------------------------------------------------------- */
 
-//****************************************************************************
+//*****************************************************************************
 //
-// Helper functions
+//! \brief  Sets the state of the nCS pin.
+//! \fn void setCS(bool state)
+//!
+//! \param state is the desired state of the nCS pin.
+//! \return None.
 //
-//****************************************************************************
+//*****************************************************************************
+void ADS7028::setCS(bool state)
+{
+    digitalWrite(m_cs, state);
+};
+
+void ADS7028::spiSendReceiveArray(uint8_t *dataTx, uint8_t *dataRx, uint8_t numberOfBytes)
+{
+    // Require that dataTx and dataRx are not NULL pointers
+    assert(dataTx && dataRx);   
+    // Set the nCS pin LOW
+
+    SPISettings spiSettingA(1000000, MSBFIRST, SPI_MODE1); 
+    SPI.beginTransaction(spiSettingA);
+    setCS(LOW);
+    delay(1);
+
+    uint8_t i;
+    for (i = 0; i < numberOfBytes; i++)
+    {
+        dataRx[i] = SPI.transfer(dataTx[i]);
+    }
+
+    delay(1);
+    setCS(HIGH);
+    SPI.endTransaction();
+};
 
 //*****************************************************************************
 //
@@ -553,7 +523,7 @@ void setChannelAsAnalogInput(uint8_t channelID)
 //! \return None.
 //
 //*****************************************************************************
-static void restoreRegisterDefaults(void)
+void ADS7028::restoreRegisterDefaults(void)
 {
     registerMap[SYSTEM_STATUS_ADDRESS]          = SYSTEM_STATUS_DEFAULT;
     registerMap[GENERAL_CFG_ADDRESS]            = GENERAL_CFG_DEFAULT;
@@ -697,7 +667,7 @@ static void restoreRegisterDefaults(void)
 //! \return Returns the signed-extend 16-bit result.
 //
 //*****************************************************************************
-static int16_t signExtend(const uint8_t dataBytes[])
+int16_t ADS7028::signExtend(const uint8_t dataBytes[])
 {
     int16_t upperByte = ((int32_t)dataBytes[0] << 8);
     int16_t lowerByte = ((int32_t)dataBytes[1] << 0);
