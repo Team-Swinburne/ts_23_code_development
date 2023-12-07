@@ -1016,7 +1016,7 @@ int main()
     // Setup the spi for 8 bit data, high steady state clock,
     // second edge capture, with a 1MHz clock rate
     spi.format(8,0);
-    spi.frequency(100000);
+    spi.frequency(1000000);
 
 
   // Disable interrupts for smooth startup routine.
@@ -1030,7 +1030,7 @@ int main()
   can1.frequency(CANBUS_FREQUENCY);
   //can1.filter(CAN_PDM_CONTROL_BASE_ADDRESS+2, 0xFFF, CANStandard, 0); // set filter #0 to accept only standard messages with ID == RX_ID
   can1.attach(&CAN_PDM_RX);
-
+A
   //Configure tickers
   ticker_CAN_HeartBeat.attach(&CAN_PDM_TX_Heartbeat, CAN_HEARTBEAT_PERIOD);
   //ticker_CAN_Error.attach(&CAN_PDM_TX_Error, CAN_ERROR_PERIOD);
@@ -1049,41 +1049,24 @@ int main()
   SetupADS7028(&ADC_CS, ADC);
 
 //PWM Setups
-//PWM1.period_us(PWM_period_us);
+//PWM1.period_us(PWM_period_us); -- Accidentially used an incorrect pin on the schematic (not PWM compatible)
 PWM2.period_us(PWM_period_us);
 PWM3.period_us(PWM_period_us);
 PWM4.period_us(PWM_period_us);
 
   message = 0;
-  /*writeSingleRegister(PIN_CFG_ADDRESS, 0b11111111);
-  wait_ms(50);
-  writeSingleRegister(GPIO_CFG_ADDRESS, 0b11111111);
-  wait_ms(50);
-  writeSingleRegister(GPO_DRIVE_CFG_ADDRESS, 0b11111111);
-  wait_ms(50);
-  writeSingleRegister(GPO_OUTPUT_VALUE_ADDRESS, 0b11111111);
-  wait_ms(50);
-  message = readSingleRegister(GPI_VALUE_ADDRESS);
-*/
 
   while(1) 
   {    
     updateDriverOutputs();
     updatePWMOutputs();
     readSensePins();
-    //PWMTest();
-    //Serial_Print(); //Used for debugging.
-    //device.printf("Hello World\n");
-    //SMRT_DRV_DIG_CS = 0;
-    message = DRV_CTRL_SIGS;
-    //SMRT_DRV_DIG_CS = 1;
+    /*DEBUGGING:
     device.printf("WHOAMI register = 0x%X\n", DRV_CTRL_SIGS);
     if (NewCTRLSignalDetected == 1){
         device.printf("New CTRL Signal Detected");
     } 
-      //SMRT_DRV_DIG_CS = 0;
-      //message = spi.write(0x00);
-      //SMRT_DRV_DIG_CS = 1;
+    */
   }
 
   return 0;

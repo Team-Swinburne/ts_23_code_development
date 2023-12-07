@@ -75,9 +75,8 @@ void load_nav()
     lv_obj_t * tile1 = lv_tileview_add_tile(tv, 0, 0, LV_DIR_LEFT | LV_DIR_RIGHT);
     lv_obj_clear_flag(tile1, LV_OBJ_FLAG_SCROLLABLE);
     load_home(tile1);
+	
     
-
-
     /*Tile2: a button*/
     lv_obj_t * tile2 = lv_tileview_add_tile(tv, 1, 0, LV_DIR_LEFT | LV_DIR_RIGHT);
 
