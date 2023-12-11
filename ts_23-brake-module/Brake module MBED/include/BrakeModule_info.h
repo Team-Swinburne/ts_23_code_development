@@ -20,7 +20,8 @@ typedef struct BrakeModule_s{
   float   brake1_raw          = 0.0f;
   float   brake2_raw          = 0.0f;
   float   brake_low_ref       = 0.0f;
-  float   brake_high_ref      = 0.0f;
+  float   brake_high_ref1     = 0.0f;
+  float   brake_high_ref2     = 0.0f;
   uint8_t brake1_percent      = 0;
   uint8_t brake2_percent      = 0;
   uint8_t brake_avg_percent   = 0;

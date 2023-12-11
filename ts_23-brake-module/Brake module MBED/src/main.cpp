@@ -766,6 +766,7 @@ Ticker ticker_CAN_Error;
 Ticker ticker_CAN_Digital_1;
 Ticker ticker_CAN_Analog_1;
 Ticker ticker_CAN_Analog_2;
+Ticker ticker_CAN_Analog_3;
 
 /* -------------------------------------------------------------------------- */
 /*                               HANDY FUNCTIONS                              */
@@ -796,12 +797,12 @@ float toFloat(int16_t data)
 
 void BrakeModuleUpdate()
 {
-  startManualConversions(2, 100);
+  startManualConversions(4, 100);
   int16_t testData = readData();
   stopConversions();
   float Brake1_Voltage = toFloat(testData);
 
-  startManualConversions(3, 100);
+  startManualConversions(2, 100);
   testData = readData();
   stopConversions();
   float Brake2_Voltage = toFloat(testData);
@@ -811,26 +812,31 @@ void BrakeModuleUpdate()
   stopConversions();
   float LowRef_Voltage = toFloat(testData);
 
+  startManualConversions(3, 100);
+  testData = readData();
+  stopConversions();
+  float HighRef1_Voltage = toFloat(testData);
+
   startManualConversions(1, 100);
   testData = readData();
   stopConversions();
-  float HighRef_Voltage = toFloat(testData);
-
+  float HighRef2_Voltage = toFloat(testData);
 
   BrakeModule.brake1_raw      = Brake1_Voltage;
   BrakeModule.brake2_raw      = Brake2_Voltage;
-  BrakeModule.High_Pressure   = !(HighPressure.read()); //Must be inverted
+  BrakeModule.High_Pressure   = HighPressure.read();
   BrakeModule.Low_Pressure    = LowPressure.read();
   BrakeModule.five_kW         = CurrentSensor.read();
-  BrakeModule.BSPD_OK         = (BSPD_Delay.read());//BSPD.read();
-  BrakeModule.BSPD_OK_delay   = (BSPD_Delay.read());
+  BrakeModule.BSPD_OK         = BSPD_Delay.read();//BSPD.read();
+  BrakeModule.BSPD_OK_delay   = BSPD_Delay.read();
 
   BrakeModule.brake1_percent    = raw_to_percent(BrakeModule.brake1_raw, brake_calibration.brake1_max, brake_calibration.brake1_min);
   BrakeModule.brake2_percent    = raw_to_percent(BrakeModule.brake2_raw, brake_calibration.brake2_max, brake_calibration.brake2_min);
   BrakeModule.brake_avg_percent = (BrakeModule.brake1_percent + BrakeModule.brake2_percent)/2.0;
 
   BrakeModule.brake_low_ref   = LowRef_Voltage;
-  BrakeModule.brake_high_ref  = HighRef_Voltage;
+  BrakeModule.brake_high_ref1  = HighRef1_Voltage;
+  BrakeModule.brake_high_ref2  = HighRef2_Voltage;
 }
 
 
@@ -860,9 +866,13 @@ void CAN_brakeModule_TX_Digital_1()
 {
   char TX_data[5] = { 0 };
 
-  TX_data[CAN_DIGITAL_1_BRAKE_HIGH_PRESSURE] = BrakeModule.High_Pressure;
-  TX_data[CAN_DIGITAL_1_BRAKE_LOW_PRESSURE] = BrakeModule.Low_Pressure;
+  //Reverse so that (1 = True, 0 = False)
+  TX_data[CAN_DIGITAL_1_BRAKE_HIGH_PRESSURE] = !BrakeModule.High_Pressure;
+  TX_data[CAN_DIGITAL_1_BRAKE_LOW_PRESSURE] = !BrakeModule.Low_Pressure;
+
   TX_data[CAN_DIGITAL_1_BRAKE_5KW] = BrakeModule.five_kW;
+
+  //Reverse so that (1 = OK)
   TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK] = !BrakeModule.BSPD_OK;
   TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK_DELAY] = !BrakeModule.BSPD_OK_delay;
 
@@ -876,11 +886,6 @@ void CAN_brakeModule_TX_Analog_1()
   TX_data[CAN_ANALOG_1_BRAKE1_PERCENT] = BrakeModule.brake1_percent;
   TX_data[CAN_ANALOG_1_BRAKE2_PERCENT] = BrakeModule.brake2_percent;
   TX_data[CAN_ANALOG_1_BRAKE_AVG_PERCENT]     = BrakeModule.brake_avg_percent;
-  //TX_data[CAN_ANALOG_1_BRAKE1_RAW]            = uint8_t(BrakeModule.brake1_raw*10);
-  //TX_data[CAN_ANALOG_1_BRAKE2_RAW]            = uint8_t(BrakeModule.brake2_raw*10);
-  //TX_data[CAN_ANALOG_1_BRAKE_LOW_REF]         = uint8_t(BrakeModule.brake_low_ref*10);
-  //TX_data[CAN_ANALOG_1_BRAKE_HIGH_REF]        = uint8_t(BrakeModule.brake_high_ref*10);
-  //TX_data[CAN_TRAILBRAKE_PERCENT]             = BrakeModule.trailbrake_percent;
   
   can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_1_ID), TX_data, 3));
 }
@@ -889,35 +894,38 @@ void CAN_brakeModule_TX_Analog_2()
 {
   char TX_data[8] = { 0 };
 
-//   startManualConversions(4, 100);
-//   int16_t testData1 = readData();
-//   stopConversions();
-//   float Brake1_Voltage = toFloat(testData1);
-
-//   startManualConversions(2, 100);
-//   int16_t testData2 = readData();
-//   stopConversions();
-//   float Brake2_Voltage = toFloat(testData2);
-
   //Convert to integers with 1mV resolution
   int brake1_Voltage = uint16_t(BrakeModule.brake1_raw*1000);
   int brake2_Voltage = uint16_t(BrakeModule.brake2_raw*1000);
-  int highRef_Voltage = uint16_t(BrakeModule.brake_high_ref*1000);
-  int lowRef_Voltage = uint16_t(BrakeModule.brake_low_ref*1000);
 
   TX_data[0] = (brake1_Voltage >> 8) & 0xFF;
   TX_data[1] = (brake1_Voltage) & 0xFF;
 
   TX_data[2] = (brake2_Voltage >> 8) & 0xFF;
   TX_data[3] = (brake2_Voltage) & 0xFF;
-
-  TX_data[4] = (highRef_Voltage >> 8) & 0xFF;
-  TX_data[5] = (highRef_Voltage) & 0xFF;
-
-  TX_data[6] = (lowRef_Voltage >> 8) & 0xFF;
-  TX_data[7] = (lowRef_Voltage) & 0xFF;
   
   can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_2_ID), TX_data, 8));
+}
+
+void CAN_brakeModule_TX_Analog_3()
+{
+  char TX_data[8] = { 0 };
+
+  //Convert to integers with 1mV resolution
+  int highRef1_Voltage = uint16_t(BrakeModule.brake_high_ref1*1000);
+  int highRef2_Voltage = uint16_t(BrakeModule.brake_high_ref2*1000);
+  int lowRef_Voltage = uint16_t(BrakeModule.brake_low_ref*1000);
+
+  TX_data[0] = (highRef1_Voltage >> 8) & 0xFF;
+  TX_data[1] = (highRef1_Voltage) & 0xFF;
+
+  TX_data[2] = (highRef2_Voltage >> 8) & 0xFF;
+  TX_data[3] = (highRef2_Voltage) & 0xFF;
+
+  TX_data[4] = (lowRef_Voltage >> 8) & 0xFF;
+  TX_data[5] = (lowRef_Voltage) & 0xFF;
+  
+  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_3_ID), TX_data, 8));
 }
 
 void CAN_brakeModule_RX()
@@ -941,7 +949,7 @@ void CAN_brakeModule_RX()
 int main() 
 {
   // Disable interrupts for smooth startup routine.
-	wait_ms(3000);
+	wait_us(3000*1000);
 
   ADC_CS = 1;
 
@@ -964,12 +972,13 @@ int main()
   ticker_CAN_Digital_1.attach(&CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
   ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, CAN_ANALOG_1_PERIOD);
   ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, CAN_ANALOG_1_PERIOD);
+  ticker_CAN_Analog_3.attach(&CAN_brakeModule_TX_Analog_3, CAN_ANALOG_1_PERIOD);
 
   // Re-enable interrupts again, now that interrupts are ready.
 	__enable_irq();
 
 	// Allow some time to settle!
-	wait_ms(3000);
+	wait_us(3000*1000);
 
   while(1) 
   {
