@@ -325,7 +325,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Susp Histo" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Suspension Histogram [1]">
-    <MoTeC.SuspensionHistogram Version="100" Name="Suspension Histogram [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="1" TileAutoCols="1" TileCols="2" SecondChannel="" XScaleMode="1" XSecondScaleMode="0" YUnitMode="1" YScaleMode="1" YScale="1.2" YAllowOverrides="0" YExcludeUntrusted="1" Style="1" BinLabelStep="5" UseColors="0" InvertColors="0" StackLines="0" ShowColorBinSamples="1" SuspVersion="1" BumpPositive="1" MaxSpeed_in="10" MaxSpeed_mm="200" BinWidth_in="0.5" BinWidth_mm="10" HiLoSpeed_in="1" HiLoSpeed_mm="25">
+    <MoTeC.SuspensionHistogram Version="100" Name="Suspension Histogram [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="1" TileAutoCols="1" TileCols="1" SecondChannel="" XScaleMode="1" XSecondScaleMode="0" YUnitMode="1" YScaleMode="1" YScale="1.2" YAllowOverrides="0" YExcludeUntrusted="1" Style="1" BinLabelStep="5" UseColors="0" InvertColors="0" StackLines="0" ShowColorBinSamples="1" SuspVersion="1" BumpPositive="1" MaxSpeed_in="10" MaxSpeed_mm="200" BinWidth_in="0.5" BinWidth_mm="10" HiLoSpeed_in="1" HiLoSpeed_mm="25">
      <HistoTrace Id="Damper Vel FL" Visible="1"/>
      <HistoTrace Id="Damper Vel FR" Visible="1"/>
      <HistoTrace Id="Damper Vel RL" Visible="1"/>
@@ -383,7 +383,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Susp FFT" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="FFT [1]">
-    <MoTeC.FFT Version="100" Name="FFT [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="0" TileAutoCols="1" TileCols="2" XAutoScale="1" YAutoScale="1" XLogScale="1" YScaleMode="0" XScaleMin="0.1" XScaleMax="0.5" YScaleMin="0" YScaleMax="0.05" WindowType="1" ChunkSize="1024" SmoothFactor="0.01" CursorStyle="1">
+    <MoTeC.FFT Version="100" Name="FFT [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="0" TileAutoCols="1" TileCols="1" XAutoScale="1" YAutoScale="1" XLogScale="1" YScaleMode="0" XScaleMin="0.1" XScaleMax="0.5" YScaleMin="0" YScaleMax="0.05" WindowType="1" ChunkSize="1024" SmoothFactor="0.01" CursorStyle="1">
      <FFTTrace ChanId="UCM sensors Bell Crank Sensors FL BellCrank position" Visible="1"/>
      <FFTTrace ChanId="UCM sensors Bell Crank Sensors FR BellCrank position" Visible="1"/>
      <FFTTrace ChanId="UCM sensors Bell Crank Sensors RL BellCrank position" Visible="1"/>

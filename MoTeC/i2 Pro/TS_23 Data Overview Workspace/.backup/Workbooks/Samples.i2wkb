@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Workbook Locale="English_Australia.1252" DefaultLocale="C" Version="200" Name="Samples" Profile="Circuit" Active="Worksheets">
- <Worksheets Version="100" Name="Worksheets" PosPC="0,0,1000,1000" Active="Chan Report">
+ <Worksheets Version="100" Name="Worksheets" PosPC="0,0,1000,1000" Active="Speed/Power">
   <Worksheet Version="200" Name="Speed/Power" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Time/Distance [1]">
     <MoTeC.TimeDistance Version="100" Name="Time/Distance [1]" PosPC="0,0,1000,810" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="1" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="1" BandGroup="Outings:Laps:Track Sections:Default" BandMode="1" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
@@ -435,7 +435,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Chan Report" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Report [1]">
-    <MoTeC.ChannelReport TimeFormat="8" SplitterPos="5000" ChartShowKey="1" ChartScaleMode="0" Version="100" Name="Report [1]" Caption="Channel Report - Selected Laps" PosPC="0,0,1000,280" ShowCaption="0" AutoCaption="0" LinkZoom="0" ModeId="0" ShowDataLegend="1" TelemetryZoom="0">
+    <MoTeC.ChannelReport TimeFormat="8" SplitterPos="5000" ChartShowKey="1" ChartScaleMode="0" Version="100" Name="Report [1]" Caption="Channel Report - Selected Laps" PosPC="0,0,1000,609" ShowCaption="0" AutoCaption="0" LinkZoom="0" ModeId="0" ShowDataLegend="1" TelemetryZoom="0">
      <LapReportGen Version="4" FilterRanges="0" InclusiveSamples="0" DataExtent="0" HeaderIndex="0">
       <ReportRange HeaderGroup="Events"/>
       <ReportRange HeaderGroup="Vehicles"/>

@@ -6,15 +6,9 @@
  <LatGTrackGen/>
  <DataSelect SelectFastestOnLoad="1" DefaultShowDisabled="0" MainColorSource="0">
   <Explore HRef="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-04 Geelong Kart Track"/>
-  <DataSources>
-   <LoggedDataSource Name="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-04 Geelong Kart Track\S1_11913_20231205_213747.ld"/>
-  </DataSources>
-  <View Name="Laps" Color="128,240,0" View="Laps">
-   <Main Range.Id="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-04 Geelong Kart Track\S1_11913_20231205_213747.ld::::In Lap"/>
-  </View>
-  <View Name="Outings" Color="240,128,0" View="Outings">
-   <Main Range.Id="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-04 Geelong Kart Track\S1_11913_20231205_213747.ld::::9:37:47 PM,  "/>
-  </View>
+  <DataSources/>
+  <View Name="Laps" Color="128,240,0" View="Laps"/>
+  <View Name="Outings" Color="240,128,0" View="Outings"/>
  </DataSelect>
  <ChannelsWindow/>
  <CAN/>
@@ -57,7 +51,13 @@
      <RenderMode Mode="PRINT" RGB="200,0,0"/>
     </Entry>
    </ComponentColorScheme>
-   <TrackMapWindow/>
+   <TrackMapWindow>
+    <SizeScheme>
+     <SizeSchemeEntry Name="Cursor" INTValue="7"/>
+     <SizeSchemeEntry Name="Detail" INTValue="1"/>
+     <SizeSchemeEntry Name="Material" INTValue="1"/>
+    </SizeScheme>
+   </TrackMapWindow>
   </MoTeC.TrackPos>
  </ValuesWindow>
  <QuickSelectKeys>
