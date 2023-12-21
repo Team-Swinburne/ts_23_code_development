@@ -41,6 +41,9 @@ BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
  SG_ LowPressure_Error : 8|8@1+ (1,0) [0|0] "" Vector__XXX
  SG_ Brake1_Voltage : 24|8@1+ (0.1,0) [0|0] "" Vector__XXX
  SG_ Brake2_Voltage : 32|8@1+ (0.1,0) [0|0] "" Vector__XXX
+ SG_ NewSignal_0001 : 7|8@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ LowRef_Voltage : 55|16@0+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ HighRef_Voltage : 39|16@0+ (0.001,0) [0|0] "V" Vector__XXX
 
 BO_ 336 HEARTBEAT: 8 Vector__XXX
  SG_ State : 0|8@1+ (1,0) [0|0] "" Vector__XXX
@@ -61,8 +64,11 @@ BO_ 340 ANALOGUE1: 8 Vector__XXX
 BO_ 341 ANALOGUE2: 8 Vector__XXX
  SG_ Brake1_Volt : 7|16@0+ (0.001,0) [0|0] "V" Vector__XXX
  SG_ Brake2_Volt : 23|16@0+ (0.001,0) [0|0] "V" Vector__XXX
- SG_ HighRef_Voltage : 39|16@0+ (0.001,0) [0|0] "V" Vector__XXX
- SG_ LowRef_Voltage : 55|16@0+ (0.001,0) [0|0] "V" Vector__XXX
+
+BO_ 342 ANALOGUE3: 8 Vector__XXX
+ SG_ HighRef1 : 7|16@0+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ HighRef2 : 23|16@0+ (0.001,0) [0|0] "V" Vector__XXX
+ SG_ LowRef : 39|16@0+ (0.001,0) [0|0] "V" Vector__XXX
 
 
 
