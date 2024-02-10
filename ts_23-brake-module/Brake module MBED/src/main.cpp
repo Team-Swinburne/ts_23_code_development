@@ -876,7 +876,12 @@ void CAN_brakeModule_TX_Digital_1()
   TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK] = !BrakeModule.BSPD_OK;
   TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK_DELAY] = !BrakeModule.BSPD_OK_delay;
 
-  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_DIGITAL_1_ID), TX_data, 5));
+  if (can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_DIGITAL_1_ID), TX_data, 5))){
+    debugLedOut = !debugLedOut;
+  }
+  else {
+    can1.reset();
+  }
 }
 
 void CAN_brakeModule_TX_Analog_1()
@@ -887,7 +892,12 @@ void CAN_brakeModule_TX_Analog_1()
   TX_data[CAN_ANALOG_1_BRAKE2_PERCENT] = BrakeModule.brake2_percent;
   TX_data[CAN_ANALOG_1_BRAKE_AVG_PERCENT]     = BrakeModule.brake_avg_percent;
   
-  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_1_ID), TX_data, 3));
+  if (can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_1_ID), TX_data, 3))){
+    debugLedOut = !debugLedOut;
+  }
+  else {
+    can1.reset();
+  }
 }
 
 void CAN_brakeModule_TX_Analog_2()
@@ -903,8 +913,13 @@ void CAN_brakeModule_TX_Analog_2()
 
   TX_data[2] = (brake2_Voltage >> 8) & 0xFF;
   TX_data[3] = (brake2_Voltage) & 0xFF;
-  
-  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_2_ID), TX_data, 8));
+
+  if (can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_2_ID), TX_data, 8))){
+    debugLedOut = !debugLedOut;
+  }
+  else {
+    can1.reset();
+  }
 }
 
 void CAN_brakeModule_TX_Analog_3()
@@ -925,7 +940,12 @@ void CAN_brakeModule_TX_Analog_3()
   TX_data[4] = (lowRef_Voltage >> 8) & 0xFF;
   TX_data[5] = (lowRef_Voltage) & 0xFF;
   
-  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_3_ID), TX_data, 8));
+  if (can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_3_ID), TX_data, 8))){
+    debugLedOut = !debugLedOut;
+  }
+  else {
+    can1.reset();
+  }
 }
 
 void CAN_brakeModule_RX()
@@ -970,9 +990,9 @@ int main()
   //Configure tickers
   ticker_CAN_HeartBeat.attach(&CAN_brakeModule_TX_Heartbeat, CAN_HEARTBEAT_PERIOD);
   ticker_CAN_Digital_1.attach(&CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
-  ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, CAN_ANALOG_1_PERIOD);
-  ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, CAN_ANALOG_1_PERIOD);
-  ticker_CAN_Analog_3.attach(&CAN_brakeModule_TX_Analog_3, CAN_ANALOG_1_PERIOD);
+  ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, 0.2);//CAN_ANALOG_1_PERIOD);
+  ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, 0.2);//CAN_ANALOG_1_PERIOD);
+  ticker_CAN_Analog_3.attach(&CAN_brakeModule_TX_Analog_3, 0.2);//CAN_ANALOG_1_PERIOD);
 
   // Re-enable interrupts again, now that interrupts are ready.
 	__enable_irq();
