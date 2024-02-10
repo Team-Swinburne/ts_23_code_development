@@ -13,12 +13,8 @@
 #include <CAN.h>
 #include "can_addresses.h"
 #include "BrakeModule_info.h" //This header stores information about module and calibrations
-<<<<<<< Updated upstream
-#include "ads7028.h"
+#include "ADS7028.h"
 #include "PDM_info.h"
-=======
-#include "ADS7128.cpp"
->>>>>>> Stashed changes
 
 //void Serial_Print(); //Used for debugging
 
