@@ -4,7 +4,7 @@
 
 //TS_19_2 MIN = 240, TS_19_2 MAX = 400
 #define DEADZONE 30    // 30% Pedal deadzone
-#define	CAN_HEARTBEAT_PERIOD 1 // Heartbeat message transmit period
+#define  CAN_HEARTBEAT_PERIOD 1 // Heartbeat message transmit period
 #define CAN_ERROR_PERIOD 0.5 // Error message transmit period
 #define CAN_DIGITAL_1_PERIOD 1 // Digital 1 message transmit period
 #define CAN_ANALOG_1_PERIOD 0.02 //Analog 1 message transmit period

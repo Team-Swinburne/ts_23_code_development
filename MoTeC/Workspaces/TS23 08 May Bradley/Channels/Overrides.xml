@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <Overrides Locale="English_Australia.1252" DefaultLocale="C">
+<<<<<<< Updated upstream
  <Override Id="Recieve CAN.CAN 1.UCMs.UCM1 FL.Analogue ID.DiffAnalog1" DisplayUnit="V"/>
+=======
+>>>>>>> Stashed changes
  <Override Id="Recieve CAN.CAN 1.UCMs.UCM5 RR.Analogue ID 2.AnalogueIn3 Voltage" DisplayDPS="3"/>
 </Overrides>
