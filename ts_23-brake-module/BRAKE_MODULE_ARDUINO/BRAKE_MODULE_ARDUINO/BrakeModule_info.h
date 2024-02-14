@@ -4,7 +4,7 @@
 
 //TS_19_2 MIN = 240, TS_19_2 MAX = 400
 #define DEADZONE 30    // 30% Pedal deadzone
-#define	CAN_HEARTBEAT_PERIOD 1 // Heartbeat message transmit period
+#define  CAN_HEARTBEAT_PERIOD 1 // Heartbeat message transmit period
 #define CAN_ERROR_PERIOD 0.5 // Error message transmit period
 #define CAN_DIGITAL_1_PERIOD 1 // Digital 1 message transmit period
 #define CAN_ANALOG_1_PERIOD 0.02 //Analog 1 message transmit period
@@ -15,12 +15,14 @@ typedef struct brake_calibration_s{
   float brake2_min = 1.5f;
   float brake2_max = 1.5f;
 } brake_calibration_t;
+
 //All the variables required for the brake module
 typedef struct BrakeModule_s{
   float   brake1_raw          = 0.0f;
   float   brake2_raw          = 0.0f;
   float   brake_low_ref       = 0.0f;
-  float   brake_high_ref      = 0.0f;
+  float   brake_high_ref1     = 0.0f;
+  float   brake_high_ref2     = 0.0f;
   uint8_t brake1_percent      = 0;
   uint8_t brake2_percent      = 0;
   uint8_t brake_avg_percent   = 0;
@@ -73,5 +75,11 @@ typedef enum CAN_ANALOG_1_SIGNALS{
   CAN_ANALOG_1_BRAKE_HIGH_REF,
   CAN_TRAILBRAKE_PERCENT
 } can_ANALOG_1_signals_t;
+
+//Enums for types of ADC Configurations
+typedef enum ADC_CONFIG{
+  GPIO_OUT,
+  ADC
+} ADC_CONFIG_t;
 
 #endif //__BRAKEMODULE_INFO_H__
