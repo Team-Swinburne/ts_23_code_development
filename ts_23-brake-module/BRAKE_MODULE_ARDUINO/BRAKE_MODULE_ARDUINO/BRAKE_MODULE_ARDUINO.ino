@@ -14,7 +14,6 @@
 #include "can_addresses.h"
 #include "BrakeModule_info.h" //This header stores information about module and calibrations
 #include "ads7028.h"
-#include "PDM_info.h"
 #include <SPI.h>
 
 //void Serial_Print(); //Used for debugging
@@ -104,29 +103,44 @@ float toFloat(int16_t data)
 
 void BrakeModuleUpdate()
 {
+  digitalWrite(PB_6, LOW);
   startManualConversions(4, 100);
   int16_t testData = readData();
   stopConversions();
+  digitalWrite(PB_6, HIGH);
+  delay(10);
   float Brake1_Voltage = toFloat(testData);
 
+  digitalWrite(PB_6, LOW);
   startManualConversions(2, 100);
   testData = readData();
   stopConversions();
+  digitalWrite(PB_6, HIGH);
+  delay(10);
   float Brake2_Voltage = toFloat(testData);
 
+  digitalWrite(PB_6, LOW);
   startManualConversions(0, 100);
   testData = readData();
   stopConversions();
+  digitalWrite(PB_6, HIGH);
+  delay(10);
   float LowRef_Voltage = toFloat(testData);
 
+  digitalWrite(PB_6, LOW);
   startManualConversions(3, 100);
   testData = readData();
   stopConversions();
+  digitalWrite(PB_6, HIGH);
+  delay(10);
   float HighRef1_Voltage = toFloat(testData);
 
+  digitalWrite(PB_6, LOW);
   startManualConversions(1, 100);
   testData = readData();
   stopConversions();
+  digitalWrite(PB_6, HIGH);
+  delay(10);
   float HighRef2_Voltage = toFloat(testData);
 
   BrakeModule.brake1_raw      = Brake1_Voltage;
@@ -160,6 +174,8 @@ void CAN_brakeModule_TX_Heartbeat()
   heartFrame.bytes[CAN_HEARTBEAT_HARDWARE_REVISION] = 5;
 
   can.transmit(CAN_BRAKE_MODULE_BASE_ADDRESS+TS_HEARTBEAT_ID, heartFrame.bytes, heartFrame.len);
+
+  digitalToggle(PC13);
 }
 
 void CAN_brakeModule_TX_Digital_1()
@@ -242,6 +258,52 @@ void setup()
 {
   delay(3000);
 
+  SPI.begin();          // initialise SPI communication
+
+    //----------------------------------------------------------------------------//
+   //          ***      SPI MODE CONFIGURATION INFORMATION          ***          //
+  //----------------------------------------------------------------------------//
+  // Available SPI Modes: SPI_MODE0, SPI_MODE1, SPI_MODE2, SPI_MODE3
+  // SPI_MODE0: CPHA = 0, CPOL = 0
+  // SPI_MODE1: CPHA = 1, CPOL = 0
+  // SPI_MODE2: CPHA = 0, CPOL = 1
+  // SPI_MODE3: CPHA = 1, CPOL = 1
+  // NOTE: Clock Polarity (CPOL): It determines the idle state of the clock signal.
+  //                              CPOL = 0: Clock is in the low state when idle.
+  //                              CPOL = 1: Clock is in the high state when idle.
+  // NOTE: Clock Phase (CPHA): It determines when the data is sampled or changed.
+  //                           CPHA = 0: Data is sampled on the leading (first) edge of the clock.
+  //                           CPHA = 1: Data is sampled on the trailing (second) edge of the clock.
+
+  SPI.setDataMode(SPI_MODE0);            // SPI_MODE0 - Low state when idle; SPI is sampled on rising edge of the clock.
+
+  SPI.setClockDivider(SPI_CLOCK_DIV128); // System clock of Teens 4.0 is 600MHz; ADS7028 maximum clock frequency is 60MHz
+                                         // Therefore, a divider of 10 or more is required
+                                         // SPI clock divider only offers divisions (closest to 10) of 8 and 16
+                                         // 16 was chosen for highest possible performance of the ADS7028
+
+  SPI.setBitOrder(MSBFIRST);             // Reading 'Most Significant Bit FIRST' instead of 'Least Significant Bit FIRST'
+
+  // Set pin assignments for MOSI, MISO, and SCLCK
+  SPI.setMOSI(PB_5);
+  SPI.setMISO(PB_4);
+  SPI.setSCLK(PB_3);
+
+  // SET UP ADC CONFIGURATION //
+  initADS7028();  // initialise ADCs 
+
+  delay(1000);   // allow time to settle
+
+  // Configure chip mode
+  for (int i = 0; i<8; i++){
+      setChannelAsAnalogInput(i);
+  } //Configure all pins as analog in
+  delay(50);
+  writeSingleRegister(OPMODE_CFG_ADDRESS, OPMODE_CFG_CONV_MODE_MANUAL_MODE); //Select Manual Mode
+  delay(50);
+  writeSingleRegister(SEQUENCE_CFG_ADDRESS, SEQUENCE_CFG_SEQ_MODE_MANUAL); //Manual Channel Selection Mode
+  delay(50);
+
   can.begin(STD_ID_LEN, CANBUS_FREQUENCY, PORTB_8_9_XCVR);   //11 Bit Id, 500Kbps
   can.filterMask16Init(0, 0x158, 0x7ff);
 
@@ -255,11 +317,19 @@ void setup()
   Ticker.attach(CAN_brakeModule_TX_Analog_2, 0.2);
   Ticker.attach(CAN_brakeModule_TX_Analog_3, 0.2);
 
-  pinMode(HIGH_PRESSURE_PIN, OUTPUT);
-  pinMode(LOW_PRESSURE_PIN, OUTPUT);
-  pinMode(CURRENT_SENSOR_PIN, OUTPUT);
-  pinMode(BSPD_PIN, OUTPUT);
-  pinMode(BSPD_DELAY_PIN, OUTPUT);
+  pinMode(HIGH_PRESSURE_PIN, INPUT);
+  pinMode(LOW_PRESSURE_PIN, INPUT);
+  pinMode(CURRENT_SENSOR_PIN, INPUT);
+  pinMode(BSPD_PIN, INPUT);
+  pinMode(BSPD_DELAY_PIN, INPUT);
+
+  pinMode(PC13, OUTPUT);
+
+  //SPI
+  pinMode(PB_5, OUTPUT);          // MOSI
+  pinMode(PB_4, INPUT_PULLDOWN);  // MISO
+  pinMode(PB_3, OUTPUT);          // SCLCK
+  pinMode(PB_6, OUTPUT);
 
   delay(3000);
 }
