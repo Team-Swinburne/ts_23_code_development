@@ -12,7 +12,7 @@
   <DockWindow Id="Layouts" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="1" Height="110" Width="220"/>
   <DockWindow Id="PkgHelp" Visible="0" IsDocked="0" Position="200,200,840,680"/>
   <DockWindow Id="Channels" Visible="0" IsDocked="1" IsPinned="1" DockOffset="0.5" DockSide="3" DockIndex="0" Height="160" Width="220"/>
-  <DockWindow Id="Support" Visible="0" IsDocked="0" Position="340,180,940,580"/>
+  <DockWindow Id="Support" Visible="0" IsDocked="0" Position="468,280,1068,680"/>
  </DockWindows>
  <Workbooks Version="100" Name="My Workbooks" Active="Workbook">
   <Workbook Name="Workbook" XRef="Workbooks\Workbook.mtcwkb"/>
@@ -30,12 +30,11 @@
   <TableOpSite Enabled="1" Style="1" Float="1" Opacity="75"/>
   <Graph Lighting="1" ShowChannelLegend="1" ShowAxis="1"/>
  </TableSettings>
+ <Map Id="VehicleIdxSerialNumber">
+  <MapEntry Key="11913" Value=""/>
+ </Map>
  <Packages>
-<<<<<<< Updated upstream
-  <Package Path="C:\Users\mitch\Documents\MoTeC\M1\Packages\4EF8D829-0259-4F50-B6BC-00F10276318B.m1pkg"/>
-=======
-  <Package Path="C:\Users\lwjde\Documents\MoTeC\M1\Packages\83376F12-C1CC-4650-9364-4ABE7784ED65.m1pkg"/>
->>>>>>> Stashed changes
+  <Package Path="C:\Users\mitch\Documents\MoTeC\M1\Packages\BD0AEC6E-7358-414F-B8C1-FA1EA36810CC.m1pkg"/>
  </Packages>
  <MyDevices>
   <MyDevice SerialNum="11913"/>
