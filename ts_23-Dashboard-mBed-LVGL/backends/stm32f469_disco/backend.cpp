@@ -133,6 +133,7 @@ void can2_recv_cb()
             vehicle_state.error_ams             = can2_msg.data[0];
             vehicle_state.error_pdoc_precharge  = !(bool)can2_msg.data[5];
             vehicle_state.error_imd             = !(bool)can2_msg.data[6];
+            break;
         case (CAN_ORION_BMS_BASE_ADDRESS + TS_ANALOGUE_2_ID):
             accum_info.max_temp = can2_msg.data[2];
             break;
