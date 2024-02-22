@@ -61,7 +61,7 @@ to the device.
 // Miscillatious
 #define CAN_ORION_BMS_RINEHART_LIMITS				0x202
 #define CAN_TC_CHARGER_STATUS_ID					0x18FF50E5
-
+#define CAN_MOTEC_GPS                               0x111
 /*
 
 MESSAGE CODE STRUCTURE
