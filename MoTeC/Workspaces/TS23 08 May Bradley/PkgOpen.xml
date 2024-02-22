@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Columns Locale="English_United Kingdom.1252" DefaultLocale="C">
+<Columns Locale="English_Australia.1252" DefaultLocale="C">
  <Column Keyword="VehicleID" Flags="1"/>
  <Column Keyword="Serial" Flags="1"/>
  <Column Keyword="Comment" Flags="1"/>

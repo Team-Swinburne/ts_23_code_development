@@ -13,7 +13,7 @@
 #include <CAN.h>
 #include "can_addresses.h"
 #include "BrakeModule_info.h" //This header stores information about module and calibrations
-#include "ads7028.h"
+#include "ADS7028.h"
 #include "PDM_info.h"
 
 //void Serial_Print(); //Used for debugging
@@ -876,7 +876,12 @@ void CAN_brakeModule_TX_Digital_1()
   TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK] = !BrakeModule.BSPD_OK;
   TX_data[CAN_DIGITAL_1_BRAKE_BSPD_OK_DELAY] = !BrakeModule.BSPD_OK_delay;
 
-  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_DIGITAL_1_ID), TX_data, 5));
+  if (can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_DIGITAL_1_ID), TX_data, 5))){
+    debugLedOut = !debugLedOut;
+  }
+  else {
+    can1.reset();
+  }
 }
 
 void CAN_brakeModule_TX_Analog_1()
@@ -887,7 +892,12 @@ void CAN_brakeModule_TX_Analog_1()
   TX_data[CAN_ANALOG_1_BRAKE2_PERCENT] = BrakeModule.brake2_percent;
   TX_data[CAN_ANALOG_1_BRAKE_AVG_PERCENT]     = BrakeModule.brake_avg_percent;
   
-  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_1_ID), TX_data, 3));
+  if (can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_1_ID), TX_data, 3))){
+    debugLedOut = !debugLedOut;
+  }
+  else {
+    can1.reset();
+  }
 }
 
 void CAN_brakeModule_TX_Analog_2()
@@ -903,8 +913,13 @@ void CAN_brakeModule_TX_Analog_2()
 
   TX_data[2] = (brake2_Voltage >> 8) & 0xFF;
   TX_data[3] = (brake2_Voltage) & 0xFF;
-  
-  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_2_ID), TX_data, 8));
+
+  if (can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_2_ID), TX_data, 8))){
+    debugLedOut = !debugLedOut;
+  }
+  else {
+    can1.reset();
+  }
 }
 
 void CAN_brakeModule_TX_Analog_3()
@@ -925,7 +940,12 @@ void CAN_brakeModule_TX_Analog_3()
   TX_data[4] = (lowRef_Voltage >> 8) & 0xFF;
   TX_data[5] = (lowRef_Voltage) & 0xFF;
   
-  can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_3_ID), TX_data, 8));
+  if (can1.write(CANMessage((CAN_BRAKE_MODULE_BASE_ADDRESS + TS_ANALOGUE_3_ID), TX_data, 8))){
+    debugLedOut = !debugLedOut;
+  }
+  else {
+    can1.reset();
+  }
 }
 
 void CAN_brakeModule_RX()
@@ -943,11 +963,47 @@ void CAN_brakeModule_RX()
     }
   }
 }
+
+void SetupADS7028(DigitalOut *cs, ADC_CONFIG adc_type)
+{
+    CS_PIN = cs;//Assign CS Pin to desired corresponding chip
+    initADS7028();
+
+    if (adc_type == GPIO_OUT){ //If ADC is being used for digital outputs
+        writeSingleRegister(PIN_CFG_ADDRESS, 0b11111111); 
+        wait_ms(50);
+        writeSingleRegister(GPIO_CFG_ADDRESS, 0b11111111);
+        wait_ms(50);
+        writeSingleRegister(GPO_DRIVE_CFG_ADDRESS, 0b11111111);
+        wait_ms(50);
+        writeSingleRegister(GPO_OUTPUT_VALUE_ADDRESS, 0b00000000);
+    }
+    else{ //If ADC is being used for analog inputs
+        for (int i = 0; i<8; i++){
+            setChannelAsAnalogInput(i);
+        } //Configure all pins as analog in
+        wait_ms(50);
+        writeSingleRegister(OPMODE_CFG_ADDRESS, OPMODE_CFG_CONV_MODE_MANUAL_MODE); //Select Manual Mode
+        wait_ms(50);
+        writeSingleRegister(SEQUENCE_CFG_ADDRESS, SEQUENCE_CFG_SEQ_MODE_MANUAL); //Manual Channel Selection Mode
+        wait_ms(50);
+    }   
+    wait_ms(50);
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                    MAIN                                    */
 /* -------------------------------------------------------------------------- */
 int main() 
 {
+  
+  ADC_CS = 1;
+
+  // Setup the spi for 8 bit data, high steady state clock,
+  // second edge capture, with a 1MHz clock rate
+  spi.format(8,0);
+  spi.frequency(100000);
+  
   // Disable interrupts for smooth startup routine.
 	wait_us(3000*1000);
 
@@ -970,9 +1026,9 @@ int main()
   //Configure tickers
   ticker_CAN_HeartBeat.attach(&CAN_brakeModule_TX_Heartbeat, CAN_HEARTBEAT_PERIOD);
   ticker_CAN_Digital_1.attach(&CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
-  ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, CAN_ANALOG_1_PERIOD);
-  ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, CAN_ANALOG_1_PERIOD);
-  ticker_CAN_Analog_3.attach(&CAN_brakeModule_TX_Analog_3, CAN_ANALOG_1_PERIOD);
+  ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, 0.2);//CAN_ANALOG_1_PERIOD);
+  ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, 0.2);//CAN_ANALOG_1_PERIOD);
+  ticker_CAN_Analog_3.attach(&CAN_brakeModule_TX_Analog_3, 0.2);//CAN_ANALOG_1_PERIOD);
 
   // Re-enable interrupts again, now that interrupts are ready.
 	__enable_irq();
@@ -980,9 +1036,13 @@ int main()
 	// Allow some time to settle!
 	wait_us(3000*1000);
 
+  //Setup ADCS7028 chips
+    SetupADS7028(&ADC_CS, ADC);
+
   while(1) 
   {
     BrakeModuleUpdate();
+    readSensePins();
     //Serial_Print(); //Used for debugging.
   }
 

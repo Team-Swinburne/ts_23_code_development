@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Maths Locale="English_Australia.1252" DefaultLocale="C" Id="User">
+ <MathItems>
+  <MathExpression Id="Rear Rad Delta Temperature" DisplayUnit="dK" DisplayDPS="2" DisplayColorIndex="0" Interpolate="1" EnumerationName="" Script="'UCM sensors Rad temperatures Rear rad inlet temp' [C] - 'UCM sensors Rad temperatures Rear rad outlet temp' [C]" SampleRate="0" Unit="dK"/>
+  <MathExpression Id="RHS Rad Delta Temperature" DisplayUnit="dK" DisplayDPS="2" DisplayColorIndex="0" Interpolate="1" EnumerationName="" Script="'UCM sensors Rad temperatures RHS rad inlet temp' [C]-'UCM sensors Rad temperatures RHS rad outlet temp' [C]" SampleRate="0" Unit="dK"/>
+  <MathExpression Id="LHS Rad Delta Temperature" DisplayUnit="dK" DisplayDPS="2" DisplayColorIndex="0" Interpolate="1" EnumerationName="" Script="'UCM sensors Rad temperatures LHS rad inlet temp' [C] - 'UCM sensors Rad temperatures LHS rad outlet temp' [C]" SampleRate="0" Unit="dK"/>
+  <MathExpression Id="RR Wheel RPM" DisplayUnit="" DisplayDPS="2" DisplayColorIndex="1" Interpolate="1" EnumerationName="" Script="'Recieve CAN CAN 2 Actual Values 1 Inverter 3 Actual Velocity'/11.74" SampleRate="0" Unit=""/>
+  <MathExpression Id="RL Wheel RPM" DisplayUnit="" DisplayDPS="2" DisplayColorIndex="2" Interpolate="1" EnumerationName="" Script="'Recieve CAN CAN 3 Actual Values 1 Inverter 2 Actual Velocity'/11.74" SampleRate="0" Unit=""/>
+  <MathExpression Id="FR Wheel RPM" DisplayUnit="" DisplayDPS="2" DisplayColorIndex="1" Interpolate="1" EnumerationName="" Script="'Recieve CAN CAN 3 Actual Values 1 Inverter 4 Actual Velocity'/11.74" SampleRate="0" Unit=""/>
+  <MathExpression Id="FL Wheel RPM" DisplayUnit="" DisplayDPS="2" DisplayColorIndex="2" Interpolate="1" EnumerationName="" Script="'Recieve CAN CAN 2 Actual Values 1 Inverter 1 Actual Velocity'/11.74" SampleRate="0" Unit=""/>
+ </MathItems>
+</Maths>

@@ -34,19 +34,19 @@
   <MapEntry Key="11913" Value=""/>
  </Map>
  <Packages>
-  <Package Path="C:\Users\mitch\Documents\MoTeC\M1\Packages\4EF8D829-0259-4F50-B6BC-00F10276318B.m1pkg"/>
+  <Package Path="C:\Users\mitch\Documents\MoTeC\M1\Packages\92F1DEA0-C1A4-4782-950B-A7FB52CDDB0B.m1pkg"/>
  </Packages>
  <MyDevices>
   <MyDevice SerialNum="11913"/>
  </MyDevices>
  <LogRetrieveSettings>
   <LogSystem Index="0" Retrieve="1" Erase="1"/>
-  <LogSystem Index="1" Retrieve="0" Erase="0"/>
-  <LogSystem Index="2" Retrieve="0" Erase="0"/>
-  <LogSystem Index="3" Retrieve="0" Erase="0"/>
-  <LogSystem Index="4" Retrieve="0" Erase="0"/>
-  <LogSystem Index="5" Retrieve="0" Erase="0"/>
-  <LogSystem Index="6" Retrieve="0" Erase="0"/>
-  <LogSystem Index="7" Retrieve="0" Erase="0"/>
+  <LogSystem Index="1" Retrieve="1" Erase="1"/>
+  <LogSystem Index="2" Retrieve="1" Erase="1"/>
+  <LogSystem Index="3" Retrieve="1" Erase="1"/>
+  <LogSystem Index="4" Retrieve="1" Erase="1"/>
+  <LogSystem Index="5" Retrieve="1" Erase="1"/>
+  <LogSystem Index="6" Retrieve="1" Erase="1"/>
+  <LogSystem Index="7" Retrieve="1" Erase="1"/>
  </LogRetrieveSettings>
 </Tune>

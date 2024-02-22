@@ -49,6 +49,15 @@ DigitalOut 				led1(LED1);
 DigitalOut 				led2(LED2);
 DigitalOut              lcdReset(PH_7);
 
+//
+
+DigitalIn               button1(PG_13);
+DigitalIn               button2(PA_1);
+DigitalIn               button3(PG_12);
+DigitalIn               button4(PA_2);
+
+//
+
 CAN                     can1(PB_8, PB_9);
 //CAN                     can1(PB_9, PB_13);
 CANMessage              can1_msg;
@@ -80,6 +89,17 @@ void heartbeat_cb()
 	heartbeat_counter++;
     char TX_data[2] = {(char)0, (char)heartbeat_counter};
     can2.write(CANMessage(CAN_DASH_BASE_ADDRESS, &TX_data[0], 2));
+}
+
+void CAN_TX_digital1()
+{
+    char TX_data[4] = {(char)0};
+    TX_data[0] = (char)button1.read();
+    TX_data[1] = (char)button2.read();
+    TX_data[2] = (char)button3.read();
+    TX_data[3] = (char)button4.read();
+
+    can2.write(CANMessage(CAN_DASH_BASE_ADDRESS+TS_DIGITAL_1_ID, &TX_data[0], 4));
 }
 
 void lv_ticker_func()
@@ -155,7 +175,7 @@ void backend_init()
     // thread_sleep_for(5000);
     // lv_init();
     // Disable interrupts for smooth startup routine.
-	thread_sleep_for(1000);
+	thread_sleep_for(2500);
     lcdReset = 1;
 	
 	__disable_irq();
@@ -163,6 +183,7 @@ void backend_init()
     can2.frequency(500000);
     can2.attach(&can2_recv_cb);
     ticker_heartbeat.attach(&heartbeat_cb,1s);
+    ticker_can_transmit.attach(&CAN_TX_digital1,0.1f);
 
     //printf("Hi!\r\n");
     ticker_lvgl.attach(&lv_ticker_func,TICKER_TIME);
@@ -171,7 +192,7 @@ void backend_init()
 	__enable_irq();
 
 	// Allow some time to settle!
-	thread_sleep_for(1000);
+	thread_sleep_for(2500);
 
     tft_init();
     //touchpad_init();
