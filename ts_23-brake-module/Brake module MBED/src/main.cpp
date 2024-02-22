@@ -14,6 +14,8 @@
 #include "can_addresses.h"
 #include "BrakeModule_info.h" //This header stores information about module and calibrations
 
+#include "ADS7028.h"
+
 //void Serial_Print(); //Used for debugging
 
 /* -------------------------------------------------------------------------- */
@@ -35,12 +37,12 @@ AnalogIn highRef(PB_0);
 
 CAN can1(PB_8, PB_9); //CANBUS
 
-// //Instantiation of SPI
-SPI spi(PB_5, PB_4, PB_3);// MOSI, MISO, SCLK
+// Instantiation of SPI
 DigitalOut ADC_CS(PB_6);
 
-DigitalOut *CS_PIN;
+SPI m_spi(PB_5, PB_4, PB_3);// MOSI, MISO, SCLK
 
+ADS7028 adc(PB_6);
 
 /* -------------------------------------------------------------------------- */
 /*                             OBJECTS AND STRUCTS                            */
@@ -76,46 +78,22 @@ uint8_t raw_to_percent(float brake_raw, float brake_max, float brake_min)
 
 void BrakeModuleUpdate()
 {
-  // // startManualConversions(4, 100);
-  // // int16_t testData = readData();
-  // // stopConversions();
-  // // float Brake1_Voltage = toFloat(testData);
+  BrakeModule.brake1_raw = adc.readVoltage(4);
+  BrakeModule.brake2_raw = adc.readVoltage(2);
 
-  // // startManualConversions(2, 100);
-  // // testData = readData();
-  // // stopConversions();
-  // // float Brake2_Voltage = toFloat(testData);
+  BrakeModule.brake_low_ref   = adc.readVoltage(0);
+  BrakeModule.brake_high_ref1  = adc.readVoltage(3);
+  BrakeModule.brake_high_ref2  = adc.readVoltage(1);
 
-  // // startManualConversions(0, 100);
-  // // testData = readData();
-  // // stopConversions();
-  // // float LowRef_Voltage = toFloat(testData);
+  BrakeModule.High_Pressure   = HighPressure.read();
+  BrakeModule.Low_Pressure    = LowPressure.read();
+  BrakeModule.five_kW         = CurrentSensor.read();
+  BrakeModule.BSPD_OK         = BSPD_Delay.read();//BSPD.read();
+  BrakeModule.BSPD_OK_delay   = BSPD_Delay.read();
 
-  // // startManualConversions(3, 100);
-  // // testData = readData();
-  // // stopConversions();
-  // // float HighRef1_Voltage = toFloat(testData);
-
-  // // startManualConversions(1, 100);
-  // // testData = readData();
-  // // stopConversions();
-  // // float HighRef2_Voltage = toFloat(testData);
-
-  // BrakeModule.brake1_raw      = Brake1_Voltage;
-  // BrakeModule.brake2_raw      = Brake2_Voltage;
-  // BrakeModule.High_Pressure   = HighPressure.read();
-  // BrakeModule.Low_Pressure    = LowPressure.read();
-  // BrakeModule.five_kW         = CurrentSensor.read();
-  // BrakeModule.BSPD_OK         = BSPD_Delay.read();//BSPD.read();
-  // BrakeModule.BSPD_OK_delay   = BSPD_Delay.read();
-
-  // BrakeModule.brake1_percent    = raw_to_percent(BrakeModule.brake1_raw, brake_calibration.brake1_max, brake_calibration.brake1_min);
-  // BrakeModule.brake2_percent    = raw_to_percent(BrakeModule.brake2_raw, brake_calibration.brake2_max, brake_calibration.brake2_min);
-  // BrakeModule.brake_avg_percent = (BrakeModule.brake1_percent + BrakeModule.brake2_percent)/2.0;
-
-  // BrakeModule.brake_low_ref   = LowRef_Voltage;
-  // BrakeModule.brake_high_ref1  = HighRef1_Voltage;
-  // BrakeModule.brake_high_ref2  = HighRef2_Voltage;
+  BrakeModule.brake1_percent    = raw_to_percent(BrakeModule.brake1_raw, brake_calibration.brake1_max, brake_calibration.brake1_min);
+  BrakeModule.brake2_percent    = raw_to_percent(BrakeModule.brake2_raw, brake_calibration.brake2_max, brake_calibration.brake2_min);
+  BrakeModule.brake_avg_percent = (BrakeModule.brake1_percent + BrakeModule.brake2_percent)/2.0;
 }
 
 
@@ -124,7 +102,14 @@ void BrakeModuleUpdate()
 /* -------------------------------------------------------------------------- */
 void CAN_brakeModule_TX_Heartbeat()
 {
-  (HeartBeat.Counter >= 255) ? HeartBeat.Counter = 0 : HeartBeat.Counter++;
+  if (HeartBeat.Counter >= 255)
+  {
+    HeartBeat.Counter = 0;
+  }
+  else
+  {
+    HeartBeat.Counter++;
+  }
 
   char TX_data[4] = { 0 };
 
@@ -236,21 +221,11 @@ void CAN_brakeModule_RX()
 /* -------------------------------------------------------------------------- */
 int main() 
 {
-
-  // Setup the spi for 8 bit data, high steady state clock,
-  // second edge capture, with a 1MHz clock rate
-  spi.format(8,0);
-  spi.frequency(100000);
   
   // Disable interrupts for smooth startup routine.
 	wait_us(3000*1000);
 
   ADC_CS = 1;
-
-  // Setup the spi for 8 bit data, high steady state clock,
-  // second edge capture, with a 1MHz clock rate
-  spi.format(8,0);
-  spi.frequency(100000);
 	
 	__disable_irq();
 
