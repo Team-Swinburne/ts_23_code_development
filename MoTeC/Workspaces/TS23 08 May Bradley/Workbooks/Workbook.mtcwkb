@@ -35,6 +35,24 @@
       <Header Index="1" Col.Index="4" Col.Width="23"/>
      </Headers>
     </MoTeC.ParamList>
+    <MoTeC.ChannelList Version="100" Name="Channels (4)" Caption="Temp Passthrough" PosPC="610,0,997,400" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max Inverter Temp"/>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max LH Inverter Temp"/>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max RH Inverter Temp"/>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max IGBT Temp"/>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max LH IGBT Temp"/>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max RH IGBT Temp"/>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max LH Motor Temp"/>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max RH Motor Temp"/>
+       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Inverter Passthrough TX Status"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="0" Col.Index="1" Col.Width="40"/>
+     </Headers>
+    </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels (5)" PosPC="610,394,1000,1000" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -56,7 +74,7 @@
       </DataRefs>
      </Data>
      <Headers>
-      <Header Index="0" Col.Index="1" Col.Width="54"/>
+      <Header Index="0" Col.Index="1" Col.Width="74"/>
      </Headers>
     </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels (2)" Caption="Brake Module" PosPC="230,507,610,945" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
@@ -97,24 +115,6 @@
      <Headers>
       <Header Index="0" Col.Index="1" Col.Width="80"/>
       <Header Index="1" Col.Index="2" Col.Width="10"/>
-     </Headers>
-    </MoTeC.ChannelList>
-    <MoTeC.ChannelList Version="100" Name="Channels (4)" Caption="Temp Passthrough" PosPC="610,0,997,400" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max Inverter Temp"/>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max LH Inverter Temp"/>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max RH Inverter Temp"/>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max IGBT Temp"/>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max LH IGBT Temp"/>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max RH IGBT Temp"/>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max LH Motor Temp"/>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Max RH Motor Temp"/>
-       <DataRef Name="Transmit CAN.CAN 1.Inverter Passthrough.Inverter Passthrough TX Status"/>
-      </DataRefs>
-     </Data>
-     <Headers>
-      <Header Index="0" Col.Index="1" Col.Width="40"/>
      </Headers>
     </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels" Caption="CAN 1 Diagnostics" PosPC="0,395,230,562" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
@@ -386,46 +386,6 @@
   </Worksheet>
   <Worksheet Version="200" Name="Calibration" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Parameter List">
-    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="0,0,256,1000" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Invert"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Enable"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Type.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Pullup Control.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Active Edge.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Threshold.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Hysteresis.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Debounce.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Invert"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Enable"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Type.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pullup Control.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Active Edge.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Threshold.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Hysteresis.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Debounce.Value"/>
-       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Minimum Voltage"/>
-       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Maximum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Maximum Voltage"/>
-       <DataRef Name="CAN.Bus 1.Mode.Value"/>
-       <DataRef Name="CAN.Bus 2.Mode.Value"/>
-       <DataRef Name="CAN.Bus 3.Mode.Value"/>
-      </DataRefs>
-     </Data>
-     <Headers>
-      <Header Index="1" Col.Index="4" Col.Width="10"/>
-     </Headers>
-    </MoTeC.ParamList>
     <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="255,0,576,1000" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="438" DataPanelWidthRatio="1" ShowChannels="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -1010,6 +970,46 @@
      </Graphs>
      <Cursor Version="1" Style="1" Snap="1"/>
     </MoTeC.TimeDistance>
+    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="0,0,256,1000" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Invert"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Enable"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Type.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Pullup Control.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Active Edge.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Threshold.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Hysteresis.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Debounce.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Invert"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Enable"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Type.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pullup Control.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Active Edge.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Threshold.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Hysteresis.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Debounce.Value"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Minimum Voltage"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Maximum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Maximum Voltage"/>
+       <DataRef Name="CAN.Bus 1.Mode.Value"/>
+       <DataRef Name="CAN.Bus 2.Mode.Value"/>
+       <DataRef Name="CAN.Bus 3.Mode.Value"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="1" Col.Index="4" Col.Width="10"/>
+     </Headers>
+    </MoTeC.ParamList>
     <MoTeC.ChannelList Version="100" Name="Channels" Caption="Global Torque" PosPC="273,450,443,701" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -1041,6 +1041,24 @@
      </Data>
      <Headers/>
     </MoTeC.ParamList>
+    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="300,1,659,968" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.State"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Pin.Voltage"/>
+       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Precharge Button Pressed"/>
+       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.AMS OK"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.State"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pin.State"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pin.Voltage"/>
+       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Drive Button Pressed"/>
+       <DataRef Name="Read Sensors.LV System Voltage.LV System Voltage.Absolute Filtered"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="0" Col.Index="1" Col.Width="110"/>
+     </Headers>
+    </MoTeC.ChannelList>
     <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="659,1,1000,968" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="482" DataPanelWidthRatio="0.523913" ShowChannels="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -1077,22 +1095,6 @@
      </View>
      <Headers/>
     </MoTeC.Calibrate>
-    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="300,1,659,968" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.State"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Pin.Voltage"/>
-       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Precharge Button Pressed"/>
-       <DataRef Name="Recieve CAN.CAN 1.Precharge.Error ID.AMS OK"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.State"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pin.State"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pin.Voltage"/>
-       <DataRef Name="Transmit CAN.CAN 1.Digital Sensors ID.Drive Button Pressed"/>
-       <DataRef Name="Read Sensors.LV System Voltage.LV System Voltage.Absolute Filtered"/>
-      </DataRefs>
-     </Data>
-     <Headers/>
-    </MoTeC.ChannelList>
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="Dashboard" LinkTo="Default" LockByGPSTime="0">
@@ -1550,19 +1552,19 @@
      </Data>
      <View>
       <ColorData>
-       <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="64,255,64" AxisChanColor="64,255,64" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="1" BandMode="1" DataMin="33.1615" DataMax="100.727" BandWidth="6.75655" BandCount="10">
-        <ColorBand Flags="2" Min="33.1615" Max="33.1615" Color="64,64,255" Visible="1"/>
-        <ColorBand Flags="7" Min="33.1615" Max="39.9181" Color="64,136,255" Visible="1"/>
-        <ColorBand Flags="7" Min="39.9181" Max="46.6746" Color="64,203,255" Visible="1"/>
-        <ColorBand Flags="7" Min="46.6746" Max="53.4312" Color="64,255,236" Visible="1"/>
-        <ColorBand Flags="7" Min="53.4312" Max="60.1877" Color="64,255,169" Visible="1"/>
-        <ColorBand Flags="7" Min="60.1877" Max="66.9443" Color="64,255,98" Visible="1"/>
-        <ColorBand Flags="7" Min="66.9443" Max="73.7008" Color="98,255,64" Visible="1"/>
-        <ColorBand Flags="7" Min="73.7008" Max="80.4574" Color="169,255,64" Visible="1"/>
-        <ColorBand Flags="7" Min="80.4574" Max="87.2139" Color="236,255,64" Visible="1"/>
-        <ColorBand Flags="7" Min="87.2139" Max="93.9705" Color="255,203,64" Visible="1"/>
-        <ColorBand Flags="15" Min="93.9705" Max="100.727" Color="255,136,64" Visible="1"/>
-        <ColorBand Flags="1" Min="100.727" Max="100.727" Color="255,64,64" Visible="1"/>
+       <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="255,106,218" AxisChanColor="255,106,218" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="1" BandMode="1" DataMin="0" DataMax="90" BandWidth="9" BandCount="10">
+        <ColorBand Flags="2" Min="0" Max="0" Color="64,64,255" Visible="1"/>
+        <ColorBand Flags="7" Min="0" Max="9" Color="64,136,255" Visible="1"/>
+        <ColorBand Flags="7" Min="9" Max="18" Color="64,203,255" Visible="1"/>
+        <ColorBand Flags="7" Min="18" Max="27" Color="64,255,236" Visible="1"/>
+        <ColorBand Flags="7" Min="27" Max="36" Color="64,255,169" Visible="1"/>
+        <ColorBand Flags="7" Min="36" Max="45" Color="64,255,98" Visible="1"/>
+        <ColorBand Flags="7" Min="45" Max="54" Color="98,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="54" Max="63" Color="169,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="63" Max="72" Color="236,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="72" Max="81" Color="255,203,64" Visible="1"/>
+        <ColorBand Flags="15" Min="81" Max="90" Color="255,136,64" Visible="1"/>
+        <ColorBand Flags="1" Min="90" Max="90" Color="255,64,64" Visible="1"/>
        </EvenWidthBandAxis>
       </ColorData>
       <ColorDelta.1>
@@ -1644,19 +1646,19 @@
      </Data>
      <View>
       <ColorData>
-       <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="255,0,0" AxisChanColor="255,0,0" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="1" BandMode="1" DataMin="-1" DataMax="1" BandWidth="0.2" BandCount="10">
-        <ColorBand Flags="2" Min="-1" Max="-1" Color="64,64,255" Visible="1"/>
-        <ColorBand Flags="7" Min="-1" Max="-0.8" Color="64,136,255" Visible="1"/>
-        <ColorBand Flags="7" Min="-0.8" Max="-0.6" Color="64,203,255" Visible="1"/>
-        <ColorBand Flags="7" Min="-0.6" Max="-0.4" Color="64,255,236" Visible="1"/>
-        <ColorBand Flags="7" Min="-0.4" Max="-0.2" Color="64,255,169" Visible="1"/>
-        <ColorBand Flags="7" Min="-0.2" Max="0" Color="64,255,98" Visible="1"/>
-        <ColorBand Flags="7" Min="0" Max="0.2" Color="98,255,64" Visible="1"/>
-        <ColorBand Flags="7" Min="0.2" Max="0.4" Color="169,255,64" Visible="1"/>
-        <ColorBand Flags="7" Min="0.4" Max="0.6" Color="236,255,64" Visible="1"/>
-        <ColorBand Flags="7" Min="0.6" Max="0.8" Color="255,203,64" Visible="1"/>
-        <ColorBand Flags="15" Min="0.8" Max="1" Color="255,136,64" Visible="1"/>
-        <ColorBand Flags="1" Min="1" Max="1" Color="255,64,64" Visible="1"/>
+       <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="244,244,0" AxisChanColor="244,244,0" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="1" BandMode="1" DataMin="-2" DataMax="2" BandWidth="0.4" BandCount="10">
+        <ColorBand Flags="2" Min="-2" Max="-2" Color="64,64,255" Visible="1"/>
+        <ColorBand Flags="7" Min="-2" Max="-1.6" Color="64,136,255" Visible="1"/>
+        <ColorBand Flags="7" Min="-1.6" Max="-1.2" Color="64,203,255" Visible="1"/>
+        <ColorBand Flags="7" Min="-1.2" Max="-0.8" Color="64,255,236" Visible="1"/>
+        <ColorBand Flags="7" Min="-0.8" Max="-0.4" Color="64,255,169" Visible="1"/>
+        <ColorBand Flags="7" Min="-0.4" Max="0" Color="64,255,98" Visible="1"/>
+        <ColorBand Flags="7" Min="0" Max="0.4" Color="98,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="0.4" Max="0.8" Color="169,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="0.8" Max="1.2" Color="236,255,64" Visible="1"/>
+        <ColorBand Flags="7" Min="1.2" Max="1.6" Color="255,203,64" Visible="1"/>
+        <ColorBand Flags="15" Min="1.6" Max="2" Color="255,136,64" Visible="1"/>
+        <ColorBand Flags="1" Min="2" Max="2" Color="255,64,64" Visible="1"/>
        </EvenWidthBandAxis>
       </ColorData>
       <ColorDelta.1>
