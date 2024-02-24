@@ -32,12 +32,18 @@
 /*                              STATIC PROTOTYPE                              */
 /* -------------------------------------------------------------------------- */
 void load_nav();
+void rotate_screen();
 /* -------------------------------------------------------------------------- */
 /*                                  FUNCTIONS                                 */
 /* -------------------------------------------------------------------------- */
 void load_nav_timer(lv_timer_t *timer)
 {
 	load_nav();
+}
+
+void rotate_screen_timer(lv_timer_t *timer)
+{
+	rotate_screen();
 }
 
 int main() {
@@ -49,13 +55,19 @@ int main() {
 	/*Load splash screen*/
 	load_splash();
 
-	/*Load navigaion after 6s of start (3s animation + 3s delay)*/
+	/*Load navigaion after 3s of start (3s animation + 2s delay)*/
 	lv_timer_t * timer = lv_timer_create_basic();
 	lv_timer_set_cb(timer,load_nav_timer);
-	lv_timer_set_period(timer,3000);
+	lv_timer_set_period(timer,4000);
     
 	lv_timer_set_repeat_count(timer,1);
     //load_nav();
+
+	lv_timer_t * timer1 = lv_timer_create_basic();
+	lv_timer_set_cb(timer1,rotate_screen_timer);
+	lv_timer_set_period(timer1,3000);
+    
+	lv_timer_set_repeat_count(timer1,1);
 	
 	backend_loop();
 }
@@ -75,20 +87,16 @@ void load_nav()
     lv_obj_t * tile1 = lv_tileview_add_tile(tv, 0, 0, LV_DIR_LEFT | LV_DIR_RIGHT);
     lv_obj_clear_flag(tile1, LV_OBJ_FLAG_SCROLLABLE);
     load_home(tile1);
-	
     
-    /*Tile2: a button*/
-    lv_obj_t * tile2 = lv_tileview_add_tile(tv, 1, 0, LV_DIR_LEFT | LV_DIR_RIGHT);
-
-    lv_obj_t * btn = lv_btn_create(tile2);
-
-    lv_obj_t * label = lv_label_create(btn);
-    lv_label_set_text(label, "Scroll up or right");
-
-    lv_obj_set_size(btn, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-    lv_obj_center(btn);
-
-	/*Load the screen*/
 	lv_scr_load(scr);
-	
+
+}
+
+/**
+ * @brief Rotate screen 180 deg
+ * 
+ */
+void rotate_screen()
+{
+    lv_disp_set_rotation(NULL,LV_DISP_ROT_180);
 }

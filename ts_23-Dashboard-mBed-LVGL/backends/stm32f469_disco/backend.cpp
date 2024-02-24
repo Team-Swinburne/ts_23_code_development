@@ -28,7 +28,7 @@
 #include "tft/tft.h"
 #include "mbed.h"
 #include "touchpad/touchpad.h"
-
+#include <stdio.h>
 #include "can_addresses.h"
 
 #include "bsp_drivers\stm32469i_discovery.h"
@@ -78,6 +78,11 @@ static VehicleState		    vehicle_state={0,false,false,false,false,false,false,fa
 static MotorInfo		    motor_info={0,0,0,0,0};
 static AccumulatorInfo		accum_info={0,0,0,0};
 static MiscInfo			    misc_info={0.0f,0,0,0,0,0};
+static OdometerInfo         odometer_info = {0,0};
+
+
+
+
 
 int                     heartbeat_counter = 0;
 /* -------------------------------------------------------------------------- */
@@ -153,8 +158,12 @@ void can2_recv_cb()
             vehicle_state.error_ams             = can2_msg.data[0];
             vehicle_state.error_pdoc_precharge  = !(bool)can2_msg.data[5];
             vehicle_state.error_imd             = !(bool)can2_msg.data[6];
+            break;
         case (CAN_ORION_BMS_BASE_ADDRESS + TS_ANALOGUE_2_ID):
             accum_info.max_temp = can2_msg.data[2];
+            break;
+        case (CAN_MOTEC_GPS):
+            odometer_info.odo_current = can2_msg.data[0];
             break;
         default:
             break;
@@ -168,7 +177,7 @@ VehicleState		can_get_vehicle_state() {return vehicle_state;}
 MotorInfo			can_get_motor_info() {return motor_info;}
 AccumulatorInfo		can_get_accum_info() {return accum_info;}
 MiscInfo			can_get_misc_info() {return misc_info;}
-
+OdometerInfo		can_get_odomtere_info() {return odometer_info;}
 void backend_init()
 {
     // thread_sleep_for(5000);
@@ -186,7 +195,11 @@ void backend_init()
 
     //printf("Hi!\r\n");
     ticker_lvgl.attach(&lv_ticker_func,TICKER_TIME);
-
+    LocalFileSystem local("local");
+    FILE *stream = fopen("/local/odometer.txt", "r");
+    char line[20];
+    fgets(line, sizeof(line), stream);
+    sscanf(line, "%d", &odometer_info.odo_history);
    	// Re-enable interrupts again, now that interrupts are ready.
 	__enable_irq();
 
