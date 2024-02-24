@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Tune Locale="English_Australia.1252" DefaultLocale="C" ZoomDuration="30" Version="102" ShowOverlays="1" ExcludeUntrusted="1" IncludeOverlays="0" GraphTimeFormat="4" RemoveOnChanDblClick="1" SplitterPos="997">
+<Tune Locale="English_Australia.1252" DefaultLocale="C" ZoomDuration="30" Version="102" ShowOverlays="1" ExcludeUntrusted="1" IncludeOverlays="0" GraphTimeFormat="4" RemoveOnChanDblClick="0" SplitterPos="997">
  <Resources/>
  <ValuesWindow GroupMode="0"/>
  <ChannelItemsWindow/>
@@ -12,7 +12,7 @@
   <DockWindow Id="Layouts" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="1" Height="110" Width="220"/>
   <DockWindow Id="PkgHelp" Visible="0" IsDocked="0" Position="200,200,840,680"/>
   <DockWindow Id="Channels" Visible="0" IsDocked="1" IsPinned="1" DockOffset="0.5" DockSide="3" DockIndex="0" Height="160" Width="220"/>
-  <DockWindow Id="Support" Visible="0" IsDocked="0" Position="468,280,1068,680"/>
+  <DockWindow Id="Support" Visible="0" IsDocked="0" Position="340,180,940,580"/>
  </DockWindows>
  <Workbooks Version="100" Name="My Workbooks" Active="Workbook">
   <Workbook Name="Workbook" XRef="Workbooks\Workbook.mtcwkb"/>
@@ -30,11 +30,8 @@
   <TableOpSite Enabled="1" Style="1" Float="1" Opacity="75"/>
   <Graph Lighting="1" ShowChannelLegend="1" ShowAxis="1"/>
  </TableSettings>
- <Map Id="VehicleIdxSerialNumber">
-  <MapEntry Key="11913" Value=""/>
- </Map>
  <Packages>
-  <Package Path="C:\Users\mitch\Documents\MoTeC\M1\Packages\BD0AEC6E-7358-414F-B8C1-FA1EA36810CC.m1pkg"/>
+  <Package Path="C:\Users\lwjde\Documents\MoTeC\M1\Packages\411ED25E-2474-4F17-91BD-B0AF167E5072.m1pkg"/>
  </Packages>
  <MyDevices>
   <MyDevice SerialNum="11913"/>
@@ -49,4 +46,7 @@
   <LogSystem Index="6" Retrieve="0" Erase="0"/>
   <LogSystem Index="7" Retrieve="0" Erase="0"/>
  </LogRetrieveSettings>
+ <LogImages>
+  <LogImage Path="C:\Users\lwjde\Documents\MoTeC\M1\Tune\LogImage\S1_#11913_20240217_123021.m1dli"/>
+ </LogImages>
 </Tune>

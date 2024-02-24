@@ -3,7 +3,7 @@
  <Worksheets Version="100" Name="Worksheets" PosPC="0,0,1000,1000" Active="General">
   <Worksheet Version="200" Name="General" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Copy (1) of Copy (1) of Copy (1) of Copy (1) of Time/Distance [1]">
-    <MoTeC.TimeDistance Version="100" Name="Copy (1) of Copy (1) of Copy (1) of Copy (1) of Time/Distance [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="1" BandGroup="Outings:Laps:Track Sections:Default" BandMode="1" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+    <MoTeC.TimeDistance Version="100" Name="Copy (1) of Copy (1) of Copy (1) of Copy (1) of Time/Distance [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="1" TOD.Show="0" TOD.Format.Time="%X" TOD.Format.Date="%d %b %Y" TOD.UTC="UTC Time" TOD.Offset.Type="0" TOD.Offset.Mins="0" TOD.TZ.Show="0" BandGroup="Outings:Laps:Track Sections:Default" BandMode="1" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
      <Graphs ActivateChild="Group 5">
       <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
        <Edges Mode="0" TopEdge="0" BottomEdge="118"/>
@@ -87,7 +87,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Brake Temp Rainbow" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Copy (1) of Rainbow Track Map [1]">
-    <MoTeC.RainbowTrack Version="100" Name="Copy (1) of Rainbow Track Map [1]" PosPC="0,500,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ShowSectLabels="0" ShowSectMarks="1" LinkCursor="1">
+    <MoTeC.RainbowTrack Version="100" Name="Copy (1) of Rainbow Track Map [1]" PosPC="0,500,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ShowSectColors="1" ShowSectLabels="0" ShowSectMarks="1" LinkCursor="1">
      <TrackMapWindow>
       <SizeScheme>
        <SizeSchemeEntry Name="Cursor" INTValue="10"/>
@@ -106,7 +106,7 @@
       </EvenWidthBandAxis>
      </ContourChannel>
     </MoTeC.RainbowTrack>
-    <MoTeC.RainbowTrack Version="100" Name="Rainbow Track Map [1]" PosPC="0,0,1000,500" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ShowSectLabels="0" ShowSectMarks="1" LinkCursor="1">
+    <MoTeC.RainbowTrack Version="100" Name="Rainbow Track Map [1]" PosPC="0,0,1000,500" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ShowSectColors="1" ShowSectLabels="0" ShowSectMarks="1" LinkCursor="1">
      <TrackMapWindow>
       <SizeScheme>
        <SizeSchemeEntry Name="Cursor" INTValue="10"/>

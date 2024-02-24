@@ -304,18 +304,18 @@ void setup()
   writeSingleRegister(SEQUENCE_CFG_ADDRESS, SEQUENCE_CFG_SEQ_MODE_MANUAL); //Manual Channel Selection Mode
   delay(50);
 
-  can.begin(STD_ID_LEN, CANBUS_FREQUENCY, PORTB_8_9_XCVR);   //11 Bit Id, 500Kbps
+  can.begin(STD_ID_LEN, BR500K, PORTB_8_9_XCVR);   //11 Bit Id, 500Kbps
   can.filterMask16Init(0, 0x158, 0x7ff);
 
   can.attachInterrupt(CAN_brakeModule_RX);
 
   TickerInterrupt Ticker(TIM2,1);
   Ticker.start();
-  Ticker.attach(CAN_brakeModule_TX_Heartbeat, CAN_HEARTBEAT_PERIOD);
-  Ticker.attach(CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
-  Ticker.attach(CAN_brakeModule_TX_Analog_1, 0.2);
-  Ticker.attach(CAN_brakeModule_TX_Analog_2, 0.2);
-  Ticker.attach(CAN_brakeModule_TX_Analog_3, 0.2);
+  Ticker.attach(CAN_brakeModule_TX_Heartbeat, 1000);
+  Ticker.attach(CAN_brakeModule_TX_Digital_1, 1000);
+  Ticker.attach(CAN_brakeModule_TX_Analog_1, 1000);
+  Ticker.attach(CAN_brakeModule_TX_Analog_2, 1000);
+  Ticker.attach(CAN_brakeModule_TX_Analog_3, 1000);
 
   pinMode(HIGH_PRESSURE_PIN, INPUT);
   pinMode(LOW_PRESSURE_PIN, INPUT);

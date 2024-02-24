@@ -126,18 +126,18 @@ void eXoCAN::filter16Init(int bank, int mode, int a, int b, int c, int d) // 16b
     periphBit(FINIT) = 0;                            // ~FINIT  'active' filter mode ]
 }
 
-void eXoCAN::filterList32Init(int bank, u_int32_t idA, u_int32_t idB) //32b filters
+void eXoCAN::filterList32Init(int bank, uint32_t idA, uint32_t idB) //32b filters
 {
      filter32Init(bank, 1, idA, idB);
    // filter32Init(0, 1, 0x00232461, 0x00232461);
 }
 
-void eXoCAN::filterMask32Init(int bank, u_int32_t id, u_int32_t mask) //32b filters
+void eXoCAN::filterMask32Init(int bank, uint32_t id, uint32_t mask) //32b filters
 {
     filter32Init(bank, 0, id, mask);
 }
 
-void eXoCAN::filter32Init(int bank, int mode, u_int32_t a, u_int32_t b) //32b filters
+void eXoCAN::filter32Init(int bank, int mode, uint32_t a, uint32_t b) //32b filters
 {
     periphBit(FINIT) = 1;                   // FINIT  'init' filter mode 
     periphBit(fa1r, bank) = 0;              // de-activate filter 'bank'
