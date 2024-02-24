@@ -28,11 +28,11 @@
 //DigitalIn BSPD(PB_14); //BSPD_OK (no delay)
 //DigitalIn BSPD_Delay(PB_12); //BSPD_OK (10 second delay)
 
-#define HIGH_PRESSURE_PIN PA_10
-#define LOW_PRESSURE_PIN PA_8
-#define CURRENT_SENSOR_PIN PA_11
-#define BSPD_PIN PB_14
-#define BSPD_DELAY_PIN PB_12
+#define HIGH_PRESSURE_PIN PA10
+#define LOW_PRESSURE_PIN PA8
+#define CURRENT_SENSOR_PIN PA11
+#define BSPD_PIN PB14
+#define BSPD_DELAY_PIN PB12
 
 //DigitalOut debugLedOut(PC_13); //Debug LED
 
@@ -173,8 +173,17 @@ void CAN_brakeModule_TX_Heartbeat()
   heartFrame.bytes[CAN_HEARTBEAT_PCB_TEMP] = 0;
   heartFrame.bytes[CAN_HEARTBEAT_HARDWARE_REVISION] = 5;
 
-  can.transmit(CAN_BRAKE_MODULE_BASE_ADDRESS+TS_HEARTBEAT_ID, heartFrame.bytes, heartFrame.len);
+  /*
+  for(int i=0; i<8; i++)
+  {
+    heartFrame.bytes[i] = 255;
+  }
+  */
 
+  uint8_t test_tx[8] = { 0 };
+  can.transmit(0x150, test_tx, 8);
+  //can.transmit(CAN_BRAKE_MODULE_BASE_ADDRESS+TS_HEARTBEAT_ID, heartFrame.bytes, heartFrame.len);
+  
   digitalToggle(PC13);
 }
 
@@ -256,6 +265,7 @@ void CAN_brakeModule_RX()
 /* -------------------------------------------------------------------------- */
 void setup()
 {
+  /*
   delay(3000);
 
   SPI.begin();          // initialise SPI communication
@@ -285,9 +295,9 @@ void setup()
   SPI.setBitOrder(MSBFIRST);             // Reading 'Most Significant Bit FIRST' instead of 'Least Significant Bit FIRST'
 
   // Set pin assignments for MOSI, MISO, and SCLCK
-  SPI.setMOSI(PB_5);
-  SPI.setMISO(PB_4);
-  SPI.setSCLK(PB_3);
+  SPI.setMOSI(PB5);
+  SPI.setMISO(PB4);
+  SPI.setSCLK(PB3);
 
   // SET UP ADC CONFIGURATION //
   initADS7028();  // initialise ADCs 
@@ -303,19 +313,21 @@ void setup()
   delay(50);
   writeSingleRegister(SEQUENCE_CFG_ADDRESS, SEQUENCE_CFG_SEQ_MODE_MANUAL); //Manual Channel Selection Mode
   delay(50);
+  */
 
-  can.begin(STD_ID_LEN, CANBUS_FREQUENCY, PORTB_8_9_XCVR);   //11 Bit Id, 500Kbps
+  can.begin(STD_ID_LEN, BR500K, PORTB_8_9_XCVR);   //11 Bit Id, 500Kbps
   can.filterMask16Init(0, 0x158, 0x7ff);
-
   can.attachInterrupt(CAN_brakeModule_RX);
 
   TickerInterrupt Ticker(TIM2,1);
   Ticker.start();
-  Ticker.attach(CAN_brakeModule_TX_Heartbeat, CAN_HEARTBEAT_PERIOD);
-  Ticker.attach(CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
-  Ticker.attach(CAN_brakeModule_TX_Analog_1, 0.2);
-  Ticker.attach(CAN_brakeModule_TX_Analog_2, 0.2);
-  Ticker.attach(CAN_brakeModule_TX_Analog_3, 0.2);
+  Ticker.attach(CAN_brakeModule_TX_Heartbeat, 1000);
+  //Ticker.attach(CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
+  //Ticker.attach(CAN_brakeModule_TX_Analog_1, 0.2);
+  //Ticker.attach(CAN_brakeModule_TX_Analog_2, 0.2);
+  //Ticker.attach(CAN_brakeModule_TX_Analog_3, 0.2);
+
+  /*
 
   pinMode(HIGH_PRESSURE_PIN, INPUT);
   pinMode(LOW_PRESSURE_PIN, INPUT);
@@ -323,19 +335,19 @@ void setup()
   pinMode(BSPD_PIN, INPUT);
   pinMode(BSPD_DELAY_PIN, INPUT);
 
-  pinMode(PC13, OUTPUT);
-
   //SPI
-  pinMode(PB_5, OUTPUT);          // MOSI
-  pinMode(PB_4, INPUT_PULLDOWN);  // MISO
-  pinMode(PB_3, OUTPUT);          // SCLCK
-  pinMode(PB_6, OUTPUT);
+  pinMode(PB5, OUTPUT);          // MOSI
+  pinMode(PB4, INPUT_PULLDOWN);  // MISO
+  pinMode(PB3, OUTPUT);          // SCLCK
+  pinMode(PB6, OUTPUT);
 
   delay(3000);
+  */
+  pinMode(PC13, OUTPUT);
 }
 void loop()
 {
-  BrakeModuleUpdate();
+  //BrakeModuleUpdate();
 }
 
 

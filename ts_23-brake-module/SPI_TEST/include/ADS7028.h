@@ -49,7 +49,7 @@
 
 /** Disable assertions when not in the CCS "Debug" configuration */
 #ifndef _DEBUG
-    //#define NDEBUG
+    #define NDEBUG
 #endif
 
 
