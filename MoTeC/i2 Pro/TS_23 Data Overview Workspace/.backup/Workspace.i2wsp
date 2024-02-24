@@ -3,17 +3,19 @@
  <Resources>
   <Resource Id="Images\Comp photo.jpg" ClassId="Picture"/>
  </Resources>
- <LatGTrackGen/>
+ <LatGTrackGen GPSLatitude="Speed Distance GPS Latitude" GPSLongitude="Speed Distance GPS Longitude"/>
  <DataSelect SelectFastestOnLoad="1" DefaultShowDisabled="0" MainColorSource="0">
-  <Explore HRef="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-04 Geelong Kart Track"/>
+  <Explore HRef="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023 COMP DATA\ACCELERATION"/>
   <DataSources>
-   <LoggedDataSource Name="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-04 Geelong Kart Track\S1_11913_20231205_213747.ld"/>
+   <LoggedDataSource Name="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023 COMP DATA\ACCELERATION\S1_#11913_20231216_144240.ld"/>
+   <LoggedDataSource Name="C:\Users\Bradley\OneDrive - Swinburne University\TS_24\00 - ENGINEERING\04 - TESTING DATA\01 - 15 Feb 2024 Gloria Pyke Netball Centre\S1_#11913_20240215_155643.ld"/>
+   <LoggedDataSource Name="C:\Users\Bradley\OneDrive - Swinburne University\TS_24\00 - ENGINEERING\04 - TESTING DATA\01 - 15 Feb 2024 Gloria Pyke Netball Centre\S1_#11913_20240215_131837.ld"/>
   </DataSources>
   <View Name="Laps" Color="128,240,0" View="Laps">
-   <Main Range.Id="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-04 Geelong Kart Track\S1_11913_20231205_213747.ld::::In Lap"/>
+   <Main Range.Id="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023 COMP DATA\ACCELERATION\S1_#11913_20231216_144240.ld::::Lap 1"/>
   </View>
   <View Name="Outings" Color="240,128,0" View="Outings">
-   <Main Range.Id="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-04 Geelong Kart Track\S1_11913_20231205_213747.ld::::9:37:47 PM,  "/>
+   <Main Range.Id="C:\Users\Bradley\OneDrive - Swinburne University\TS_24\00 - ENGINEERING\04 - TESTING DATA\01 - 15 Feb 2024 Gloria Pyke Netball Centre\S1_#11913_20240215_131837.ld::::1:18:37 PM, 15/02 "/>
   </View>
  </DataSelect>
  <ChannelsWindow/>
@@ -57,7 +59,13 @@
      <RenderMode Mode="PRINT" RGB="200,0,0"/>
     </Entry>
    </ComponentColorScheme>
-   <TrackMapWindow/>
+   <TrackMapWindow>
+    <SizeScheme>
+     <SizeSchemeEntry Name="Cursor" INTValue="7"/>
+     <SizeSchemeEntry Name="Detail" INTValue="1"/>
+     <SizeSchemeEntry Name="Material" INTValue="1"/>
+    </SizeScheme>
+   </TrackMapWindow>
   </MoTeC.TrackPos>
  </ValuesWindow>
  <QuickSelectKeys>
@@ -78,13 +86,13 @@
  <DockWindows>
   <DockWindow Id="Alarms" Visible="0" IsDocked="1" IsPinned="1" DockOffset="0.25" DockSide="0" DockIndex="0" Height="160" Width="220"/>
   <DockWindow Id="Data" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="0" Height="110" Width="220"/>
-  <DockWindow Id="Channels" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="1" Height="110" Width="220"/>
+  <DockWindow Id="Channels" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="1" Height="110" Width="331"/>
   <DockWindow Id="Reports" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="2" Height="110" Width="220"/>
   <DockWindow Id="Layouts" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="3" Height="110" Width="220"/>
   <DockWindow Id="Track" Visible="0" IsDocked="0" Position="460,323,701,491"/>
  </DockWindows>
  <TelemetrySettings/>
- <DataExport Path="" Selection="0" Rate="0" Flags="0"/>
+ <DataExport Path="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-11 Broadford race track" Selection="2" Rate="0" Flags="1"/>
  <VideoGenerate VideoView="" Selection="0">
   <OptionItems/>
  </VideoGenerate>

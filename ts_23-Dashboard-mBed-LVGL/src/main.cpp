@@ -65,7 +65,7 @@ int main() {
 
 	lv_timer_t * timer1 = lv_timer_create_basic();
 	lv_timer_set_cb(timer1,rotate_screen_timer);
-	lv_timer_set_period(timer1,3000);
+	lv_timer_set_period(timer1,10);//hehe no one will notice
     
 	lv_timer_set_repeat_count(timer1,1);
 	

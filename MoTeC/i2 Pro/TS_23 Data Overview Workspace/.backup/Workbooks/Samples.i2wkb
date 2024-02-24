@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <Workbook Locale="English_Australia.1252" DefaultLocale="C" Version="200" Name="Samples" Profile="Circuit" Active="Worksheets">
  <Worksheets Version="100" Name="Worksheets" PosPC="0,0,1000,1000" Active="Speed/Power">
-  <Worksheet Version="200" Name="Speed/Power" LinkTo="Laps" LockByGPSTime="0">
+  <Worksheet Version="200" Name="Speed/Power" LinkTo="Laps" DataDomain="1" LockByGPSTime="0">
    <Controls Active="Time/Distance [1]">
     <MoTeC.TimeDistance Version="100" Name="Time/Distance [1]" PosPC="0,0,1000,810" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="1" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="1" BandGroup="Outings:Laps:Track Sections:Default" BandMode="1" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
-     <Graphs ActivateChild="Group 6">
+     <Graphs ActivateChild="Group 4">
       <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="0" BottomEdge="176"/>
+       <Edges Mode="0" TopEdge="0" BottomEdge="148"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
@@ -15,11 +15,11 @@
        </Lines>
        <Traces ActiveTrace="Recieve CAN CAN 1 Brake Module Analogue ID Brake Output Average">
         <Trace Id="Read Sensors APPS Sensors APPS Average Percentage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Recieve CAN CAN 1 Brake Module Analogue ID Brake Output Average" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 1 Brake Module Analogue ID Brake Output Average" DisplayUnit="" DisplayDPS="0" Visible="0"/>
        </Traces>
       </Graph>
       <Graph Name="Group 2" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="176" BottomEdge="330"/>
+       <Edges Mode="0" TopEdge="148" BottomEdge="264"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
@@ -31,7 +31,7 @@
        </Traces>
       </Graph>
       <Graph Name="Group 3" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="330" BottomEdge="498"/>
+       <Edges Mode="0" TopEdge="264" BottomEdge="380"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
@@ -45,45 +45,52 @@
         <Trace Id="Recieve CAN CAN 3 Actual Values 1 Inverter 4 Actual Velocity" DisplayUnit="" DisplayDPS="0" Visible="1"/>
        </Traces>
       </Graph>
-      <Graph Name="Group 6" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="498" BottomEdge="665"/>
+      <Graph Name="Group 8" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="380" BottomEdge="481"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
         <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
         <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
        </Lines>
-       <Traces ActiveTrace="RR Wheel RPM">
-        <Trace Id="FL Wheel RPM" DisplayUnit="" DisplayDPS="2" Visible="1"/>
-        <Trace Id="FR Wheel RPM" DisplayUnit="" DisplayDPS="2" Visible="1"/>
-        <Trace Id="RL Wheel RPM" DisplayUnit="" DisplayDPS="2" Visible="1"/>
-        <Trace Id="RR Wheel RPM" DisplayUnit="" DisplayDPS="2" Visible="1"/>
+       <Traces ActiveTrace="Motor Output Torque">
+        <Trace Id="Motor Output Torque" DisplayUnit="" DisplayDPS="2" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 6" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="481" BottomEdge="612"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Actual Torque Current Motor 1">
+        <Trace Id="Actual Torque Current Motor 1" DisplayUnit="" DisplayDPS="2" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 9" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="612" BottomEdge="857"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Speed Distance GPS Speed">
+        <Trace Id="Speed Distance GPS Speed" DisplayUnit="km/h" DisplayDPS="3" Visible="1"/>
        </Traces>
       </Graph>
       <Graph Name="Group 4" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="665" BottomEdge="833"/>
+       <Edges Mode="0" TopEdge="857" BottomEdge="1000"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
         <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
         <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
        </Lines>
-       <Traces ActiveTrace="Recieve CAN CAN 1 Three Force Sensor GForce ID Z G Force">
-        <Trace Id="Recieve CAN CAN 1 Three Force Sensor GForce ID X G Force" DisplayUnit="" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Recieve CAN CAN 1 Three Force Sensor GForce ID Y G Force" DisplayUnit="" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Recieve CAN CAN 1 Three Force Sensor GForce ID Z G Force" DisplayUnit="" DisplayDPS="1" Visible="1"/>
-       </Traces>
-      </Graph>
-      <Graph Name="Group 5" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="833" BottomEdge="1000"/>
-       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
-       <Lines>
-        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
-        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
-        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
-       </Lines>
-       <Traces ActiveTrace="UCM sensors Load cell FL Load Cell">
-        <Trace Id="UCM sensors Load cell FL Load Cell" DisplayUnit="N" DisplayDPS="3" Visible="1"/>
+       <Traces ActiveTrace="Recieve CAN CAN 2 Actual Values 1 Inverter 1 Magnetizing Current Raw">
+        <Trace Id="Recieve CAN CAN 2 Actual Values 1 Inverter 1 Magnetizing Current Raw" DisplayUnit="" DisplayDPS="0" Visible="1"/>
        </Traces>
       </Graph>
      </Graphs>
@@ -171,7 +178,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Temperatures" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Time/Distance [1]">
-    <MoTeC.TimeDistance Version="100" Name="Time/Distance [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="1" BandGroup="Outings:Laps:Track Sections:Default" BandMode="1" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+    <MoTeC.TimeDistance Version="100" Name="Time/Distance [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="1" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="1" BandGroup="Outings:Laps:Track Sections:Default" BandMode="1" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
      <Graphs ActivateChild="Group 6">
       <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
        <Edges Mode="0" TopEdge="0" BottomEdge="164"/>
@@ -194,7 +201,7 @@
         <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
         <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
        </Lines>
-       <Traces ActiveTrace="Recieve CAN CAN 3 Actual Values 2 Inverter 2 Motor Temp">
+       <Traces ActiveTrace="Recieve CAN CAN 3 Actual Values 2 Inverter 2 Inverter Temp">
         <Trace Id="Recieve CAN CAN 2 Actual Values 2 Inverter 3 IGBT Temp" DisplayUnit="C" DisplayDPS="1" Visible="1"/>
         <Trace Id="Recieve CAN CAN 2 Actual Values 2 Inverter 3 Inverter Temp" DisplayUnit="C" DisplayDPS="1" Visible="1"/>
         <Trace Id="Recieve CAN CAN 2 Actual Values 2 Inverter 3 Motor Temp" DisplayUnit="C" DisplayDPS="1" Visible="1"/>
@@ -237,7 +244,7 @@
        </Traces>
       </Graph>
       <Graph Name="Group 5" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="669" BottomEdge="833"/>
+       <Edges Mode="0" TopEdge="669" BottomEdge="829"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
@@ -254,7 +261,7 @@
        </Traces>
       </Graph>
       <Graph Name="Group 6" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="833" BottomEdge="1000"/>
+       <Edges Mode="0" TopEdge="829" BottomEdge="1000"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
@@ -325,7 +332,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Susp Histo" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Suspension Histogram [1]">
-    <MoTeC.SuspensionHistogram Version="100" Name="Suspension Histogram [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="1" TileAutoCols="1" TileCols="2" SecondChannel="" XScaleMode="1" XSecondScaleMode="0" YUnitMode="1" YScaleMode="1" YScale="1.2" YAllowOverrides="0" YExcludeUntrusted="1" Style="1" BinLabelStep="5" UseColors="0" InvertColors="0" StackLines="0" ShowColorBinSamples="1" SuspVersion="1" BumpPositive="1" MaxSpeed_in="10" MaxSpeed_mm="200" BinWidth_in="0.5" BinWidth_mm="10" HiLoSpeed_in="1" HiLoSpeed_mm="25">
+    <MoTeC.SuspensionHistogram Version="100" Name="Suspension Histogram [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="1" TileAutoCols="1" TileCols="1" SecondChannel="" XScaleMode="1" XSecondScaleMode="0" YUnitMode="1" YScaleMode="1" YScale="1.2" YAllowOverrides="0" YExcludeUntrusted="1" Style="1" BinLabelStep="5" UseColors="0" InvertColors="0" StackLines="0" ShowColorBinSamples="1" SuspVersion="1" BumpPositive="1" MaxSpeed_in="10" MaxSpeed_mm="200" BinWidth_in="0.5" BinWidth_mm="10" HiLoSpeed_in="1" HiLoSpeed_mm="25">
      <HistoTrace Id="Damper Vel FL" Visible="1"/>
      <HistoTrace Id="Damper Vel FR" Visible="1"/>
      <HistoTrace Id="Damper Vel RL" Visible="1"/>
@@ -383,7 +390,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Susp FFT" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="FFT [1]">
-    <MoTeC.FFT Version="100" Name="FFT [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="0" TileAutoCols="1" TileCols="2" XAutoScale="1" YAutoScale="1" XLogScale="1" YScaleMode="0" XScaleMin="0.1" XScaleMax="0.5" YScaleMin="0" YScaleMax="0.05" WindowType="1" ChunkSize="1024" SmoothFactor="0.01" CursorStyle="1">
+    <MoTeC.FFT Version="100" Name="FFT [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="0" TileAutoCols="1" TileCols="1" XAutoScale="1" YAutoScale="1" XLogScale="1" YScaleMode="0" XScaleMin="0.1" XScaleMax="0.5" YScaleMin="0" YScaleMax="0.6" WindowType="1" ChunkSize="1024" SmoothFactor="0.01" CursorStyle="1">
      <FFTTrace ChanId="UCM sensors Bell Crank Sensors FL BellCrank position" Visible="1"/>
      <FFTTrace ChanId="UCM sensors Bell Crank Sensors FR BellCrank position" Visible="1"/>
      <FFTTrace ChanId="UCM sensors Bell Crank Sensors RL BellCrank position" Visible="1"/>
@@ -393,7 +400,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Track Report" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Track Report [1]">
-    <MoTeC.TrackReport Version="100" Name="Track Report [1]" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="0" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ShowSectLabels="0" ShowSectMarks="1" LinkCursor="1">
+    <MoTeC.TrackReport Version="100" Name="Track Report [1]" PosPC="0,215,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="0" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ShowSectLabels="0" ShowSectMarks="1" LinkCursor="1">
      <TrackMapWindow>
       <SizeScheme>
        <SizeSchemeEntry Name="Cursor" INTValue="10"/>
@@ -431,10 +438,49 @@
      </NoteChannel>
      <NoteChannel ID="Gear" Enabled="1" FormulaClass="1" FormulaName="Delta" SectionType=""/>
     </MoTeC.TrackReport>
+    <MoTeC.TimeDistance Version="100" Name="Time/Distance Graph" PosPC="0,0,800,215" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="1" BandGroup="Outings:Laps:Track Sections:Default" BandMode="1" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+     <Graphs ActivateChild="Group 1">
+      <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="0" BottomEdge="1000"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Recieve CAN CAN 1 Brake Module Analogue ID Brake Output Average">
+        <Trace Id="Read Sensors APPS Sensors APPS Average Percentage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 1 Brake Module Analogue ID Brake Output Average" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+       </Traces>
+      </Graph>
+     </Graphs>
+     <Cursor Version="1" Style="1" Snap="1"/>
+    </MoTeC.TimeDistance>
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="Chan Report" LinkTo="Laps" LockByGPSTime="0">
-   <Controls Active="Report [1]">
+   <Controls Active="Report [3]">
+    <MoTeC.ChannelReport TimeFormat="8" SplitterPos="5000" ChartShowKey="1" ChartScaleMode="0" Version="100" Name="Report [3]" Caption="Channel Report - Track Sections (for Selected Laps)" PosPC="0,610,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="0" ModeId="0" ShowDataLegend="1" TelemetryZoom="0">
+     <LapReportGen Version="4" FilterRanges="1" InclusiveSamples="0" DataExtent="0" HeaderIndex="0">
+      <ReportRange HeaderGroup="Vehicles"/>
+      <ReportRange HeaderGroup="Events"/>
+      <ReportRange HeaderGroup="Sessions"/>
+      <ReportRange HeaderGroup="Outings"/>
+      <ReportRange HeaderGroup="Outings:Laps:Track Sections:Default"/>
+      <ReportRange HeaderGroup="Outings:Laps"/>
+      <SummaryGenerator Name="rptsummary.min" Enabled="1" Color="185,220,255"/>
+      <SummaryGenerator Name="rptsummary.max" Enabled="1" Color="255,170,170"/>
+      <ChannelEntry ID="Corr Speed">
+       <Formula Name="rngmaths.float.min"/>
+       <Formula Name="rngmaths.float.max"/>
+      </ChannelEntry>
+      <ChannelEntry ID="Engine RPM">
+       <Formula Name="rngmaths.float.avg"/>
+       <Formula Name="rngmaths.float.min"/>
+       <Formula Name="rngmaths.float.max"/>
+      </ChannelEntry>
+     </LapReportGen>
+    </MoTeC.ChannelReport>
     <MoTeC.ChannelReport TimeFormat="8" SplitterPos="5000" ChartShowKey="1" ChartScaleMode="0" Version="100" Name="Report [1]" Caption="Channel Report - Selected Laps" PosPC="0,0,1000,609" ShowCaption="0" AutoCaption="0" LinkZoom="0" ModeId="0" ShowDataLegend="1" TelemetryZoom="0">
      <LapReportGen Version="4" FilterRanges="0" InclusiveSamples="0" DataExtent="0" HeaderIndex="0">
       <ReportRange HeaderGroup="Events"/>
@@ -531,33 +577,12 @@
       </ChannelEntry>
      </LapReportGen>
     </MoTeC.ChannelReport>
-    <MoTeC.ChannelReport TimeFormat="8" SplitterPos="5000" ChartShowKey="1" ChartScaleMode="0" Version="100" Name="Report [3]" Caption="Channel Report - Track Sections (for Selected Laps)" PosPC="0,610,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="0" ModeId="0" ShowDataLegend="1" TelemetryZoom="0">
-     <LapReportGen Version="4" FilterRanges="1" InclusiveSamples="0" DataExtent="0" HeaderIndex="0">
-      <ReportRange HeaderGroup="Vehicles"/>
-      <ReportRange HeaderGroup="Events"/>
-      <ReportRange HeaderGroup="Sessions"/>
-      <ReportRange HeaderGroup="Outings"/>
-      <ReportRange HeaderGroup="Outings:Laps:Track Sections:Default"/>
-      <ReportRange HeaderGroup="Outings:Laps"/>
-      <SummaryGenerator Name="rptsummary.min" Enabled="1" Color="185,220,255"/>
-      <SummaryGenerator Name="rptsummary.max" Enabled="1" Color="255,170,170"/>
-      <ChannelEntry ID="Corr Speed">
-       <Formula Name="rngmaths.float.min"/>
-       <Formula Name="rngmaths.float.max"/>
-      </ChannelEntry>
-      <ChannelEntry ID="Engine RPM">
-       <Formula Name="rngmaths.float.avg"/>
-       <Formula Name="rngmaths.float.min"/>
-       <Formula Name="rngmaths.float.max"/>
-      </ChannelEntry>
-     </LapReportGen>
-    </MoTeC.ChannelReport>
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="Section Times" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Report [1]">
     <MoTeC.TimeReport TimeFormat="8" SplitterPos="5000" ChartShowKey="1" ChartScaleMode="0" Version="100" Name="Report [1]" Caption="Time Report - Track Sections (All Laps)" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" TelemetryZoom="0">
-     <SectTimesReportGen Version="4" FilterRanges="1" InclusiveSamples="0" DataExtent="1" HeaderIndex="0" RowGroupName="Outings:Laps:Track Sections:Default">
+     <SectTimesReportGen Version="4" FilterRanges="1" InclusiveSamples="0" DataExtent="0" HeaderIndex="0" RowGroupName="Outings:Laps">
       <ReportRange HeaderGroup="Events"/>
       <ReportRange HeaderGroup="Vehicles"/>
       <ReportRange HeaderGroup="Sessions"/>
@@ -577,6 +602,119 @@
   <Worksheet Version="200" Name="Worksheet" LinkTo="Laps" LockByGPSTime="0">
    <Controls Active="Picture">
     <MoTeC.Picture Version="100" Name="Picture" PosPC="0,0,1000,1000" ShowCaption="1" AutoCaption="0" ResourceId="Images\Comp photo.jpg" Style="2"/>
+   </Controls>
+  </Worksheet>
+  <Worksheet Version="200" Name="Sensors" LinkTo="Laps" LockByGPSTime="0">
+   <Controls Active="Time/Distance Graph">
+    <MoTeC.TimeDistance Version="100" Name="Time/Distance Graph" PosPC="0,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="1" BandGroup="Outings:Laps:Track Sections:Default" BandMode="1" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+     <Graphs ActivateChild="Group 4">
+      <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="0" BottomEdge="249"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Recieve CAN CAN 1 Brake Module Analogue ID Brake Output Average">
+        <Trace Id="Read Sensors APPS Sensors APPS Average Percentage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 1 Brake Module Analogue ID Brake Output Average" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 2" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="249" BottomEdge="499"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="UCM sensors Bell Crank Sensors RR BellCrank position">
+        <Trace Id="UCM sensors Bell Crank Sensors FL BellCrank position" DisplayUnit="deg" DisplayDPS="3" Visible="1"/>
+        <Trace Id="UCM sensors Bell Crank Sensors FR BellCrank position" DisplayUnit="deg" DisplayDPS="3" Visible="1"/>
+        <Trace Id="UCM sensors Bell Crank Sensors RL BellCrank position" DisplayUnit="deg" DisplayDPS="3" Visible="1"/>
+        <Trace Id="UCM sensors Bell Crank Sensors RR BellCrank position" DisplayUnit="deg" DisplayDPS="3" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 3" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="499" BottomEdge="750"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="UCM sensors Load cell RL Load Cell">
+        <Trace Id="UCM sensors Load cell FL Load Cell" DisplayUnit="N" DisplayDPS="3" Visible="1"/>
+        <Trace Id="UCM sensors Load cell RL Load Cell" DisplayUnit="N" DisplayDPS="3" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 4" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="750" BottomEdge="1000"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Recieve CAN CAN 3 Aero Board U24 Voltage">
+        <Trace Id="Recieve CAN CAN 3 Aero Board U9 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U10 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U11 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U12 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U13 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U14 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U15 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U16 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U17 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U18 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U19 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U20 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U21 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U22 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U23 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Recieve CAN CAN 3 Aero Board U24 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+       </Traces>
+      </Graph>
+     </Graphs>
+     <Cursor Version="1" Style="1" Snap="1"/>
+    </MoTeC.TimeDistance>
+   </Controls>
+  </Worksheet>
+  <Worksheet Version="200" Name="Worksheet (1)" LinkTo="Laps" LockByGPSTime="0">
+   <Controls Active="Mixture Map">
+    <MoTeC.MixtureMap Version="100" Name="Mixture Map" PosPC="199,732,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ActiveTrace="-1" TileMode="1" TileActiveChan="0" TileAutoCols="1" TileCols="1" XChannel="Engine RPM" ZChannel="Throttle Pos" XScaleMode="0" YScaleMode="1" YScaleMin="0.7" YScaleMax="1.2" ZScaleMode="1" ZScaleMin="0" ZScaleMax="100" ShowPoints="1" ShowDensity="0" DensityBins="50" DensityFillColorMode="1" DensityFillColor1="64,64,255" DensityFillColor2="64,64,255" IntervalStat="0" IntervalStat.BinWidth="100" ShowGridLines="1" ShowGradient="1" ShowColorBinSamples="1" Style="2" Size="1" ShowLines="0" ShowRegEquation="0" LinePointMode="1" CursorStyle="3" RegressionType="0" RegressionParam="0" RegressionZero="0" RegressionDigits="3" MMVersion="1" TrendInterval="100" TrendLineWidth="2" LambdaThreshold="0.5" GearChangeFilter="1" MinRPMRateThreshold="-2500" MaxRPMRateThreshold="2500" GearChangeDelay="500000" RPMFilterTime="250000" LambdaDelay="150000">
+     <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="0,0,0" AxisChanColor="0,0,0" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="1" GreaterMaxBand="0" LessMinBand="0" Continuous="0" BandMode="1" DataMin="0" DataMax="100" BandWidth="10" BandCount="11">
+      <ColorBand Flags="7" Min="-5" Max="5" Color="64,64,255" Visible="1"/>
+      <ColorBand Flags="7" Min="5" Max="15" Color="64,140,255" Visible="1"/>
+      <ColorBand Flags="7" Min="15" Max="25" Color="64,217,255" Visible="1"/>
+      <ColorBand Flags="7" Min="25" Max="35" Color="64,255,217" Visible="1"/>
+      <ColorBand Flags="7" Min="35" Max="45" Color="64,255,140" Visible="1"/>
+      <ColorBand Flags="7" Min="45" Max="55" Color="64,255,64" Visible="1"/>
+      <ColorBand Flags="7" Min="55" Max="65" Color="140,255,64" Visible="1"/>
+      <ColorBand Flags="7" Min="65" Max="75" Color="217,255,64" Visible="1"/>
+      <ColorBand Flags="7" Min="75" Max="85" Color="255,217,64" Visible="1"/>
+      <ColorBand Flags="7" Min="85" Max="95" Color="255,140,64" Visible="1"/>
+      <ColorBand Flags="15" Min="95" Max="105" Color="255,64,64" Visible="1"/>
+     </EvenWidthBandAxis>
+    </MoTeC.MixtureMap>
+    <MoTeC.Outing Version="100" Name="Outing Time/Distance Graph" EnableOverlays="0" PosPC="0,0,920,732" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="0" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="0" ShowXAxisScrollBar="0" ShowYAxis="0" ShowYAxisScrollBar="0" ShowMarkers="1" ShowVSP="0" ShowDeviveEvents="1" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+     <Graphs ActivateChild="Group 1">
+      <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="0" BottomEdge="1000"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Read Sensors APPS Sensors APPS Average Percentage">
+        <Trace Id="Read Sensors APPS Sensors APPS Average Percentage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+       </Traces>
+      </Graph>
+     </Graphs>
+     <Cursor Version="1" Style="1" Snap="1"/>
+    </MoTeC.Outing>
    </Controls>
   </Worksheet>
  </Worksheets>

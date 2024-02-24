@@ -41,6 +41,8 @@
 #define DASH_HEARTRATE 1.0
 #define TICK_DEF 5
 #define TICKER_TIME 5ms
+#define BUTTON_PUSH_TIME 5ms
+#define BUTTON_CHECK_INTERVAL 50ms
 
 /* -------------------------------------------------------------------------- */
 /*                                 CPP OBJECTS                                */
@@ -73,6 +75,83 @@ int                     heartbeat_counter = 0;
 /* -------------------------------------------------------------------------- */
 /*                                  CALLBACKS                                 */
 /* -------------------------------------------------------------------------- */
+
+//Button Updates
+
+class Button {
+public:
+    bool button_pressed;
+    /** 
+     * @brief Button Contructor
+     * 
+     * @param button_pin
+     */
+    Button(PinName button_pin) : button_IN(button_pin){
+        button_pressed = false;
+        button_counter = 0;
+    }
+
+    /** 
+     * @brief Update the status of the button
+     */
+    void update_value(){
+        if (button_IN) {
+            button_counter++;
+        }
+        else
+        {
+
+        button_counter = 0;
+        button_pressed = false;
+        }
+    if ((button_counter > (int)(BUTTON_PUSH_TIME/BUTTON_CHECK_INTERVAL))){
+        button_pressed = true;
+    }
+}
+
+    /**
+     * @brief Check wether the button is pressed
+     * 
+     * @return true if the button is pressed more than 1 second
+     * @return false otherwise
+     */
+    //  char isPressed() {button_pressed;}
+    
+        // char isPressed() {return ((state_AV)? 1 : button_pressed);} // THIS IS JUST FOR TESTING
+    char isPressed(){
+
+        if(state_AV_drive){
+            return true;
+        }
+        else{
+            return button_pressed;
+        }
+    }
+
+        // char isPressed() {return ((state_AV)? 1 : tue);} // THIS IS JUST FOR TESTING
+
+private:
+    
+    int button_counter;
+
+    DigitalIn button_IN;
+};
+
+//Buttons
+Button button1(PG_13);
+Button button2(PA_1);
+Button button3(PG_12);
+Button button4(PA_2);
+
+void checkButtons_cb()
+{
+    button1.update_value(); // change to update after
+    button2.update_value();
+    button3.update_value();
+    button4.update_value();
+}
+
+//CAN
 void heartbeat_cb()
 {
 	led1 = !led1;
@@ -80,6 +159,12 @@ void heartbeat_cb()
     char TX_data[2] = {(char)0, (char)heartbeat_counter};
     can2.write(CANMessage(CAN_DASH_BASE_ADDRESS, &TX_data[0], 2));
 }
+
+void digital_tx()
+{
+	//read and transmit state of button
+    char TX_data[4] = {button1.isPressed, (char)button2.isPressed, (char)button3.isPressed, (char)button4.isPressed};
+    can2.write(CANMessage(CAN_DASH_BASE_ADDRESS + TS_DIGITAL_1_ID, &TX_data[0], 4));
 
 void lv_ticker_func()
 {
@@ -160,6 +245,12 @@ void backend_init()
     can2.frequency(500000);
     can2.attach(&can2_recv_cb);
     ticker_heartbeat.attach(&heartbeat_cb,1s);
+    ticker_can_transmit.attach(&digital_tx,20);
+    //Button ticker
+    ticker_buttons.attach(&checkButtons_cb, BUTTON_CHECK_INTERVAL);
+
+    //Button Interrupts
+    button1.rise(&button_1_update);
 
     //printf("Hi!\r\n");
     ticker_lvgl.attach(&lv_ticker_func,TICKER_TIME);
