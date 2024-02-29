@@ -26,7 +26,7 @@
 //DigitalIn BSPD(PA_9); //BSPD_OK (no delay)
 //DigitalIn BSPD_Delay(PB_12); //BSPD_OK (10 second delay)
 
-DigitalOut debugLedOut(PC_13); //Debug LED
+DigitalOut debugLedOut(PA_7); //Debug LED
 
 //AnalogIn sensor1(PA_4); //sensor 1
 //AnalogIn sensor2(PA_5); //sensor 2
