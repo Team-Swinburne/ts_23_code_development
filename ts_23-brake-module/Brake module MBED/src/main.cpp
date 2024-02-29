@@ -28,7 +28,7 @@ DigitalIn CurrentSensor(PA_11); //current sensor 5KW
 DigitalIn BSPD(PB_14); //BSPD_OK (no delay)
 DigitalIn BSPD_Delay(PB_12); //BSPD_OK (10 second delay)
 
-DigitalOut debugLedOut(PC_13); //Debug LED
+DigitalOut debugLedOut(PB_7); //Debug LED
 
 AnalogIn sensor1(PA_4); //sensor 1
 AnalogIn sensor2(PA_5); //sensor 2
@@ -235,10 +235,10 @@ int main()
 
   //Configure tickers
   ticker_CAN_HeartBeat.attach(&CAN_brakeModule_TX_Heartbeat, CAN_HEARTBEAT_PERIOD);
-  ticker_CAN_Digital_1.attach(&CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
-  ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, 0.05);
-  ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, 0.05);
-  ticker_CAN_Analog_3.attach(&CAN_brakeModule_TX_Analog_3, 0.2);
+  //ticker_CAN_Digital_1.attach(&CAN_brakeModule_TX_Digital_1, CAN_DIGITAL_1_PERIOD);
+  //ticker_CAN_Analog_1.attach(&CAN_brakeModule_TX_Analog_1, 0.2);
+  //ticker_CAN_Analog_2.attach(&CAN_brakeModule_TX_Analog_2, 0.2);
+  //ticker_CAN_Analog_3.attach(&CAN_brakeModule_TX_Analog_3, 0.2);
 
   // Re-enable interrupts again, now that interrupts are ready.
 	__enable_irq();
