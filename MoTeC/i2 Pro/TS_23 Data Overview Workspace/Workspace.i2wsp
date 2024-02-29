@@ -1,24 +1,26 @@
 <?xml version="1.0"?>
-<Analysis Locale="English_Australia.1252" DefaultLocale="C" Version="103" ShowOverlays="0" ExcludeUntrusted="1" IncludeOverlays="0" GraphTimeFormat="4" RemoveOnChanDblClick="1" ProfileId="Circuit" SetupSheetPasswdReqd="0" LapTimeDisplayFormat="0" LapTimeDisplayUnit="mph" LapNameInOut="1" AutoLapNumber="0" LapTrustPC="0" Splitter.PC="7500">
+<Analysis Locale="English_Australia.1252" DefaultLocale="C" Version="103" ShowOverlays="0" ExcludeUntrusted="1" IncludeOverlays="0" GraphTimeFormat="4" RemoveOnChanDblClick="1" ProfileId="Circuit" VideoDefaultViews="" SetupSheetPasswdReqd="0" LapTimeDisplayFormat="0" LapTimeDisplayUnit="mph" LapNameInOut="1" AutoLapNumber="0" SplitterPos="1135">
  <Resources>
   <Resource Id="Images\Comp photo.jpg" ClassId="Picture"/>
  </Resources>
- <LatGTrackGen/>
+ <LatGTrackGen GPSLatitude="Speed Distance GPS Latitude" GPSLongitude="Speed Distance GPS Longitude"/>
  <DataSelect SelectFastestOnLoad="1" DefaultShowDisabled="0" MainColorSource="0">
-  <Explore HRef="C:\Users\lwjde\Documents\MoTeC\Logged Data"/>
+  <Explore HRef="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023 COMP DATA\ACCELERATION"/>
   <DataSources>
-   <LoggedDataSource Name="C:\Users\lwjde\Documents\MoTeC\Logged Data\S1_#11913_20240217_122727.ld"/>
+   <LoggedDataSource Name="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023 COMP DATA\ACCELERATION\S1_#11913_20231216_144240.ld"/>
+   <LoggedDataSource Name="C:\Users\Bradley\OneDrive - Swinburne University\TS_24\00 - ENGINEERING\04 - TESTING DATA\01 - 15 Feb 2024 Gloria Pyke Netball Centre\S1_#11913_20240215_155643.ld"/>
+   <LoggedDataSource Name="C:\Users\Bradley\OneDrive - Swinburne University\TS_24\00 - ENGINEERING\04 - TESTING DATA\01 - 15 Feb 2024 Gloria Pyke Netball Centre\S1_#11913_20240215_131837.ld"/>
   </DataSources>
   <View Name="Laps" Color="128,240,0" View="Laps">
-   <Main Range.Id="C:\Users\lwjde\Documents\MoTeC\Logged Data\S1_#11913_20240217_122727.ld::::No Lap"/>
+   <Main Range.Id="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023 COMP DATA\ACCELERATION\S1_#11913_20231216_144240.ld::::Lap 1"/>
   </View>
   <View Name="Outings" Color="240,128,0" View="Outings">
-   <Main Range.Id="C:\Users\lwjde\Documents\MoTeC\Logged Data\S1_#11913_20240217_122727.ld::::12:27:27 PM, TS_23_Aero_Testing "/>
+   <Main Range.Id="C:\Users\Bradley\OneDrive - Swinburne University\TS_24\00 - ENGINEERING\04 - TESTING DATA\01 - 15 Feb 2024 Gloria Pyke Netball Centre\S1_#11913_20240215_131837.ld::::1:18:37 PM, 15/02 "/>
   </View>
  </DataSelect>
  <ChannelsWindow/>
  <CAN/>
- <MoTeC.TrackPos Version="100" Name="TrackPosCtrl.inner" PosPC="0,0,300,300" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowDataLegend="1" TelemetryZoom="0" ShowSectColors="1" ShowSectLabels="0" ShowSectMarks="1" LinkCursor="1" UseLocalColors="0">
+ <MoTeC.TrackPos Version="100" Name="TrackPosCtrl.inner" PosPC="0,0,300,300" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowDataLegend="1" TelemetryZoom="0" ShowSectLabels="0" ShowSectMarks="1" LinkCursor="1" UseLocalColors="0">
   <ComponentColorScheme>
    <Entry Name="CptDataBackground">
     <RenderMode Mode="SCREEN" RGB="0,128,0"/>
@@ -42,7 +44,7 @@
   </TrackMapWindow>
  </MoTeC.TrackPos>
  <ValuesWindow SplitterPos="7739" ViewMode="1">
-  <MoTeC.TrackPos Version="100" Name="ValuesWindowTrack.1" PosPC="0,0,300,300" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowDataLegend="1" TelemetryZoom="0" ShowSectColors="1" ShowSectLabels="0" ShowSectMarks="0" LinkCursor="1" UseLocalColors="0">
+  <MoTeC.TrackPos Version="100" Name="ValuesWindowTrack.1" PosPC="0,0,300,300" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowDataLegend="1" TelemetryZoom="0" ShowSectLabels="0" ShowSectMarks="0" LinkCursor="1" UseLocalColors="0">
    <ComponentColorScheme>
     <Entry Name="CptDataBackground">
      <RenderMode Mode="SCREEN" RGB="0,128,0"/>
@@ -73,25 +75,24 @@
   <Key Name="F8" Customised="0" Prompted="0"/>
  </QuickSelectKeys>
  <Workbooks Version="100" Name="My Workbooks" Active="Samples">
-  <Workbook XRef="Workbooks\Samples.i2wkb" Name="Samples"/>
-  <Workbook XRef="Workbooks\Driver.i2wkb" Name="Driver"/>
-  <Workbook XRef="Workbooks\Engine.i2wkb" Name="Engine"/>
-  <Workbook XRef="Workbooks\Transmission.i2wkb" Name="Transmission"/>
-  <Workbook XRef="Workbooks\Brakes.i2wkb" Name="Brakes"/>
-  <Workbook XRef="Workbooks\Suspension.i2wkb" Name="Suspension"/>
-  <Workbook XRef="Workbooks\Tyres.i2wkb" Name="Tyres"/>
+  <Workbook Name="Samples" XRef="Workbooks\Samples.i2wkb"/>
+  <Workbook Name="Driver" XRef="Workbooks\Driver.i2wkb"/>
+  <Workbook Name="Engine" XRef="Workbooks\Engine.i2wkb"/>
+  <Workbook Name="Transmission" XRef="Workbooks\Transmission.i2wkb"/>
+  <Workbook Name="Brakes" XRef="Workbooks\Brakes.i2wkb"/>
+  <Workbook Name="Suspension" XRef="Workbooks\Suspension.i2wkb"/>
+  <Workbook Name="Tyres" XRef="Workbooks\Tyres.i2wkb"/>
  </Workbooks>
  <DockWindows>
   <DockWindow Id="Alarms" Visible="0" IsDocked="1" IsPinned="1" DockOffset="0.25" DockSide="0" DockIndex="0" Height="160" Width="220"/>
   <DockWindow Id="Data" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="0" Height="110" Width="220"/>
-  <DockWindow Id="Channels" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="1" Height="110" Width="220"/>
+  <DockWindow Id="Channels" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="1" Height="110" Width="331"/>
   <DockWindow Id="Reports" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="2" Height="110" Width="220"/>
   <DockWindow Id="Layouts" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="3" Height="110" Width="220"/>
-  <DockWindow Id="Maths" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="4" Height="110" Width="220"/>
   <DockWindow Id="Track" Visible="0" IsDocked="0" Position="460,323,701,491"/>
  </DockWindows>
  <TelemetrySettings/>
- <DataExport Path="" File="" Selection="0" Rate="0" Flags="0"/>
+ <DataExport Path="C:\Users\Bradley\OneDrive - Swinburne University\TS_23\ENGINEERING\TS_23 Testing\2023-12-11 Broadford race track" Selection="2" Rate="0" Flags="1"/>
  <VideoGenerate VideoView="" Selection="0">
   <OptionItems/>
  </VideoGenerate>

@@ -42,7 +42,7 @@
 // load the splash screen
 void load_splash()
 {
-    LV_IMG_DECLARE(fuckyou);
+    LV_IMG_DECLARE(ts20splash);
 
     // create and style the screen
     lv_obj_t * scr = lv_obj_create(NULL);
@@ -53,7 +53,7 @@ void load_splash()
     lv_disp_set_bg_color(lv_disp_get_default(),lv_color_black());
 
     lv_obj_t * wp = lv_img_create(scr);
-    lv_img_set_src(wp, &fuckyou);
+    lv_img_set_src(wp, &ts20splash);
     lv_obj_set_pos(wp, 0, 0);
     lv_obj_align(wp, LV_ALIGN_CENTER, 0, 0);
 

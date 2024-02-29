@@ -7,7 +7,7 @@
 #define	CAN_HEARTBEAT_PERIOD 1 // Heartbeat message transmit period
 #define CAN_ERROR_PERIOD 0.5 // Error message transmit period
 #define CAN_DIGITAL_1_PERIOD 1 // Digital 1 message transmit period
-#define CAN_ANALOG_1_PERIOD 0.02 //Analog 1 message transmit period
+#define CAN_ANALOG_1_PERIOD 0.05 //Analog 1 message transmit period
 
 typedef struct brake_calibration_s{
   float brake1_min = 0.6f;
