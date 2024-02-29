@@ -1,5 +1,5 @@
 {
-    "requires": ["bare-metal"],
+    "requires": ["bare-metal", "rtos-api", "sd","filesystem","fat_chan"],
     "target_overrides": {
         "*": {
             "platform.stdio-baud-rate": 9600,

@@ -24,6 +24,8 @@
 #include "backend.hpp"
 #include "lvgl.h"
 #include "bsp_drivers/stm32469i_discovery_lcd.h"
+#include "bsp_drivers/stm32469i_discovery_sd.h"
+
 #include "lv_conf.h"
 #include "tft/tft.h"
 #include "mbed.h"
@@ -177,7 +179,12 @@ VehicleState		can_get_vehicle_state() {return vehicle_state;}
 MotorInfo			can_get_motor_info() {return motor_info;}
 AccumulatorInfo		can_get_accum_info() {return accum_info;}
 MiscInfo			can_get_misc_info() {return misc_info;}
+<<<<<<< Updated upstream
 OdometerInfo		can_get_odomtere_info() {return odometer_info;}
+=======
+
+DigitalOut 				ledTest(LED4);
+>>>>>>> Stashed changes
 void backend_init()
 {
     // thread_sleep_for(5000);
@@ -208,7 +215,21 @@ void backend_init()
 
     tft_init();
     //touchpad_init();
-   
+
+
+    BSP_SD_Init();
+
+    thread_sleep_for(1000);
+
+    // write to the SD card
+    BSP_SD_WriteBlocks((uint32_t*)0x08, 0, 1, 1000);
+
+    // read from the SD card
+    uint32_t buffer[5];
+    BSP_SD_ReadBlocks(buffer, 0, 1, 1000);
+
+    misc_info.live_speed = (uint8_t)buffer[0];
+
 }
 
 
@@ -218,6 +239,7 @@ void backend_loop()
     while(1) {
         lv_task_handler();
         wait_us(TICK_DEF*1000);
+        ledTest = BSP_SD_IsDetected();
     }   
 
 }
