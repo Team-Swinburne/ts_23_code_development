@@ -5,14 +5,14 @@
  <ChannelItemsWindow/>
  <DockWindows>
   <DockWindow Id="Help" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="33" DockIndex="0" Height="110" Width="220"/>
-  <DockWindow Id="Messages" Visible="0" IsDocked="1" IsPinned="0" DockOffset="0" DockSide="0" DockIndex="0" Height="1240" Width="110"/>
+  <DockWindow Id="Messages" Visible="0" IsDocked="1" IsPinned="1" DockOffset="0.25" DockSide="0" DockIndex="0" Height="1240" Width="110"/>
   <DockWindow Id="Alarms" Visible="0" IsDocked="0" Position="424,202,856,518"/>
   <DockWindow Id="DevMessages" Visible="0" IsDocked="1" IsPinned="1" DockOffset="0.5" DockSide="0" DockIndex="0" Height="160" Width="220"/>
   <DockWindow Id="QuickLaunch" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="0" Height="150" Width="320"/>
   <DockWindow Id="Layouts" Visible="1" IsDocked="1" IsPinned="1" DockOffset="0" DockSide="35" DockIndex="1" Height="110" Width="220"/>
   <DockWindow Id="PkgHelp" Visible="0" IsDocked="0" Position="200,200,840,680"/>
   <DockWindow Id="Channels" Visible="0" IsDocked="1" IsPinned="1" DockOffset="0.5" DockSide="3" DockIndex="0" Height="160" Width="220"/>
-  <DockWindow Id="Support" Visible="0" IsDocked="0" Position="340,180,940,580"/>
+  <DockWindow Id="Support" Visible="0" IsDocked="0" Position="340,160,940,560"/>
  </DockWindows>
  <Workbooks Version="100" Name="My Workbooks" Active="Workbook">
   <Workbook Name="Workbook" XRef="Workbooks\Workbook.mtcwkb"/>
@@ -31,7 +31,7 @@
   <Graph Lighting="1" ShowChannelLegend="1" ShowAxis="1"/>
  </TableSettings>
  <Packages>
-  <Package Path="C:\Users\lwjde\Documents\MoTeC\M1\Packages\F0D24AB3-4405-4876-B095-90AD4CFFE0EC.m1pkg"/>
+  <Package Path="C:\Users\mitch\Documents\MoTeC\M1\Packages\AD1A6E74-5A10-406E-8DCF-2A39D4BA1D88.m1pkg"/>
  </Packages>
  <MyDevices>
   <MyDevice SerialNum="11913"/>
@@ -46,7 +46,4 @@
   <LogSystem Index="6" Retrieve="0" Erase="0"/>
   <LogSystem Index="7" Retrieve="0" Erase="0"/>
  </LogRetrieveSettings>
- <LogImages>
-  <LogImage Path="C:\Users\lwjde\Documents\MoTeC\M1\Tune\LogImage\S1_#11913_20240217_123021.m1dli"/>
- </LogImages>
 </Tune>
