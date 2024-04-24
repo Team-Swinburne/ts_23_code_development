@@ -30,9 +30,7 @@
   <TableOpSite Enabled="1" Style="1" Float="1" Opacity="75"/>
   <Graph Lighting="1" ShowChannelLegend="1" ShowAxis="1"/>
  </TableSettings>
- <Packages>
-  <Package Path="C:\Users\lwjde\Documents\MoTeC\M1\Packages\92DF91F3-E83A-4C32-B871-74954E6CD600.m1pkg"/>
- </Packages>
+ <Packages/>
  <MyDevices>
   <MyDevice SerialNum="11913"/>
  </MyDevices>

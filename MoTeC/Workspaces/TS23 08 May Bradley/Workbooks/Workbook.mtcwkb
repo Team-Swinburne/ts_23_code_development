@@ -528,7 +528,34 @@
    </Controls>
   </Worksheet>
   <Worksheet Version="200" Name="CAN 2" LinkTo="Default" LockByGPSTime="0">
-   <Controls Active="Channels (2)">
+   <Controls Active="Channels (1)">
+    <MoTeC.ChannelList Version="100" Name="Channels (1)" Caption="Inverter 1 Receive" PosPC="0,0,452,629" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.System Ready"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Error"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Derating"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.IGBT Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 1.CAN Torque Positive"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 1.CAN Torque Negative"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="0" Col.Index="1" Col.Width="68"/>
+      <Header Index="1" Col.Index="2" Col.Width="28"/>
+     </Headers>
+    </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels (2)" Caption="Inverter 1 Setpoints" PosPC="0,629,452,895" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -570,33 +597,6 @@
      <Headers>
       <Header Index="0" Col.Index="1" Col.Width="59"/>
       <Header Index="1" Col.Index="2" Col.Width="33"/>
-     </Headers>
-    </MoTeC.ChannelList>
-    <MoTeC.ChannelList Version="100" Name="Channels (1)" Caption="Inverter 1 Receive" PosPC="0,0,452,629" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.System Ready"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Error"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Warn"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Quit DC On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.DC On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Quit Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Derating"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Actual Velocity"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Torque Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Magnetizing Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.IGBT Temp"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Error Info"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Inverter Temp"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Motor Temp"/>
-       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 1.CAN Torque Positive"/>
-       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 1.CAN Torque Negative"/>
-      </DataRefs>
-     </Data>
-     <Headers>
-      <Header Index="0" Col.Index="1" Col.Width="68"/>
-      <Header Index="1" Col.Index="2" Col.Width="28"/>
      </Headers>
     </MoTeC.ChannelList>
     <MoTeC.ChannelList Version="100" Name="Channels" Caption="Inverter 3 Setpoints" PosPC="452,629,902,897" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
@@ -822,13 +822,168 @@
     <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="255,0,576,1000" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="438" DataPanelWidthRatio="1" ShowChannels="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
+       <DataRef Name="UCM sensors.Rad temperatures.LHS rad inlet temp.Value"/>
+       <DataRef Name="UCM sensors.Rad temperatures.LHS rad inlet temp"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set Torque Negative"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set Torque Positive"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set Target Velocity"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set Remove Error"/>
+       <DataRef Name="Global.Constants.MAX REGEN TORQUE LIMIT"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set DC On"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Low Ref Voltage"/>
+       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.High Ref Voltage"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.AMK Motor Command Message 1 TX Status"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set Torque Negative"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set Torque Positive"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set Target Velocity"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set Remove Error"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set DC On"/>
+       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.AMK Motor Command Message 4 TX Status"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set Torque Negative"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set Torque Positive"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set Target Velocity"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set Remove Error"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set DC On"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.AMK Motor Command Message 3 TX Status"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set Torque Negative"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set Torque Positive"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set Target Velocity"/>
+       <DataRef Name="UCM sensors.Aero Board.U21"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set Remove Error"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set DC On"/>
+       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.AMK Motor Command Message 1 TX Status"/>
+       <DataRef Name="Recieve CAN.CAN 3.Confirm Torque Inverter 2.CAN Torque Negative"/>
+       <DataRef Name="Recieve CAN.CAN 3.Confirm Torque Inverter 2.CAN Torque Positive"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 4.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 4.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 4.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Derating"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Error"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.System Ready"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 2.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 2.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 2.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 2.IGBT Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Derating"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Error"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.System Ready"/>
+       <DataRef Name="UCM sensors.Aero Board.U24.Value"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 3.CAN Torque Negative"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 3.CAN Torque Positive"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 1.CAN Torque Negative"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 1.CAN Torque Positive"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 3.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 3.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 3.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 3.IGBT Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.System Ready"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Error"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Derating"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.IGBT Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.System Ready"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Error"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Derating"/>
+       <DataRef Name="UCM sensors.Aero Board.U24"/>
+       <DataRef Name="UCM sensors.Aero Board.U21.Value"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen 1 Percentage"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen 2 Percentage"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen Average Percentage"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen 1 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen 1 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen 2 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen 2 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen 1 Voltage"/>
+       <DataRef Name="Read Sensors.Regen Braking.Regen 2 Voltage"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 4.IGBT Temp"/>
+       <DataRef Name="UCM sensors.Aero Board.U20.Value"/>
+       <DataRef Name="UCM sensors.Aero Board.U20"/>
+       <DataRef Name="UCM sensors.Aero Board.U17.Value"/>
+       <DataRef Name="UCM sensors.Aero Board.U17"/>
+       <DataRef Name="UCM sensors.Aero Board.U16.Value"/>
+       <DataRef Name="UCM sensors.Aero Board.U16"/>
+       <DataRef Name="UCM sensors.Aero Board.U13.Value"/>
+       <DataRef Name="UCM sensors.Aero Board.U13"/>
+       <DataRef Name="UCM sensors.Aero Board.U12.Value"/>
+       <DataRef Name="UCM sensors.Aero Board.U12"/>
+       <DataRef Name="UCM sensors.Aero Board.U9.Value"/>
+       <DataRef Name="UCM sensors.Aero Board.U9"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL BellCrank position.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL BellCrank position"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL Bellcrank Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL Bellcrank offset"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL Height.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL Height"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR BellCrank position.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR BellCrank position"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR Bellcrank Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR Bellcrank offset"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR Height.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR Height"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL Bellcrank offset"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL BellCrank position.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL BellCrank position"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL Bellcrank Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL Height.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL Height"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR BellCrank position.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR BellCrank position"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR Bellcrank Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR Bellcrank offset"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR Height.Value"/>
+       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR Height"/>
+       <DataRef Name="UCM sensors.Rad temperatures.Rear rad outlet temp.Value"/>
+       <DataRef Name="UCM sensors.Rad temperatures.Rear rad outlet temp"/>
+       <DataRef Name="UCM sensors.Rad temperatures.Rear rad inlet temp.Value"/>
+       <DataRef Name="UCM sensors.Rad temperatures.Rear rad inlet temp"/>
+       <DataRef Name="UCM sensors.Rad temperatures.RHS rad outlet temp.Value"/>
+       <DataRef Name="UCM sensors.Rad temperatures.RHS rad outlet temp"/>
+       <DataRef Name="UCM sensors.Rad temperatures.RHS rad inlet temp.Value"/>
+       <DataRef Name="UCM sensors.Rad temperatures.RHS rad inlet temp"/>
+       <DataRef Name="UCM sensors.Rad temperatures.LHS rad outlet temp.Value"/>
+       <DataRef Name="UCM sensors.Rad temperatures.LHS rad outlet temp"/>
        <DataRef Name="Global.Constants.DEADZONE"/>
        <DataRef Name="Global.Constants.MAX TORQUE LIMIT"/>
        <DataRef Name="Global.Constants.SPEED SETPOINT"/>
        <DataRef Name="Global.Constants.FRONT BIAS"/>
        <DataRef Name="Global.Constants.KX"/>
        <DataRef Name="Global.Constants.KY"/>
-       <DataRef Name="Global.Constants.MAX REGEN TORQUE LIMIT"/>
+       <DataRef Name="Global.Constants.REGEN TORQUE LIMIT"/>
+       <DataRef Name="Global.Constants.REGEN ACTIVE"/>
        <DataRef Name="Global.Drive Mode"/>
        <DataRef Name="Global.TV On"/>
        <DataRef Name="Global.Motor Torque"/>
@@ -920,15 +1075,6 @@
        <DataRef Name="Read Sensors.LV System Voltage.LV System Voltage.Absolute Filtered"/>
        <DataRef Name="Read Sensors.LV System Voltage.LV System Voltage.Absolute"/>
        <DataRef Name="Read Sensors.LV System Voltage.LV System Voltage.Filter.Value"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen 1 Percentage"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen 2 Percentage"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen Average Percentage"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen 1 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen 1 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen 2 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen 2 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen 1 Voltage"/>
-       <DataRef Name="Read Sensors.Regen Braking.Regen 2 Voltage"/>
        <DataRef Name="Read Sensors.BPPS Sensors.Read BPPS 1 Output.Resource.Value"/>
        <DataRef Name="Read Sensors.BPPS Sensors.Read BPPS 1 Output.Normalised Filtered"/>
        <DataRef Name="Read Sensors.BPPS Sensors.Read BPPS 1 Output.Absolute"/>
@@ -983,8 +1129,6 @@
        <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake Output Average"/>
        <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 1 Voltage"/>
        <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 2 Voltage"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Low Ref Voltage"/>
-       <DataRef Name="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.High Ref Voltage"/>
        <DataRef Name="Recieve CAN.CAN 1.Three Force Sensor.GForce ID.X G Force"/>
        <DataRef Name="Recieve CAN.CAN 1.Three Force Sensor.GForce ID.Y G Force"/>
        <DataRef Name="Recieve CAN.CAN 1.Three Force Sensor.GForce ID.Z G Force"/>
@@ -1047,76 +1191,10 @@
        <DataRef Name="Recieve CAN.CAN 1.Orion BMS.Orion Pack Information.Pack Amp Hours"/>
        <DataRef Name="Recieve CAN.CAN 1.Orion BMS.Orion Pack Information.Pack State of Charge"/>
        <DataRef Name="Recieve CAN.CAN 1.Orion BMS.Orion Pack Information.Pack Resistance"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.System Ready"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Error"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Warn"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Quit DC On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.DC On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Quit Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Derating"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Actual Velocity"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Torque Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 1.Magnetizing Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.IGBT Temp"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Error Info"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Inverter Temp"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 1.Motor Temp"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.System Ready"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Error"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Warn"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Quit DC On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.DC On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Quit Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Derating"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Actual Velocity"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Torque Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter 3.Magnetizing Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 3.IGBT Temp"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 3.Error Info"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 3.Inverter Temp"/>
-       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter 3.Motor Temp"/>
        <DataRef Name="Recieve CAN.CAN 2.Ticks"/>
        <DataRef Name="Recieve CAN.CAN 2.Diagnostic"/>
-       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 1.CAN Torque Positive"/>
-       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 1.CAN Torque Negative"/>
-       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 3.CAN Torque Positive"/>
-       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter 3.CAN Torque Negative"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.System Ready"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Error"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Warn"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Quit DC On"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.DC On"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Quit Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Derating"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Actual Velocity"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Torque Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 2.Magnetizing Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 2.IGBT Temp"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 2.Error Info"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 2.Inverter Temp"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 2.Motor Temp"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.System Ready"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Error"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Warn"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Quit DC On"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.DC On"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Quit Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Inverter On"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Derating"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Actual Velocity"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Torque Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter 4.Magnetizing Current Raw"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 4.IGBT Temp"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 4.Error Info"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 4.Inverter Temp"/>
-       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter 4.Motor Temp"/>
        <DataRef Name="Recieve CAN.CAN 3.Ticks"/>
        <DataRef Name="Recieve CAN.CAN 3.Diagnostic"/>
-       <DataRef Name="Recieve CAN.CAN 3.Confirm Torque Inverter 2.CAN Torque Positive"/>
-       <DataRef Name="Recieve CAN.CAN 3.Confirm Torque Inverter 2.CAN Torque Negative"/>
        <DataRef Name="Recieve CAN.CAN 3.Aero Board.U9 Voltage"/>
        <DataRef Name="Recieve CAN.CAN 3.Aero Board.U10 Voltage"/>
        <DataRef Name="Recieve CAN.CAN 3.Aero Board.U11 Voltage"/>
@@ -1193,33 +1271,9 @@
        <DataRef Name="Transmit CAN.CAN 2.Heartbeat ID.Heartbeat State"/>
        <DataRef Name="Transmit CAN.CAN 2.Heartbeat ID.Heartbeat Counter"/>
        <DataRef Name="Transmit CAN.CAN 2.Heartbeat ID.Heartbeat TX Status"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.AMK Motor Command Message 1 TX Status"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set DC On"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set Remove Error"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set Target Velocity"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set Torque Positive"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 1.Set Torque Negative"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.AMK Motor Command Message 3 TX Status"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set DC On"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set Remove Error"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set Target Velocity"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set Torque Positive"/>
-       <DataRef Name="Transmit CAN.CAN 2.AMK Motor Command 3.Set Torque Negative"/>
        <DataRef Name="Transmit CAN.CAN 3.Heartbeat ID.Heartbeat State"/>
        <DataRef Name="Transmit CAN.CAN 3.Heartbeat ID.Heartbeat Counter"/>
        <DataRef Name="Transmit CAN.CAN 3.Heartbeat ID.Heartbeat TX Status"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.AMK Motor Command Message 4 TX Status"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set DC On"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set Remove Error"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set Target Velocity"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set Torque Positive"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 4.Set Torque Negative"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.AMK Motor Command Message 1 TX Status"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set DC On"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set Remove Error"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set Target Velocity"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set Torque Positive"/>
-       <DataRef Name="Transmit CAN.CAN 3.AMK Motor Command 2.Set Torque Negative"/>
        <DataRef Name="Cooling.Pumps.RH Loop Pump PWM"/>
        <DataRef Name="Cooling.Pumps.LH Loop Pump PWM"/>
        <DataRef Name="Cooling.Pumps.coolingTest"/>
@@ -1267,58 +1321,6 @@
        <DataRef Name="Power Limiting.Output Power Limiting.Rear Motors.Power Limited Motor Torque 2 RR"/>
        <DataRef Name="Power Limiting.Output Power Limiting.Rear Motors.Power Limited Motor Torque 3 RL"/>
        <DataRef Name="Power Limiting.Output Power Limiting.Car Total Output Power Limit"/>
-       <DataRef Name="UCM sensors.Rad temperatures.LHS rad inlet temp"/>
-       <DataRef Name="UCM sensors.Rad temperatures.LHS rad inlet temp.Value"/>
-       <DataRef Name="UCM sensors.Rad temperatures.LHS rad outlet temp"/>
-       <DataRef Name="UCM sensors.Rad temperatures.LHS rad outlet temp.Value"/>
-       <DataRef Name="UCM sensors.Rad temperatures.RHS rad inlet temp"/>
-       <DataRef Name="UCM sensors.Rad temperatures.RHS rad inlet temp.Value"/>
-       <DataRef Name="UCM sensors.Rad temperatures.RHS rad outlet temp"/>
-       <DataRef Name="UCM sensors.Rad temperatures.RHS rad outlet temp.Value"/>
-       <DataRef Name="UCM sensors.Rad temperatures.Rear rad inlet temp"/>
-       <DataRef Name="UCM sensors.Rad temperatures.Rear rad inlet temp.Value"/>
-       <DataRef Name="UCM sensors.Rad temperatures.Rear rad outlet temp"/>
-       <DataRef Name="UCM sensors.Rad temperatures.Rear rad outlet temp.Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR Height"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR Height.Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR Bellcrank offset"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR Bellcrank Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR BellCrank position"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FR.FR BellCrank position.Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL Height"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL Height.Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL Bellcrank Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL BellCrank position"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL BellCrank position.Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.FL.FL Bellcrank offset"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR Height"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR Height.Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR Bellcrank offset"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR Bellcrank Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR BellCrank position"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RR.RR BellCrank position.Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL Height"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL Height.Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL Bellcrank offset"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL Bellcrank Value"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL BellCrank position"/>
-       <DataRef Name="UCM sensors.Bell Crank Sensors.RL.RL BellCrank position.Value"/>
-       <DataRef Name="UCM sensors.Aero Board.U9"/>
-       <DataRef Name="UCM sensors.Aero Board.U9.Value"/>
-       <DataRef Name="UCM sensors.Aero Board.U12"/>
-       <DataRef Name="UCM sensors.Aero Board.U12.Value"/>
-       <DataRef Name="UCM sensors.Aero Board.U13"/>
-       <DataRef Name="UCM sensors.Aero Board.U13.Value"/>
-       <DataRef Name="UCM sensors.Aero Board.U16"/>
-       <DataRef Name="UCM sensors.Aero Board.U16.Value"/>
-       <DataRef Name="UCM sensors.Aero Board.U17"/>
-       <DataRef Name="UCM sensors.Aero Board.U17.Value"/>
-       <DataRef Name="UCM sensors.Aero Board.U20"/>
-       <DataRef Name="UCM sensors.Aero Board.U20.Value"/>
-       <DataRef Name="UCM sensors.Aero Board.U21"/>
-       <DataRef Name="UCM sensors.Aero Board.U21.Value"/>
-       <DataRef Name="UCM sensors.Aero Board.U24"/>
-       <DataRef Name="UCM sensors.Aero Board.U24.Value"/>
       </DataRefs>
      </Data>
      <View>
@@ -1361,14 +1363,14 @@
        <Traces ActiveTrace="Read Sensors.Steering Sensor.Steering Sensor Voltage">
         <Trace Id="Read Sensors.APPS Sensors.Apps 1 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
         <Trace Id="Read Sensors.APPS Sensors.Apps 2 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
         <Trace Id="Read Sensors.BPPS Sensors.Bpps 1 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
         <Trace Id="Read Sensors.BPPS Sensors.Bpps 2 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
         <Trace Id="Read Sensors.APPS Sensors.APPS Average Percentage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
         <Trace Id="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake 2 Voltage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
         <Trace Id="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake 1 Voltage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
        </Traces>
       </Graph>
       <Graph Name="Group 2" ScaleMode="2" ScaleMin="0" ScaleMax="1">
@@ -2095,6 +2097,171 @@
       </DataRefs>
      </Data>
      <Headers/>
+    </MoTeC.ChannelList>
+   </Controls>
+  </Worksheet>
+  <Worksheet Version="200" Name="Worksheet (2)" LinkTo="Default" LockByGPSTime="0">
+   <Controls Active="Time Graph">
+    <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="0,0,642,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+     <Graphs ActivateChild="Group 6">
+      <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="0" BottomEdge="165"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Global.Regeneration Torque">
+        <Trace Id="Global.Regeneration Torque" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 2" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="165" BottomEdge="331"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Recieve CAN.CAN 1.Orion BMS.Orion Pack Voltage Current.Pack Instantaneous Voltage">
+        <Trace Id="Recieve CAN.CAN 1.Orion BMS.Orion Pack Voltage Current.Pack Instantaneous Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 3" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="331" BottomEdge="500"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Recieve CAN.CAN 1.Orion BMS.Orion Pack Voltage Current.Pack Output Power">
+        <Trace Id="Recieve CAN.CAN 1.Orion BMS.Orion Pack Voltage Current.Pack Output Power" DisplayUnit="kW" DisplayDPS="1" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 4" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="500" BottomEdge="666"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Transmit CAN.CAN 3.AMK Motor Command RR.Set Target Velocity">
+        <Trace Id="Transmit CAN.CAN 2.AMK Motor Command FL.Set Target Velocity" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Transmit CAN.CAN 2.AMK Motor Command RL.Set Target Velocity" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Transmit CAN.CAN 3.AMK Motor Command FR.Set Target Velocity" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Transmit CAN.CAN 3.AMK Motor Command RR.Set Target Velocity" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 5" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="666" BottomEdge="833"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Global.TV Motor Torques.TV Motor Torque 4">
+        <Trace Id="Global.TV Motor Torques.TV Motor Torque 1" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+        <Trace Id="Global.TV Motor Torques.TV Motor Torque 2" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+        <Trace Id="Global.TV Motor Torques.TV Motor Torque 3" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+        <Trace Id="Global.TV Motor Torques.TV Motor Torque 4" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 6" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="833" BottomEdge="1000"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Transmit CAN.CAN 3.AMK Motor Command RR.Set Torque Negative">
+        <Trace Id="Transmit CAN.CAN 2.AMK Motor Command FL.Set Torque Negative" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Transmit CAN.CAN 2.AMK Motor Command RL.Set Torque Negative" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Transmit CAN.CAN 3.AMK Motor Command FR.Set Torque Negative" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Transmit CAN.CAN 3.AMK Motor Command RR.Set Torque Negative" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+       </Traces>
+      </Graph>
+     </Graphs>
+     <Cursor Version="1" Style="1" Snap="1"/>
+    </MoTeC.TimeDistance>
+    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="530,0,991,895" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.System Ready"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Error"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Derating"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter FL.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter FL.IGBT Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter FL.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter FL.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter FL.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.System Ready"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Error"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Derating"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 1 Inverter RL.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter RL.IGBT Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter RL.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter RL.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Actual Values 2 Inverter RL.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter FL.CAN Torque Positive"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter FL.CAN Torque Negative"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter RL.CAN Torque Positive"/>
+       <DataRef Name="Recieve CAN.CAN 2.Confirm Torque Inverter RL.CAN Torque Negative"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.System Ready"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Error"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Derating"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter RR.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter RR.IGBT Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter RR.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter RR.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter RR.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.System Ready"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Error"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Warn"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Quit DC On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.DC On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Quit Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Inverter On"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Derating"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Actual Velocity"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Torque Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 1 Inverter FR.Magnetizing Current Raw"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter FR.IGBT Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter FR.Error Info"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter FR.Inverter Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Actual Values 2 Inverter FR.Motor Temp"/>
+       <DataRef Name="Recieve CAN.CAN 3.Confirm Torque Inverter RR.CAN Torque Positive"/>
+       <DataRef Name="Recieve CAN.CAN 3.Confirm Torque Inverter RR.CAN Torque Negative"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="0" Col.Index="1" Col.Width="70"/>
+     </Headers>
     </MoTeC.ChannelList>
    </Controls>
   </Worksheet>
