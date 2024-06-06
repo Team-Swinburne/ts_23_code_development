@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Overrides Locale="English_Australia.1252" DefaultLocale="C">
+ <Override Id="Recieve CAN.CAN 3.Aero Board.U10 Voltage" DisplayColorIndex="5"/>
+ <Override Id="Recieve CAN.CAN 3.Aero Board.U13 Voltage" DisplayColorIndex="4"/>
+ <Override Id="Recieve CAN.CAN 3.Aero Board.U17 Voltage" DisplayColorIndex="6"/>
+ <Override Id="Recieve CAN.CAN 3.Aero Board.U23 Voltage" DisplayColorIndex="1"/>
+ <Override Id="Recieve CAN.CAN 3.Aero Board.U24 Voltage" DisplayColorIndex="0"/>
+</Overrides>

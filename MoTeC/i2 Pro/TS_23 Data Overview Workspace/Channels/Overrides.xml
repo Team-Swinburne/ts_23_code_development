@@ -15,6 +15,7 @@
  <Override Id="Manifold Pres" DisplayMax="249999.984375000000000" DisplayMin="0.000000000000000" AutoScale="0"/>
  <Override Id="Motor Output Torque" AutoScale="0" DisplayMin="-5.000000000000000" DisplayMax="15.000000000000000"/>
  <Override Id="Oversteer" DisplayMax="0.104720000000000" DisplayMin="-0.104720000000000" AutoScale="0"/>
+ <Override Id="Recieve CAN CAN 1 Brake Module Digital ID BSPD OK" DisplayColorIndex="3"/>
  <Override Id="Steered Angle" DisplayMax="0.174533000000000" DisplayMin="-0.174533000000000" AutoScale="0"/>
  <Override Id="Throttle Pos" DisplayMax="1.000000000000000" DisplayMin="0.000000000000000" AutoScale="0"/>
  <Override Id="Tyre Temp FL Centre" DisplayColorIndex="3"/>

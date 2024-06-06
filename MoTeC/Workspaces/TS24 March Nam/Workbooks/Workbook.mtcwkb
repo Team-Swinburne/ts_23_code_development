@@ -328,10 +328,10 @@
   </Worksheet>
   <Worksheet Version="200" Name="Graphing" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Time Graph">
-    <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="0,1,1000,1001" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
-     <Graphs ActivateChild="Group 2">
+    <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="0,1,1000,1001" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="1" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+     <Graphs ActivateChild="Group 3">
       <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="0" BottomEdge="332"/>
+       <Edges Mode="0" TopEdge="0" BottomEdge="165"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
@@ -348,7 +348,7 @@
        </Traces>
       </Graph>
       <Graph Name="Group 2" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="332" BottomEdge="666"/>
+       <Edges Mode="0" TopEdge="165" BottomEdge="332"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
@@ -365,7 +365,7 @@
        </Traces>
       </Graph>
       <Graph Name="Group 4" ScaleMode="2" ScaleMin="0" ScaleMax="1">
-       <Edges Mode="0" TopEdge="666" BottomEdge="1000"/>
+       <Edges Mode="0" TopEdge="332" BottomEdge="500"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
        <Lines>
         <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
@@ -379,6 +379,45 @@
         <Trace Id="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake Output Average" DisplayUnit="" DisplayDPS="0" Visible="1"/>
        </Traces>
       </Graph>
+      <Graph Name="Group 3" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="500" BottomEdge="666"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Recieve CAN.CAN 1.Precharge.Digital 1 ID.AIR Power">
+        <Trace Id="Recieve CAN.CAN 1.Dashboard.Digital ID.Button 1" DisplayUnit="" DisplayDPS="0" Visible="0"/>
+        <Trace Id="Recieve CAN.CAN 1.Precharge.Digital 1 ID.AIR Power" DisplayUnit="" DisplayDPS="0" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 6" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="666" BottomEdge="833"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 2 Voltage">
+        <Trace Id="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 1 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN.CAN 1.Brake Module.Analogue ID 2.Brake 2 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 5" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="833" BottomEdge="1000"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Sensors.Brake sensors.Brake 2 Rear Pressure.Value">
+        <Trace Id="Sensors.Brake sensors.Brake 1 Front Pressure.Value" DisplayUnit="psi" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Sensors.Brake sensors.Brake 2 Rear Pressure.Value" DisplayUnit="psi" DisplayDPS="3" Visible="1"/>
+       </Traces>
+      </Graph>
      </Graphs>
      <Cursor Version="1" Style="1" Snap="1"/>
     </MoTeC.TimeDistance>
@@ -386,46 +425,6 @@
   </Worksheet>
   <Worksheet Version="200" Name="Calibration" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Parameter List">
-    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="0,0,256,1000" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
-     <Data Method="2" Match="" Locked="1" Sorted="0">
-      <DataRefs>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Invert"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Enable"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Type.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Pullup Control.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Active Edge.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Threshold.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Hysteresis.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Debounce.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Invert"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Enable"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Type.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pullup Control.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Active Edge.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Threshold.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Hysteresis.Value"/>
-       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Debounce.Value"/>
-       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Minimum Voltage"/>
-       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Maximum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Maximum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Minimum Voltage"/>
-       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Maximum Voltage"/>
-       <DataRef Name="CAN.Bus 1.Mode.Value"/>
-       <DataRef Name="CAN.Bus 2.Mode.Value"/>
-       <DataRef Name="CAN.Bus 3.Mode.Value"/>
-      </DataRefs>
-     </Data>
-     <Headers>
-      <Header Index="1" Col.Index="4" Col.Width="10"/>
-     </Headers>
-    </MoTeC.ParamList>
     <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="256,0,529,1000" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="320" DataPanelWidthRatio="0.636183" ShowChannels="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
@@ -939,8 +938,48 @@
       <Header Index="1" Col.Index="4" Col.Width="16"/>
      </Headers>
     </MoTeC.Calibrate>
+    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="0,0,256,1000" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
+     <Data Method="2" Match="" Locked="1" Sorted="0">
+      <DataRefs>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 1 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.APPS Sensors.APPS 2 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Invert"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Override.Enable"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Type.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Pullup Control.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Active Edge.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Threshold.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Hysteresis.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Precharge Button.Start.Sensor.Debounce.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Invert"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Override.Enable"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Type.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Pullup Control.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Active Edge.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Threshold.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Hysteresis.Value"/>
+       <DataRef Name="Read Sensors.Buttons.Drive Button.Start.Sensor.Debounce.Value"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Minimum Voltage"/>
+       <DataRef Name="Read Sensors.Steering Sensor.Steering Sensor Maximum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 1 Maximum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Minimum Voltage"/>
+       <DataRef Name="Read Sensors.BPPS Sensors.BPPS 2 Maximum Voltage"/>
+       <DataRef Name="CAN.Bus 1.Mode.Value"/>
+       <DataRef Name="CAN.Bus 2.Mode.Value"/>
+       <DataRef Name="CAN.Bus 3.Mode.Value"/>
+      </DataRefs>
+     </Data>
+     <Headers>
+      <Header Index="1" Col.Index="4" Col.Width="10"/>
+     </Headers>
+    </MoTeC.ParamList>
     <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="545,0,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
-     <Graphs ActivateChild="Group 1">
+     <Graphs ActivateChild="Group 4">
       <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
        <Edges Mode="0" TopEdge="0" BottomEdge="332"/>
        <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
@@ -952,14 +991,14 @@
        <Traces ActiveTrace="Read Sensors.Steering Sensor.Steering Sensor Voltage">
         <Trace Id="Read Sensors.APPS Sensors.Apps 1 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
         <Trace Id="Read Sensors.APPS Sensors.Apps 2 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
         <Trace Id="Read Sensors.BPPS Sensors.Bpps 1 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
         <Trace Id="Read Sensors.BPPS Sensors.Bpps 2 Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
         <Trace Id="Read Sensors.APPS Sensors.APPS Average Percentage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
         <Trace Id="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake 2 Voltage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
         <Trace Id="Recieve CAN.CAN 1.Brake Module.Analogue ID.Brake 1 Voltage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
-        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="1" Visible="1"/>
+        <Trace Id="Read Sensors.Steering Sensor.Steering Sensor Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
        </Traces>
       </Graph>
       <Graph Name="Group 2" ScaleMode="2" ScaleMin="0" ScaleMax="1">
@@ -1170,7 +1209,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="TV" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Parameter List">
-    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="0,400,268,1000" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
+    <MoTeC.ParamList Version="100" Name="Parameter List" PosPC="0,400,268,868" ShowCaption="1" AutoCaption="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" AllowAdjustAll="0" NameShow="1">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
        <DataRef Name="Global.Constants.FRONT BIAS"/>
@@ -1181,6 +1220,12 @@
      </Data>
      <Headers/>
     </MoTeC.ParamList>
+    <MoTeC.Bar Version="100" Name="Bar (8)" Caption="Read Sensors Steering Sensor Steering Sensor Percentage" PosPC="0,900,264,1000" ShowCaption="1" AutoCaption="1" ColorBandingFromChannel="0" UseDefaultFont="1" ScaleMode="0" MinimumValue="0.200567" MaximumValue="89.5602" Style="1,0,0" OriginStyle="1,0,0" CustomOrigin="0" ColorBanding="1" ColorBandLines="1">
+     <GaugeData Id="Read Sensors.Steering Sensor.Steering Sensor Percentage" DisplayUnit="" DisplayDPS="1" Visible="1"/>
+     <ColorBandGroup>
+      <ColorBand Flags="7" Min="0" Max="100" Color="0,255,0" Visible="1"/>
+     </ColorBandGroup>
+    </MoTeC.Bar>
     <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="539,498,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
      <Graphs ActivateChild="Group 2">
       <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
@@ -1235,7 +1280,7 @@
     </MoTeC.ChannelList>
     <MoTeC.Scatter Version="100" Name="Scatter" PosPC="539,0,1000,498" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowDataLegend="1" ShowColorLegend="1" TelemetryZoom="0" ActiveTrace="0" TileMode="1" TileActiveChan="0" TileAutoCols="1" TileCols="1" XChannel="Recieve CAN.CAN 1.Three Force Sensor.GForce ID.Y G Force" ZChannel="" XScaleMode="0" YScaleMode="0" ZScaleMode="0" ShowPoints="1" ShowDensity="0" DensityBins="50" DensityFillColorMode="1" DensityFillColor1="64,64,255" DensityFillColor2="64,64,255" ShowGridLines="1" ShowGradient="0" ShowColorBinSamples="1" Style="2" Size="1" ShowLines="0" ShowRegEquation="0" LinePointMode="1" CursorStyle="3" RegressionType="0" RegressionParam="0" RegressionZero="0" RegressionDigits="3">
      <Trace YChannel="Recieve CAN.CAN 1.Three Force Sensor.GForce ID.X G Force" Visible="1" YDelay="0"/>
-     <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="210,210,210" AxisChanColor="210,210,210" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="0" BandMode="1" DataMin="-1" DataMax="1" BandWidth="0.2" BandCount="10">
+     <EvenWidthBandAxis PaletteMode="1" GradientMode="1" BandChanColor="210,210,210" AxisChanColor="255,0,0" Color1="64,64,255" Color2="255,64,64" ReversGradient="0" CentredBands="0" GreaterMaxBand="1" LessMinBand="1" Continuous="0" BandMode="1" DataMin="-1" DataMax="1" BandWidth="0.2" BandCount="10">
       <ColorBand Flags="2" Min="-1" Max="-1" Color="64,64,255" Visible="1"/>
       <ColorBand Flags="7" Min="-1" Max="-0.8" Color="64,136,255" Visible="1"/>
       <ColorBand Flags="7" Min="-0.8" Max="-0.6" Color="64,203,255" Visible="1"/>
@@ -1570,7 +1615,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Bell Crank Sensors" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Calibrate">
-    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="326,113,940,809" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidthRatio="0.25" ShowChannels="1">
+    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="668,168,1000,1000" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidthRatio="0.25" ShowChannels="1">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
        <DataRef Name="UCM sensors.Bell Crank Sensors.FR BellCrank position"/>
@@ -1616,11 +1661,48 @@
      </View>
      <Headers/>
     </MoTeC.Calibrate>
+    <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="200,200,1000,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+     <Graphs ActivateChild="Group 2">
+      <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="0" BottomEdge="500"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Sensors.Bell Crank Sensors.RL BellCrank position.Value">
+        <Trace Id="Sensors.Bell Crank Sensors.FR BellCrank position.Value" DisplayUnit="deg" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Sensors.Bell Crank Sensors.FL BellCrank position.Value" DisplayUnit="deg" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Sensors.Bell Crank Sensors.RR BellCrank position.Value" DisplayUnit="deg" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Sensors.Bell Crank Sensors.RL BellCrank position.Value" DisplayUnit="deg" DisplayDPS="3" Visible="1"/>
+       </Traces>
+      </Graph>
+      <Graph Name="Group 2" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="500" BottomEdge="1000"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Sensors.Load cell.RL Load Cell.Value">
+        <Trace Id="Sensors.Load cell.FL Load Cell.Value" DisplayUnit="N" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Sensors.Load cell.RL Load Cell.Value" DisplayUnit="N" DisplayDPS="3" Visible="1"/>
+       </Traces>
+      </Graph>
+     </Graphs>
+     <Cursor Version="1" Style="1" Snap="1"/>
+    </MoTeC.TimeDistance>
     <MoTeC.ChannelList Version="100" Name="Channels" PosPC="0,214,625,614" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
        <DataRef Name="Recieve CAN.CAN 1.UCMs.UCM2 FR.Analogue ID.AnalogueIn1 Voltage"/>
        <DataRef Name="Recieve CAN.CAN 1.UCMs.UCM2 FR.Analogue ID.AnalogueIn2 Voltage"/>
+       <DataRef Name="Sensors.Bell Crank Sensors.FR BellCrank position.Value"/>
+       <DataRef Name="Sensors.Bell Crank Sensors.FL BellCrank position.Value"/>
+       <DataRef Name="Sensors.Bell Crank Sensors.RR BellCrank position.Value"/>
+       <DataRef Name="Sensors.Bell Crank Sensors.RL BellCrank position.Value"/>
       </DataRefs>
      </Data>
      <Headers>
@@ -1631,7 +1713,7 @@
   </Worksheet>
   <Worksheet Version="200" Name="Aero" LinkTo="Default" LockByGPSTime="0">
    <Controls Active="Calibrate">
-    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="498,0,1000,751" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="238" DataPanelWidthRatio="0.5" ShowChannels="1">
+    <MoTeC.Calibrate Version="100" Name="Calibrate" PosPC="790,0,1000,751" ShowCaption="1" AutoCaption="0" HelpOrientation="1" HelpSplitter="5000" HelpShow="0" ShowSearch="1" ShowTags="1" UseDefaultTags="0" DefaultTags="" GroupMode="2" GroupExpand="0" ColorAxisBody="1" ShowColorLegend="1" LayoutMode="0" SelectedTable="" SplitOrientation="1" DataPanelWidth="238" DataPanelWidthRatio="0.5" ShowChannels="1">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
        <DataRef Name="UCM sensors.Aero Board.U9"/>
@@ -1689,7 +1771,26 @@
      </View>
      <Headers/>
     </MoTeC.Calibrate>
-    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="0,0,498,702" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
+    <MoTeC.TimeDistance Version="100" Name="Time Graph" PosPC="147,200,947,1000" ShowCaption="0" AutoCaption="0" LinkZoom="1" ModeId="" ShowColorLegend="1" TelemetryZoom="0" TraceLineWidth="1" TracePointSize="3" TraceStyle="0" LinkCursor="1" LinkDatum="1" ShowKeyValues="1" ShowKeyStats="0" KeyMode="0" KeyPos="1" ShowGridLines="1" ShowXAxis="1" ShowXAxisScrollBar="0" ShowYAxis="1" ShowYAxisScrollBar="1" ShowMarkers="0" ShowBands="0" BandGroup="" BandMode="0" OverlapMode="0" VariancePos="0.25" VarianceAutoScale="1">
+     <Graphs ActivateChild="Group 1">
+      <Graph Name="Group 1" ScaleMode="2" ScaleMin="0" ScaleMax="1">
+       <Edges Mode="0" TopEdge="0" BottomEdge="1000"/>
+       <Edges Mode="1" TopEdge="0" BottomEdge="1000"/>
+       <Lines>
+        <Line Index="0" Enabled="1" Value="0" Color="210,210,210"/>
+        <Line Index="1" Enabled="0" Value="0" Color="0,0,248"/>
+        <Line Index="2" Enabled="0" Value="0" Color="248,0,0"/>
+       </Lines>
+       <Traces ActiveTrace="Recieve CAN.CAN 3.Aero Board.U24 Voltage">
+        <Trace Id="Recieve CAN.CAN 3.Aero Board.U9 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN.CAN 3.Aero Board.U20 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+        <Trace Id="Recieve CAN.CAN 3.Aero Board.U24 Voltage" DisplayUnit="V" DisplayDPS="3" Visible="1"/>
+       </Traces>
+      </Graph>
+     </Graphs>
+     <Cursor Version="1" Style="1" Snap="1"/>
+    </MoTeC.TimeDistance>
+    <MoTeC.ChannelList Version="100" Name="Channels" PosPC="0,0,497,435" ShowCaption="1" AutoCaption="0" ShowSearch="0" ShowTags="0" UseDefaultTags="0" DefaultTags="" GroupMode="0" GroupExpand="0">
      <Data Method="2" Match="" Locked="1" Sorted="0">
       <DataRefs>
        <DataRef Name="Recieve CAN.CAN 3.Aero Board.U9 Voltage"/>
